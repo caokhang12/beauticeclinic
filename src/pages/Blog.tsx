@@ -67,14 +67,10 @@ const Blog = () => {
 					url='"/Blog/BackgroundBanner.png"'
 				>
 					<Stack direction={'row'} alignItems="center" justifyContent="space-between" gap={3}>
-						<Typography variant="h2" color="primary.main" className="section__title">
+						<Typography variant="h2" color="primary.contrastText">
 							Blog
 						</Typography>
-						<Typography
-							variant="subtitle1"
-							color="secondary"
-							className="section__subtitle  mt-4 text-base"
-						>
+						<Typography variant="subtitle2" color="primary.contrastText" className="mt-1">
 							Home • Blog
 						</Typography>
 					</Stack>
@@ -99,7 +95,7 @@ const Blog = () => {
 						}}
 					>
 						{/* Blog List  */}
-						<Grid container spacing={{ xs: 5, md: 10, lg: 12, xl: 16.8 }}>
+						<Grid container spacing={{ xs: 5, md: 10, lg: 12, xl: 16.5 }}>
 							{BlogData.map((blog) => (
 								<Grid size={{ xs: 12, sm: 4, md: 12 }} key={blog.id}>
 									<Card
@@ -109,7 +105,7 @@ const Blog = () => {
 											overflow: 'hidden',
 										}}
 									>
-										<CardMedia component="img" height="240" image={blog.image} alt="consultation" />
+										<CardMedia component="img" image={blog.image} alt="consultation" />
 
 										<CardContent
 											sx={{
@@ -120,22 +116,26 @@ const Blog = () => {
 											<Typography
 												variant="subtitle1"
 												color="secondary"
-												className="section__subtitle leading-6 flex gap-8 lg:gap-[14px] mt-1"
+												className="flex items-center gap-8 lg:gap-[14px] mt-[6px]"
 											>
 												<span>
-													<img src="/Blog/Document.svg" alt="" className="relative top-[2px]" />
+													<img
+														src="/Blog/Document.svg"
+														alt="Document Icon"
+														className="relative tracking-tight "
+													/>
 												</span>
 												{blog.category}
 											</Typography>
 
-											<h2 className="font-semibold lg:text-4xl lg:leading-[2.9rem] lg:mt-4 md:mt-3 sm:mt-2 md:text-2xl xs:text-xl">
+											<Typography variant="h2" color="primary" className="lg:mt-4 md:mt-3 sm:mt-2 ">
 												{blog.title}
-											</h2>
+											</Typography>
 
 											<Typography
 												variant="subtitle2"
 												component="p"
-												className="section__description leading-6 lg:mt-5 md:mt-4 sm:mt-3 sm:line-clamp-1 md:line-clamp-4
+												className=" lg:mt-5 md:mt-4 sm:mt-3 sm:line-clamp-1 md:line-clamp-4
 												lg:line-clamp-none"
 											>
 												{blog.description}
@@ -145,11 +145,8 @@ const Blog = () => {
 												<PinkButton
 													sx={{
 														px: { xs: 2.8, md: 8 },
-														py: { xs: 1.6, md: 2.7 },
+														py: { xs: 1.6, md: 2.1 },
 														fontSize: { xs: 13, md: 16 },
-														letterSpacing: '100px',
-														fontWeight: 700,
-														fontFamily: 'Poppins, sans-serif',
 														position: 'relative',
 														right: 2,
 														'&::before': {

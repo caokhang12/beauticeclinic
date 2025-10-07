@@ -4,11 +4,6 @@ import { styled } from 'twin.macro';
 
 const TextAreaCustom = styled(TextareaAutosize)(() => [
 	{
-		resize: 'none',
-		outline: 'none',
-		border: 'none',
-	},
-	{
 		fontFamily: 'Poppins, sans-serif',
 		borderRadius: '0.9375rem',
 		backgroundColor: 'white',

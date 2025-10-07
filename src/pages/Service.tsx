@@ -41,7 +41,7 @@ const Service = () => {
 			{/* Hero Block */}
 			<section className="lg:mt-8 lg:pt-[38px] relative">
 				<Container>
-					<div className="flex flex-col items-center justify-center h-full gap-3 lg:pt-40 pt-32 pb-5">
+					<div className="flex flex-col items-center justify-center h-full  lg:pt-40 pt-32 pb-5">
 						<TitleBlock
 							subTitle="Our Services"
 							mainTitle="We focus on your beauty"

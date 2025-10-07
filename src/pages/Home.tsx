@@ -49,14 +49,14 @@ const Home: React.FC = () => {
 				imageProps={{ 'aria-hidden': true }}
 			/>
 			{/* <!-- Hero Block --> */}
-			<section className="pt-36 lg:pt-56 xl:mt-1 xl:pt-64 ">
+			<section className="pt-36 lg:pt-56 xl:pt-64 xl:mt-1">
 				<Container>
 					<div className="grid lg:grid-cols-[1fr_1.2fr] gap-20 xl:gap-4 md:grid-cols-1">
 						<div className="pt-14 pl-10">
 							<Typography color="primary" variant="h1">
 								Clinic & beauty consultant
 							</Typography>
-							<Typography variant="subtitle2" className="mt-2 mb-6 text-primary font-medium">
+							<Typography variant="subtitle2" className="mt-2 mb-6">
 								It is a long established fact that a reader will be by the readable content of a
 								page.
 							</Typography>
@@ -72,7 +72,7 @@ const Home: React.FC = () => {
 								</PinkButton>
 							</div>
 						</div>
-						<div className="lg:ml-2 items-center flex justify-center">
+						<div className="lg:ml-2">
 							<img src="/HeroImage.png" alt="Hero Image" />
 						</div>
 					</div>
@@ -86,7 +86,7 @@ const Home: React.FC = () => {
 			</section>
 
 			{/* <!-- Services Block --> */}
-			<section className="lg:py-28 mt-3 text-center">
+			<section className="mt-28 py-1 text-center">
 				<Container>
 					<div className="">
 						<TitleBlock
@@ -101,16 +101,12 @@ const Home: React.FC = () => {
 						{serviceCardData.map((item, index) => (
 							<div key={index} className="px-8 lg:px-8 pb-16 py-12 ">
 								<div className="flex items-center justify-center ">
-									<img src={item.image} alt="" />
+									<img src={item.image} alt="Service Image" />
 								</div>
-								<Typography color="primary.main" variant="h6" className="md:mt-14">
+								<Typography color="primary.main" variant="h6" className="md:mt-[3.6rem] mt-5">
 									{item.title}
 								</Typography>
-								<Typography
-									variant="body1"
-									color="text.primary"
-									className="card__description md:mt-5 px-1 "
-								>
+								<Typography variant="body1" color="text.primary" className=" md:mt-5 px-1 ">
 									{item.description}
 								</Typography>
 							</div>
@@ -120,7 +116,7 @@ const Home: React.FC = () => {
 			</section>
 
 			{/* <!-- Clinic Block --> */}
-			<section className="mt-6 py-1">
+			<section className="mt-32 py-2">
 				<Container>
 					<div className="grid lg:grid-cols-[1fr_1fr] md:grid-cols-1 gap-10 ">
 						<Stack spacing={1.5}>
@@ -144,7 +140,7 @@ const Home: React.FC = () => {
 								enim.
 							</Typography>
 
-							<div className="flex gap-10 items-center  mt-8 lg:mt-12 pt-1">
+							<div className="flex gap-10 items-center mt-8 lg:mt-12 pt-1">
 								<PinkButton
 									variant="contained"
 									sx={{
@@ -158,21 +154,17 @@ const Home: React.FC = () => {
 								>
 									Learn More
 								</PinkButton>
-								<a href="#" className="flex items-center gap-3 ml-1">
+								<a href="#" className="flex no-underline items-center gap-3 ml-1">
 									<div className="">
 										<img src="/Home/Play_button.png" alt="" className=" w-fit" />
 									</div>
-									<Typography
-										variant="subtitle2"
-										component="span"
-										className="section__description text-text-body"
-									>
+									<Typography variant="subtitle2" component="span">
 										Watch Video
 									</Typography>
 								</a>
 							</div>
 						</Stack>
-						<div className="relative w-full h-full flex items-center justify-center lg:items-end lg:justify-end lg:pb-1">
+						<div className="lg:relative bottom-3 w-full h-full flex items-center justify-center lg:items-end lg:justify-end">
 							<img src="/unsplash_about.png" alt="Clinic Image" className="" />
 						</div>
 					</div>
@@ -180,7 +172,7 @@ const Home: React.FC = () => {
 			</section>
 
 			{/* <!-- Team Block --> */}
-			<div className="mt-20 lg:mt-28 py-2 lg:py-5 text-center">
+			<div className="mt-20 lg:mt-28 py-2 lg:py-4 text-center">
 				<Container>
 					<Box tw="md:w-3/4 lg:w-[39%]">
 						<TitleBlock
@@ -196,7 +188,7 @@ const Home: React.FC = () => {
 			</div>
 
 			{/* <!-- Contact Block --> */}
-			<section className=" mt-28 lg:mb-32 mb-20 py-[26px]">
+			<section className=" mt-24 lg:mb-32 mb-20 py-[26px]">
 				<Container>
 					<div className="grid lg:grid-cols-2 md:grid-cols-1  items-center lg:gap-24 gap-10">
 						<div className="lg:pt-16 md:pt-11 relative top-1">

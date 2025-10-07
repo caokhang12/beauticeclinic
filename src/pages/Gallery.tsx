@@ -37,7 +37,7 @@ const Gallery = () => {
 								<Typography
 									variant="subtitle2"
 									component="p"
-									className="section__description leading-6 mt-3 lg:mt-[0.7rem]"
+									className="leading-6 mt-3 lg:mt-[0.7rem]"
 								>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet
 									luctus venenatis
@@ -68,11 +68,7 @@ const Gallery = () => {
 						))}
 					</Grid>
 					<div className="mt-8 w-3/5">
-						<Typography
-							variant="subtitle2"
-							component="p"
-							className="leading-6 section__description sm:text-sm md:text-base"
-						>
+						<Typography variant="subtitle2" component="p" className="leading-6">
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet
 							luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim,
 							<span className="font-semibold text-primary"> our teams</span>.
@@ -84,18 +80,18 @@ const Gallery = () => {
 			<section className="mt-24 lg:mt-[130px] mb-28 ">
 				<Container className="relative z-10 lg:bottom-1">
 					<BannerBox
-						pt={{ xs: 10, md: 15, lg: 20 }}
-						pb={{ xs: 10, md: 15, lg: 20 }}
+						pt={{ xs: 10, md: 15, lg: 19.5 }}
+						pb={{ xs: 10, md: 15, lg: 20.5 }}
 						url="/Gallery/BackgroundVideo.png"
 						className=" flex justify-center items-center flex-col "
 					>
-						<Typography variant="h2" color="primary.contrastText" className="section__title pt-3">
+						<Typography variant="h2" color="primary.contrastText" className=" pt-3">
 							Watch the video tour
 						</Typography>
 						<Typography
 							variant="subtitle2"
 							color="primary.contrastText"
-							className="mt-5 md:w-1/2 leading-6  text-center "
+							className="mt-5 md:w-1/2 leading-6 text-center "
 						>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet
 							luctus venenatis
