@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import BannerBox from '../components/Banner';
 import { styled } from '@mui/material/styles';
+import { TitleBlock } from '../components/TitleBlock';
 
 const NoDividerAccordion = styled(Accordion)(() => ({
 	'&.MuiAccordion-root:before': {
@@ -41,15 +42,11 @@ const Service = () => {
 			<section className="lg:mt-8 lg:pt-[38px] relative">
 				<Container>
 					<div className="flex flex-col items-center justify-center h-full gap-3 lg:pt-40 pt-32 pb-5">
-						<Typography variant="subtitle1" className="section__subtitle">
-							Our Services
-						</Typography>
-						<Typography variant="h2" className="section__title">
-							We focus on your beauty
-						</Typography>
-						<Typography variant="subtitle2" component="p" className="section__description leading-6 mt-3">
-							Lorem ipsum dolor sit amet
-						</Typography>
+						<TitleBlock
+							subTitle="Our Services"
+							mainTitle="We focus on your beauty"
+							description="Lorem ipsum dolor sit amet"
+						/>
 					</div>
 					<Grid
 						rowSpacing={{ xs: 2, md: 3, lg: 8 }}
@@ -115,10 +112,10 @@ const Service = () => {
 						</Grid>
 						<Grid size={6}>
 							<div className="flex  flex-col gap-3 lg:pt-6 h-full">
-								<Typography variant="subtitle1" className="section__subtitle ">
+								<Typography variant="subtitle1" color="secondary" className="section__subtitle ">
 									Beauty Consultation
 								</Typography>
-								<Typography variant="h2" className="section__title">
+								<Typography variant="h2" color="primary.main" className="section__title">
 									We services beauty consultation
 								</Typography>
 								<p className="w-[95%] tracking-widest">
@@ -137,10 +134,10 @@ const Service = () => {
 						</Grid>
 						<Grid size={6}>
 							<div className="flex flex-col gap-3 lg:pt-7 h-full">
-								<Typography variant="subtitle1" className="section__subtitle ">
+								<Typography variant="subtitle1" color="secondary" className="section__subtitle ">
 									Skin Treatements
 								</Typography>
-								<Typography variant="h2" className="section__title w-11/12">
+								<Typography variant="h2" color="primary.main" className="section__title w-11/12">
 									Skin care and treatment by expert
 								</Typography>
 								<p className="w-[95%] tracking-widest">
@@ -177,10 +174,10 @@ const Service = () => {
 						</Grid>
 						<Grid size={6}>
 							<div className="flex flex-col gap-3 lg:pt-8 h-full">
-								<Typography variant="subtitle1" className="section__subtitle  ">
+								<Typography variant="subtitle1" color="secondary" className="section__subtitle  ">
 									Beauty Product
 								</Typography>
-								<Typography variant="h2" className="section__title">
+								<Typography variant="h2" color="primary.main" className="section__title">
 									We present quality beauty products
 								</Typography>
 								<p className="w-[95%] tracking-widest">
@@ -208,7 +205,11 @@ const Service = () => {
 							size={{ xs: 12, md: 6 }}
 							className="flex text-center lg:text-start flex-col gap-5"
 						>
-							<Typography variant="h2" className="section__title text-white lg:relative top-1">
+							<Typography
+								variant="h2"
+								color="primary.main"
+								className="section__title lg:relative top-1"
+							>
 								Best responsibility and service for our customers
 							</Typography>
 							<Typography
@@ -225,7 +226,11 @@ const Service = () => {
 			</Container>
 			{/* FAQ Block */}
 			<Container className="my-20 lg:mt-28 lg:mb-[118px] pt-1 pb-2">
-				<Typography variant="h2" className="lg:ml-2 section__title text-center">
+				<Typography
+					variant="h2"
+					color="primary.main"
+					className="lg:ml-2 section__title text-center"
+				>
 					Services FAQ’s
 				</Typography>
 				{/* divider */}
@@ -247,9 +252,13 @@ const Service = () => {
 							id="panel1-header"
 							className=""
 						>
-							<span className="btn__text px-3 text-secondary lg:relative top-1 py-2">
+							<Typography
+								variant="subtitle2"
+								color="primary"
+								className="px-3 font-semibold lg:relative top-1 py-2"
+							>
 								Is beauty consultation handled thoroughly?
-							</span>
+							</Typography>
 						</AccordionSummary>
 						<AccordionDetails
 							sx={{

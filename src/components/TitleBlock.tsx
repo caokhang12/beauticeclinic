@@ -28,14 +28,14 @@ export const TitleBlock = ({
 	description: string;
 }) => {
 	return (
-		<Stack spacing={1.4} alignItems="center">
+		<Stack spacing={1.4} alignItems="center" justifyContent={'center'} textAlign="center">
 			<Typography variant="subtitle1" color="secondary">
 				{subTitle}
 			</Typography>
-			<Typography variant="h2" color="primary.main" tw="w-full md:w-3/4 lg:w-[39%]">
+			<Typography variant="h2" color="primary.main" className="max-w-[29rem]">
 				{mainTitle}
 			</Typography>
-			<Typography variant="subtitle2" color="text.primary" tw=" w-3/4 pt-2">
+			<Typography variant="subtitle2" color="text.primary" tw="max-w-[52rem] pt-2">
 				{description}
 			</Typography>
 		</Stack>

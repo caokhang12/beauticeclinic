@@ -150,7 +150,7 @@ const Home2: React.FC = () => {
 								<Typography variant="subtitle1" color="secondary">
 									About Us
 								</Typography>
-								<Typography variant="h2" color="primary	" className=" mt-2">
+								<Typography variant="h2" color="primary.main" className="mt-2">
 									We are the best beauty clinic
 								</Typography>
 								<Typography variant="subtitle2" className=" leading-6 mt-4">
@@ -182,7 +182,7 @@ const Home2: React.FC = () => {
 						<Typography variant="subtitle1" color="secondary">
 							Main Services
 						</Typography>
-						<Typography variant="h2" className="mt-3">
+						<Typography variant="h2" color="primary.main" className="mt-3">
 							Our focus services
 						</Typography>
 						<Typography variant="subtitle2" className=" lg:mt-[26px] mt-4">
@@ -235,7 +235,7 @@ const Home2: React.FC = () => {
 						<div className="mt-16 pl-1 grid grid-cols-1 lg:grid-cols-2 lg:gap-1 gap-16 items-center">
 							<div>
 								<Box sx={tw`space-y-5`}>
-									<Typography variant="h2" color="primary.contrastText">
+									<Typography variant="h2" color="primary.main">
 										Why choosing us?
 									</Typography>
 									<Typography
@@ -262,7 +262,8 @@ const Home2: React.FC = () => {
 											<Box>
 												<Typography
 													variant="h2"
-													className="text-white section__title lg:relative top-2 left-1"
+													color="primary.main"
+													className="section__title lg:relative top-2 left-1"
 												>
 													100%
 												</Typography>
@@ -282,7 +283,7 @@ const Home2: React.FC = () => {
 												/>
 											</Box>
 											<Box className="lg:relative top-2 right-2 ">
-												<Typography variant="h2" className="section__title text-white">
+												<Typography variant="h2" color="primary.main" className="section__title">
 													99%
 												</Typography>
 												<div className="text-white lg:relative bottom-2">customer love</div>
@@ -297,7 +298,8 @@ const Home2: React.FC = () => {
 											<Box className="lg:relative top-1 left-2 ">
 												<Typography
 													variant="h2"
-													className="section__title text-white lg:relative top-1"
+													color="primary.main"
+													className="section__title lg:relative top-1"
 												>
 													75+
 												</Typography>
@@ -313,7 +315,8 @@ const Home2: React.FC = () => {
 											<Box className="lg:relative top-1 right-1">
 												<Typography
 													variant="h2"
-													className="section__title text-white lg:relative top-1"
+													color="primary.main"
+													className="section__title lg:relative top-1"
 												>
 													1.200+
 												</Typography>
@@ -394,14 +397,10 @@ const Home2: React.FC = () => {
 					<div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] items-start gap-10">
 						{/* Left content */}
 						<Box>
-							<Typography variant="h2" className="section__title">
+							<Typography variant="h2" color="primary.main" className="section__title">
 								Request call services
 							</Typography>
-							<Typography
-								variant="subtitle2"
-								component="p"
-								className="section__description mt-6"
-							>
+							<Typography variant="subtitle2" component="p" className="section__description mt-6">
 								Lorem ipsum dolor sit amet, consect adipiscing elit{' '}
 								<span className="font-semibold leading-8 text-secondary">Contact Us.</span>
 							</Typography>

@@ -16,7 +16,7 @@ import tw, { styled, css } from 'twin.macro';
 import { useColorScheme } from '@mui/material/styles';
 
 const GlassAppBar = styled(AppBar)(() => [
-	tw`flex bg-[var(--glass-background)] backdrop-blur-sm justify-center border-b border-[var(--glass-border)]`,
+	tw`flex backdrop-blur-lg bg-[var(--glass-background)] bg-opacity-20 justify-center `,
 ]);
 
 const NavToolbar = styled(Toolbar)(() => [

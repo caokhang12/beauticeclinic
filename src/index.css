@@ -8,24 +8,24 @@ html {
 
 :root {
 	/* Primitive palette */
-	--color-primary: rgb(255, 100, 174);
-	--color-secondary: #091156;
-	--color-text: #8b8b8b;
-	--color-slider: #d9ddfe;
-	--color-slider-selected: #414880;
-	--color-neutral-350: #c5c5c5;
-	--color-neutral-150: #eeeeee;
-	--color-footer-text: #d7dbff;
-	--color-rating-star: #ffa800;
-	--color-accent-brand: #414880;
-	--color-secondary-strong: #172176;
+	--color-primary: var(--mui-palette-primary-main, #091156);
+	--color-secondary: var(--mui-palette-secondary-main, rgb(255, 100, 174));
+	--color-text: var(--mui-palette-text-primary, #8b8b8b);
+	--color-slider: var(--mui-palette-neutral-200, #d9ddfe);
+	--color-slider-selected: var(--mui-palette-neutral-400, #414880);
+	--color-neutral-350: var(--mui-palette-neutral-350, #c5c5c5);
+	--color-neutral-150: var(--mui-palette-neutral-150, #eeeeee);
+	--color-footer-text: var(--mui-palette-text-secondary, #d7dbff);
+	--color-rating-star: var(--mui-palette-warning-main, #ffa800);
+	--color-accent-brand: var(--mui-palette-neutral-400, #414880);
+	--color-secondary-strong: var(--mui-palette-neutral-900, #172176);
 	--color-secondary-surface: #f6f7ff;
 	--color-secondary-surface-alt: #eef0ff;
 	--color-secondary-border: #e0e4ff;
 	--color-secondary-shadow: #f2f4ff;
 
 	/* Transparencies & effects */
-	--glass-background: rgba(200, 200, 200, 0.6);
+	--glass-background: rgba(255, 255, 255, 0.827);
 	--glass-border: rgba(224, 224, 224, 0.9);
 	--overlay-secondary-soft: rgba(15, 23, 42, 0.05);
 	--overlay-secondary-strong: rgba(15, 23, 42, 0.12);
@@ -74,7 +74,7 @@ html {
 
 .dark {
 	--color-background: #0b0b1a;
-	--color-primary: #ff64ae;
+	--color-primary: #ffffff;
 	--color-primary-strong: #ff4d9e;
 	--color-secondary: #e2e2e2;
 	--color-secondary-strong: #e2e2e2;
@@ -90,7 +90,7 @@ html {
 	--color-text-inverse: #0b0b1a;
 	--button-text-color: var(--color-text-inverse);
 	--footer: #1a1a1a;
-	--glass-background: rgba(11, 11, 26, 0.76);
+	--glass-background: rgba(11, 11, 26, 0);
 	--glass-border: rgba(48, 48, 76, 0.8);
 	--overlay-secondary-soft: rgba(255, 255, 255, 0.05);
 	--overlay-secondary-strong: rgba(255, 255, 255, 0.12);

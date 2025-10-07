@@ -15,7 +15,7 @@ const TextAreaCustom = styled(TextareaAutosize)(() => [
 		border: '1px solid #D9DDFE',
 		width: '100%',
 		padding: '1.6rem 1.35rem',
-		minHeight: '150px',
+		minHeight: '190px',
 		fontSize: '1rem',
 		fontWeight: 400,
 		letterSpacing: '0.09rem',
@@ -31,20 +31,20 @@ const TextAreaCustom = styled(TextareaAutosize)(() => [
 
 const ContactForm = () => {
 	return (
-		<form className="form  flex flex-col gap-32 lg:gap-[38px] ">
+		<form className="form w-full  flex flex-col gap-32 lg:gap-[38px] ">
 			<div className="flex justify-between md:flex-row flex-col gap-9">
-				<div className="form__group w-full">
-					<InputBase type="text" className="form__input w-full" placeholder="First name" />
+				<div className="w-full">
+					<InputBase type="text" placeholder="First name" />
 				</div>
-				<div className="form__group w-full">
-					<InputBase type="text" className="form__input w-full" placeholder="Last name" />
+				<div className="w-full">
+					<InputBase type="text" placeholder="Last name" />
 				</div>
 			</div>
 			<div>
-				<InputBase type="email" placeholder="Email address" />
+				<InputBase type="email" className=" w-full" placeholder="Email address" />
 			</div>
 			<div>
-				<InputBase type="text" placeholder="Subject message" />
+				<InputBase type="text" className=" w-full" placeholder="Subject message" />
 			</div>
 			<div>
 				<TextAreaCustom placeholder="Your inquiry here" />

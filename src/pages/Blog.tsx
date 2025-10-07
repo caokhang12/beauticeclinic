@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import BannerBox from '../components/Banner';
 import { PinkButton } from '../components/PinkButton';
+import BubbleBackground from '../components/BubbleBg';
 
 const BlogData = [
 	{
@@ -43,42 +44,21 @@ const BlogData = [
 
 const Blog = () => {
 	return (
-		<div className="mt-32 py-3">
-			<Box
-				sx={{
-					position: 'absolute',
-					top: '33%',
-					right: 0,
-					width: '100%',
-					height: 'fit-content',
-					display: 'flex',
-					justifyContent: 'flex-end',
-					backgroundSize: 'contain',
-					backgroundRepeat: 'no-repeat',
-					backgroundPosition: 'center',
-					zIndex: -1,
-					pointerEvents: 'none',
-				}}
-			>
-				<img src="/BubbleMid1.png" className="" alt="" />
-			</Box>
-			<Box
-				sx={{
-					position: 'absolute',
-					top: '60%',
-					right: 0,
-					width: '100%',
-					height: 'fit-content',
-					display: 'flex',
-					backgroundSize: 'contain',
-					backgroundRepeat: 'no-repeat',
-					backgroundPosition: 'center',
-					zIndex: -1,
-					pointerEvents: 'none',
-				}}
-			>
-				<img src="/BubbleMid1.png" className="transform scale-x-[-1]" alt="" />
-			</Box>
+		<div className="relative mt-32 py-3">
+			<BubbleBackground
+				image="/BubbleMid1.png"
+				top="33%"
+				right={0}
+				justify="flex-end"
+				imageProps={{ 'aria-hidden': true }}
+			/>
+			<BubbleBackground
+				image="/BubbleMid1.png"
+				top="60%"
+				right={0}
+				flipX
+				imageProps={{ 'aria-hidden': true }}
+			/>
 			{/* Banner Block */}
 			<Container className="relative lg:mt- ">
 				<BannerBox
@@ -87,10 +67,14 @@ const Blog = () => {
 					url='"/Blog/BackgroundBanner.png"'
 				>
 					<Stack direction={'row'} alignItems="center" justifyContent="space-between" gap={3}>
-						<Typography variant="h2" className="section__title text-white">
+						<Typography variant="h2" color="primary.main" className="section__title">
 							Blog
 						</Typography>
-						<Typography variant="subtitle2" component="p" className="section__description leading-6">
+						<Typography
+							variant="subtitle1"
+							color="secondary"
+							className="section__subtitle  mt-4 text-base"
+						>
 							Home • Blog
 						</Typography>
 					</Stack>
@@ -135,6 +119,7 @@ const Blog = () => {
 										>
 											<Typography
 												variant="subtitle1"
+												color="secondary"
 												className="section__subtitle leading-6 flex gap-8 lg:gap-[14px] mt-1"
 											>
 												<span>
@@ -263,7 +248,11 @@ const Blog = () => {
 									borderRadius: 4,
 								}}
 							>
-								<Typography variant="subtitle1" className="section__subtitle mb-6 text-secondary">
+								<Typography
+									variant="subtitle1"
+									color="secondary"
+									className="section__subtitle mb-6 text-secondary"
+								>
 									Recent Posts
 								</Typography>
 								<Stack spacing={2.5} sx={{ mt: 3.2 }}>
@@ -324,7 +313,11 @@ const Blog = () => {
 									borderRadius: 4,
 								}}
 							>
-								<Typography variant="subtitle1" className="section__subtitle mb-5 text-secondary">
+								<Typography
+									variant="subtitle1"
+									color="secondary"
+									className="section__subtitle mb-5 text-secondary"
+								>
 									Categories
 								</Typography>
 								<Stack spacing={0}>
@@ -373,6 +366,7 @@ const Blog = () => {
 							>
 								<Typography
 									variant="subtitle1"
+									color="secondary"
 									className="section__subtitle lg:ml-1.5 mb-5 text-secondary"
 								>
 									Cloud Tags
@@ -440,7 +434,11 @@ const Blog = () => {
 									borderRadius: 4,
 								}}
 							>
-								<Typography variant="subtitle1" className="section__subtitle  text-secondary">
+								<Typography
+									variant="subtitle1"
+									color="secondary"
+									className="section__subtitle  text-secondary"
+								>
 									Social Connect
 								</Typography>
 								<Stack

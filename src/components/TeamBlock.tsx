@@ -23,8 +23,8 @@ const TeamData = [
 
 const TeamBlock = () => {
 	return (
-		<section className=" mt-12 lg:mt-20 xl:mt-32 py-2 lg:py-3">
-			<Grid container spacing={10} justifyContent="center">
+		<section>
+			<Grid container spacing={10} justifyContent="center" alignItems={'center'}>
 				{TeamData.map((item, index) => (
 					<Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
 						<Card
@@ -59,7 +59,7 @@ const TeamBlock = () => {
 							<Typography
 								variant="subtitle1"
 								color="secondary"
-								className="pt-2 xl:mt-12 lg:mt-10 md:mt-8 mt-9"
+								className="pt-[0.35rem] pb-1 xl:mt-12 lg:mt-10 md:mt-8 mt-9"
 							>
 								{item.role}
 							</Typography>
@@ -70,10 +70,10 @@ const TeamBlock = () => {
 							>
 								{item.name}
 							</Typography>
-							<Typography variant="body1" className="card__description xl:mt-5 lg:mt-5 mt-3 ">
+							<Typography variant="body1" className="xl:mt-5 lg:mt-5 mt-3">
 								{item.description}
 							</Typography>
-							<div className="flex justify-around xl:mt-14 mt-9">
+							<div className="flex justify-around xl:mt-14 pt-1 mt-9">
 								<a href="#" className="expert-card__social-link">
 									<img src="/Home/twitter.svg" alt="Facebook" />
 								</a>

@@ -78,7 +78,7 @@ export const theme = createTheme({
 			fontSize: '1rem',
 			fontWeight: 600,
 			lineHeight: '1.25rem',
-			letterSpacing: '0.009rem',
+			letterSpacing: '0.01rem',
 		},
 		subtitle2: {
 			fontSize: '1rem',

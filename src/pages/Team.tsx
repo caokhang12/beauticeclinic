@@ -30,10 +30,15 @@ const Team = () => {
 				<section className="text-center">
 					<div className="container">
 						<div className="lg:mr-20">
-							<Typography variant="subtitle1" className="section__subtitle" component="div">
+							<Typography
+								variant="subtitle1"
+								color="secondary"
+								className="section__subtitle"
+								component="div"
+							>
 								Our Team
 							</Typography>
-							<Typography variant="h2" className="section__title mt-3">
+							<Typography variant="h2" color="primary.main" className="section__title mt-3">
 								We are Professional
 							</Typography>
 							<Typography
@@ -80,6 +85,7 @@ const Team = () => {
 									/>
 									<Typography
 										variant="subtitle1"
+										color="secondary"
 										className="section__subtitle xl:mt-14 lg:mt-10 md:mt-8 mt-9"
 									>
 										{item.role}
@@ -109,10 +115,10 @@ const Team = () => {
 			<section className="lg:mt-36 mt-28 mb-20 lg:mb-28 pt-2 lg:pt-4 ">
 				<Container>
 					<div className="flex flex-col items-center justify-center text-center gap-3 mb-24">
-						<Typography variant="subtitle1" className="section__subtitle">
+						<Typography variant="subtitle1" color="secondary" className="section__subtitle">
 							Assistance Team
 						</Typography>
-						<Typography variant="h2" className="section__title">
+						<Typography variant="h2" color="primary.main" className="section__title">
 							Meet the pro assistance
 						</Typography>
 						<Typography
@@ -229,10 +235,10 @@ const Team = () => {
 			<section>
 				<Container className="mt-16 lg:mt-24 py-5">
 					<div className="flex flex-col items-center justify-center text-center gap-3">
-						<Typography variant="subtitle1" className="section__subtitle">
+						<Typography variant="subtitle1" color="secondary" className="section__subtitle">
 							Our Testimonials
 						</Typography>
-						<Typography variant="h2" className="section__title">
+						<Typography variant="h2" color="primary.main" className="section__title">
 							What our customer says
 						</Typography>
 						<Typography

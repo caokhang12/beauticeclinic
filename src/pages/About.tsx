@@ -1,162 +1,144 @@
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import TeamBlock from '../components/TeamBlock';
 import { Box, Container, Typography } from '@mui/material';
 import BannerBox from '../components/Banner';
+import { TitleBlock } from '../components/TitleBlock';
+import BubbleBackground from '../components/BubbleBg';
+
+const PageWrapper = tw.div`relative`;
+
+const HeroMediaWrapper = styled(Box)`
+	${tw`relative w-full overflow-hidden my-8`}
+	border-radius: 15px;
+`;
+
+const HeroPlayButton = styled(Box)`
+	${tw`absolute cursor-pointer top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30`}
+`;
+
+const TeamSection = styled.section`
+	${tw`my-24 pt-8 pb-6`}
+`;
+
+const MissionImageFrame = styled(Box)`
+	${tw`flex justify-center items-end lg:mb-1`}
+`;
+
+const MissionPrimaryImage = styled(Box)`
+	${tw`lg:relative top-6 right-2 flex justify-center items-center`}
+`;
+
+const MissionSecondaryImage = styled(Box)`
+	${tw`flex lg:relative bottom-3.5 left-5 justify-center items-center`}
+`;
+
+const ClientLogoContainer = styled(Box)`
+	${tw`flex justify-center items-center`}
+`;
 
 const About = () => {
 	return (
-		<div className="relative ">
-			<Box
-				sx={{
-					position: 'absolute',
-					top: '33%',
-					right: 0,
-					width: '100%',
-					height: 'fit-content',
-					display: 'flex',
-					justifyContent: 'flex-end',
-					backgroundSize: 'contain',
-					backgroundRepeat: 'no-repeat',
-					backgroundPosition: 'center',
-					zIndex: -1,
-					pointerEvents: 'none',
-				}}
-			>
-				<img src="/BubbleMid1.png" className="" alt="" />
-			</Box>
-			<Box
-				sx={{
-					position: 'absolute',
-					top: '60%',
-					right: 0,
-					width: '100%',
-					height: 'fit-content',
-					display: 'flex',
-					backgroundSize: 'contain',
-					backgroundRepeat: 'no-repeat',
-					backgroundPosition: 'center',
-					zIndex: -1,
-					pointerEvents: 'none',
-				}}
-			>
-				<img src="/BubbleMid1.png" className="transform scale-x-[-1]" alt="" />
-			</Box>
+		<PageWrapper>
+			<BubbleBackground
+				image="/BubbleMid1.png"
+				top="33%"
+				right={0}
+				justify="flex-end"
+				imageProps={{ 'aria-hidden': true }}
+			/>
+			<BubbleBackground
+				image="/BubbleMid1.png"
+				top="60%"
+				right={0}
+				flipX
+				imageProps={{ 'aria-hidden': true }}
+			/>
 			{/* Hero Block */}
-			<section className="mt-40 pt-9 relative">
+			<section className="mt-40 pt-9">
 				<Container>
-					<div className="flex flex-col items-start justify-center h-full gap-3 py-8">
-						<Typography variant="subtitle1" className="section__subtitle">
+					<div className="flex flex-col gap-3 py-[2.1rem]">
+						<Typography variant="subtitle1" color="secondary">
 							About
 						</Typography>
-						<Typography variant="h2" className="section__title md:w-2/3">
+						<Typography variant="h2" color="primary.main" className=" md:w-2/3">
 							We are a leading beauty clinic that has been around since 2002
 						</Typography>
-						<Typography
-							variant="subtitle2"
-							component="p"
-							className="section__description leading-6 mt-2 md:w-3/5"
-						>
+						<Typography variant="subtitle2" className=" mt-2 md:w-3/5">
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet
 							luctus venenatis
 						</Typography>
 					</div>
-					<Box
-						sx={{
-							width: '100%',
-							position: 'relative',
-							height: 'fit-content',
-							borderRadius: 15,
-							overflow: 'hidden',
-							boxShadow: '2px 4px 15px rgba(0, 0, 0, 0.5)',
-							my: 4,
-						}}
-					>
-						<Box
-							sx={{
-								position: 'absolute',
-								top: '50%',
-								left: '50%',
-								transform: 'translate(-50%, -50%)',
-								zIndex: 3,
-								cursor: 'pointer',
-							}}
-						>
-							<img src="/About/Play Button.png" alt="" />
-						</Box>
-						<img
-							src="/About/HeroImage.png"
-							alt="Leaf"
-							className="w-full h-full md:h-auto object-cover"
-						/>
-					</Box>
+					<HeroMediaWrapper>
+						<HeroPlayButton>
+							<img src="/About/Play Button.png" alt="Play" />
+						</HeroPlayButton>
+						<img src="/About/HeroImage.png" alt="Hero Image" />
+					</HeroMediaWrapper>
 				</Container>
 			</section>
 
 			{/* Team Block */}
-			<div className="my-32 pt-3 pb-6">
-				<TeamBlock />
-			</div>
+			<TeamSection>
+				<Container>
+					<TitleBlock
+						subTitle="Professional Teams"
+						mainTitle="The Professional expert"
+						description="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam."
+					/>
+					<div className="mt-12 lg:mt-20 xl:mt-32 pt-[0.8rem] pb-1">
+						<TeamBlock />
+					</div>
+				</Container>
+			</TeamSection>
+
 			{/* Slogan Block */}
 			<section>
 				<Container className="relative mt-40">
-					<BannerBox pt={21} pb={23} url='"/About/BackgroundBanner.png"'>
-						<div className="flex flex-col items-center justify-center text-center gap-2 ">
+					<BannerBox pt={21} pb={22} url="/About/BackgroundBanner.png">
+						<div className="flex flex-col items-center text-center gap-2 ">
 							<Typography
 								variant="subtitle1"
-								className="section__subtitle text-white relative lg:bottom-[3px]"
+								color="primary.contrastText"
+								className="relative lg:bottom-[2px]"
 							>
 								Business Slogan
 							</Typography>
-							<Typography variant="h2" className="section__title w-1/2 text-white">
-								Best responsibility and service for our customers
+							<Typography variant="h2" color="primary.contrastText">
+								Best responsibility and service
+								<br />
+								for our customers
 							</Typography>
-							<Typography
-								variant="subtitle2"
-								component="p"
-								className="section__description leading-6 w-3/5 lg:mt-1 relative lg:top-2 text-white"
-							>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet
-								luctus venenatis
+							<Typography variant="subtitle2" color="primary.contrastText" className="mt-3">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
+								<br /> purus sit amet luctus venenatis
 							</Typography>
 						</div>
 					</BannerBox>
 				</Container>
 			</section>
 			{/* Mission Block */}
-			<section className="lg:mt-28 mt-20 py-3">
+			<section className="lg:mt-[6.9rem] mt-20 py-3">
 				<Container>
 					<div className=" grid grid-cols-1 lg:grid-cols-2 lg:gap-[142px]  gap-20 items-start">
 						<div>
-							<Box sx={tw`flex justify-center items-end lg:mb-0`}>
-								<Box
-									sx={{
-										position: 'relative',
-										display: 'flex',
-										justifyContent: 'center',
-										alignItems: 'center',
-										top: 25,
-										right: {
-											xs: 0,
-											lg: 7,
-										},
-									}}
-								>
+							<MissionImageFrame>
+								<MissionPrimaryImage>
 									<img src="/About/About_1.png" alt="About Us" className="" />
-								</Box>
-							</Box>
+								</MissionPrimaryImage>
+							</MissionImageFrame>
 						</div>
 						<div className="order-2 lg:pl-5">
-							<Typography variant="subtitle1" className="section__subtitle mb-2 lg:mb-[10px] ">
+							<Typography
+								variant="subtitle1"
+								color="secondary"
+								className="section__subtitle mb-2 lg:mb-[10px] "
+							>
 								Our Vision
 							</Typography>
-							<Typography variant="h2" className="section__title mb-4">
+							<Typography variant="h2" color="primary.main" className="mb-4">
 								Be the best and go international
 							</Typography>
-							<Typography
-								variant="subtitle2"
-								component="p"
-								className="tracking-widest section__description leading-6 w-full"
-							>
+							<Typography variant="subtitle2" className=" leading-6 w-full">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, quam suscipit purus
 								donec amet. Egestas volutpat facilisi eu libero.
 								<br />
@@ -164,38 +146,19 @@ const About = () => {
 								Nunc, ipsum ornare mauris sit quam quis enim. Varius tellus in suspendisse placerat.
 							</Typography>
 						</div>
-						<div className="order-4 flex justify-start lg:mb-0">
-							<Box
-								sx={{
-									display: 'flex',
-									justifyContent: 'center',
-									alignItems: 'center',
-									position: {
-										xs: 'static',
-										lg: 'relative',
-									},
-									top: -15,
-									left: {
-										xs: 0,
-										lg: 20,
-									},
-								}}
-							>
-								<img src="/About/About_2.png" alt="About Us" className="max-w-3/4" />
-							</Box>
+						<div className="order-4 flex">
+							<MissionSecondaryImage>
+								<img src="/About/About_2.png" alt="About Us" />
+							</MissionSecondaryImage>
 						</div>
 						<div className="order-3">
-							<Typography variant="subtitle1" className="section__subtitle mb-2">
+							<Typography variant="subtitle1" color="secondary" className="mb-2">
 								Our Mission
 							</Typography>
-							<Typography variant="h2" className="section__title mb-4">
+							<Typography variant="h2" color="primary.main" className="mb-4">
 								Special & premium service to any clients
 							</Typography>
-							<Typography
-								variant="subtitle2"
-								component="p"
-								className="tracking-widest section__description leading-6 md:w-[95%]"
-							>
+							<Typography variant="subtitle2" className=" leading-6 md:w-[95%]">
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, quam suscipit purus
 								donec amet. Egestas volutpat facilisi eu libero.
 								<br />
@@ -210,34 +173,26 @@ const About = () => {
 			<section className="my-10 pt-3 lg:pt-[18px] pb-3 lg:pr-6 lg:mb-16 mb-10">
 				<Container>
 					<div className="  flex flex-col items-center justify-center text-center gap-3 py-10">
-						<Typography variant="subtitle1" className="section__subtitle">
-							Our Clients
-						</Typography>
-						<Typography variant="h2" className="section__title">
-							Well-known agencies
-						</Typography>
-						<Typography
-							variant="subtitle2"
-							component="p"
-							className="section__description mt-2 leading-6"
-						>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit
-						</Typography>
+						<TitleBlock
+							subTitle="Our Clients"
+							mainTitle="Well-known agencies"
+							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+						/>
 					</div>
-					<div className=" w-fit mb-20 mt-8  grid grid-cols-2 md:grid-cols-5 items-center justify-center mx-auto gap- lg:gap-[60px] lg:relative left-[12px]">
+					<div className=" w-fit mb-20 mt-8  grid grid-cols-2 md:grid-cols-5 items-center justify-center mx-auto gap-7 lg:gap-[60px] lg:relative left-[12px]">
 						{Array.from({ length: 5 }).map((_, index) => (
-							<Box key={index} sx={tw`flex justify-center items-center`}>
+							<ClientLogoContainer key={index}>
 								<img
 									src={`/About/LOGO${index + 1}.svg`}
 									alt={`Client Logo ${index + 1}`}
 									className="h-36 w-36 object-contain"
 								/>
-							</Box>
+							</ClientLogoContainer>
 						))}
 					</div>
 				</Container>
 			</section>
-		</div>
+		</PageWrapper>
 	);
 };
 

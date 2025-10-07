@@ -4,6 +4,7 @@ import TeamBlock from '../components/TeamBlock';
 import { Box, Container, Stack, Typography } from '@mui/material';
 import ContactForm from '../components/ContactForm';
 import { TitleBlock } from '../components/TitleBlock';
+import BubbleBackground from '../components/BubbleBg';
 
 const serviceCardData = [
 	{
@@ -25,65 +26,37 @@ const serviceCardData = [
 const Home: React.FC = () => {
 	return (
 		<div className="relative">
-			<Box
-				sx={{
-					position: 'absolute',
-					top: 0,
-					left: 0,
-					width: '100%',
-					height: '100%',
-					// backgroundImage: 'url(/Bubble2.png)',
-					backgroundSize: 'contain',
-					backgroundRepeat: 'no-repeat',
-					backgroundPosition: 'center',
-					zIndex: -1,
-					pointerEvents: 'none',
-				}}
-			>
-				<img src="/Bubble2.png" className="" alt="" />
-			</Box>
+			<BubbleBackground
+				image="/Bubble2.png"
+				top={0}
+				left={0}
+				height="100%"
+				imageProps={{ 'aria-hidden': true }}
+			/>
 
-			<Box
-				sx={{
-					position: 'absolute',
-					top: '33%',
-					right: 0,
-					width: '100%',
-					height: 'fit-content',
-					display: 'flex',
-					justifyContent: 'flex-end',
-					backgroundSize: 'contain',
-					backgroundRepeat: 'no-repeat',
-					backgroundPosition: 'center',
-					zIndex: -1,
-					pointerEvents: 'none',
-				}}
-			>
-				<img src="/BubbleMid1.png" className="" alt="" />
-			</Box>
-			<Box
-				sx={{
-					position: 'absolute',
-					top: '75%',
-					left: 0,
-					width: '100%',
-					backgroundSize: 'contain',
-					backgroundRepeat: 'no-repeat',
-					zIndex: -1,
-					pointerEvents: 'none',
-				}}
-			>
-				<img src="/BubbleMid1.png" className="transform scale-x-[-1]" alt="" />
-			</Box>
+			<BubbleBackground
+				image="/BubbleMid1.png"
+				top="33%"
+				right={0}
+				justify="flex-end"
+				imageProps={{ 'aria-hidden': true }}
+			/>
+			<BubbleBackground
+				image="/BubbleMid1.png"
+				top="75%"
+				left={0}
+				flipX
+				imageProps={{ 'aria-hidden': true }}
+			/>
 			{/* <!-- Hero Block --> */}
 			<section className="pt-36 lg:pt-56 xl:mt-1 xl:pt-64 ">
 				<Container>
 					<div className="grid lg:grid-cols-[1fr_1.2fr] gap-20 xl:gap-4 md:grid-cols-1">
 						<div className="pt-14 pl-10">
-							<Typography color="primary" variant="h1" component="h1">
+							<Typography color="primary" variant="h1">
 								Clinic & beauty consultant
 							</Typography>
-							<Typography variant="subtitle2" className="mt-2 mb-6 text-secondary font-medium">
+							<Typography variant="subtitle2" className="mt-2 mb-6 text-primary font-medium">
 								It is a long established fact that a reader will be by the readable content of a
 								page.
 							</Typography>
@@ -113,16 +86,17 @@ const Home: React.FC = () => {
 			</section>
 
 			{/* <!-- Services Block --> */}
-			<section className="lg:py-28 mt-3  text-center">
+			<section className="lg:py-28 mt-3 text-center">
 				<Container>
-					<TitleBlock
-						subTitle={'Main Services'}
-						mainTitle={'Learn services to focus on your beauty'}
-						description={
-							'Porta rhoncus orci condimentum vitae lobortis eu dignissim non massa. Non parturient amet, feugiat tellus sagittis, scelerisque eget nulla turpis.'
-						}
-					/>
-
+					<div className="">
+						<TitleBlock
+							subTitle={'Main Services'}
+							mainTitle={`Learn services to focus on your beauty`}
+							description={
+								'Porta rhoncus orci condimentum vitae lobortis eu dignissim non massa. Non parturient amet, feugiat tellus sagittis, scelerisque eget nulla turpis.'
+							}
+						/>
+					</div>
 					<div className="grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-14 mt-24">
 						{serviceCardData.map((item, index) => (
 							<div key={index} className="px-8 lg:px-8 pb-16 py-12 ">
@@ -188,7 +162,11 @@ const Home: React.FC = () => {
 									<div className="">
 										<img src="/Home/Play_button.png" alt="" className=" w-fit" />
 									</div>
-									<Typography variant="subtitle2" component="span" className="section__description text-text-body">
+									<Typography
+										variant="subtitle2"
+										component="span"
+										className="section__description text-text-body"
+									>
 										Watch Video
 									</Typography>
 								</a>
@@ -204,12 +182,16 @@ const Home: React.FC = () => {
 			{/* <!-- Team Block --> */}
 			<div className="mt-20 lg:mt-28 py-2 lg:py-5 text-center">
 				<Container>
-					<TitleBlock
-						subTitle="Professional Teams"
-						mainTitle="The Professional expert"
-						description="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam."
-					/>
-					<TeamBlock />
+					<Box tw="md:w-3/4 lg:w-[39%]">
+						<TitleBlock
+							subTitle="Professional Teams"
+							mainTitle="The Professional expert"
+							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam."
+						/>
+					</Box>
+					<div className="mt-12 lg:mt-20 xl:mt-32 py-2 lg:py-3">
+						<TeamBlock />
+					</div>
 				</Container>
 			</div>
 
@@ -224,7 +206,7 @@ const Home: React.FC = () => {
 							<Typography variant="subtitle1" color="secondary">
 								Contact Us
 							</Typography>
-							<Typography variant="h2" color="primary" className=" mt-3">
+							<Typography variant="h2" color="primary.main" className=" mt-3">
 								Send your inquiry to
 								<br />
 								our expert team
