@@ -75,13 +75,13 @@ const TeamBlock = () => {
 							</Typography>
 							<div className="flex justify-around xl:mt-14 pt-1 mt-9">
 								<a href="#" className="expert-card__social-link">
-									<img src="/Home/twitter.svg" alt="Facebook" />
+									<img src="./Home/twitter.svg" alt="Facebook" />
 								</a>
 								<a href="#" className="expert-card__social-link">
-									<img src="facebook-f.png" alt="Facebook" />
+									<img src="./facebook-f.png" alt="Facebook" />
 								</a>
 								<a href="#" className="expert-card__social-link">
-									<img src="/Home/instagram.svg" alt="Facebook" />
+									<img src="./Home/instagram.svg" alt="Facebook" />
 								</a>
 							</div>
 						</Card>

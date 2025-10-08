@@ -22,10 +22,12 @@ export const TitleBlock = ({
 	subTitle,
 	mainTitle,
 	description,
+	mg,
 }: {
 	subTitle: string;
 	mainTitle: string;
 	description: string;
+	mg?: boolean;
 }) => {
 	return (
 		<Stack spacing={1.4} alignItems="center" justifyContent={'center'} textAlign="center">
@@ -35,7 +37,11 @@ export const TitleBlock = ({
 			<Typography variant="h2" color="primary.main" className="max-w-[29rem]">
 				{mainTitle}
 			</Typography>
-			<Typography variant="subtitle2" color="text.primary" tw="max-w-[52rem] pt-2">
+			<Typography
+				variant="subtitle2"
+				color="text.primary"
+				{...(mg ? tw`max-w-[52rem] pt-3.5 lg:pt-0` : tw`max-w-[52rem] pt-2 lg:pt-0`)}
+			>
 				{description}
 			</Typography>
 		</Stack>

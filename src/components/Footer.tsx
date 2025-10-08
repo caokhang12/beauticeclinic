@@ -47,7 +47,7 @@ const Footer = () => {
 							<Grid size={{ xs: 12, md: 4, lg: 6 }}>
 								<Box sx={{ mb: { xs: 0, md: 4 } }}>
 									<Link href="/" sx={{ display: 'flex', alignItems: 'center', mt: { lg: 2 } }}>
-										<Box component="img" src="Main Logo.png" alt="Logo" />
+										<Box component="img" src="./Main Logo.png" alt="Logo" />
 									</Link>
 									<Typography
 										sx={{
@@ -63,7 +63,6 @@ const Footer = () => {
 									</Typography>
 									<Typography
 										sx={{
-											fontFamily: 'Poppins, sans-serif',
 											color: 'white',
 											mt: { xs: 1, lg: 2.8 },
 											pl: { lg: 4 },
@@ -129,7 +128,6 @@ const Footer = () => {
 											component="li"
 											key={item}
 											sx={{
-												fontFamily: 'Poppins, sans-serif',
 												fontSize: { xs: '11px', lg: '15px' },
 												mb: { xs: 1, lg: 1.65 },
 												ml: { xs: 0.1 },
@@ -144,7 +142,7 @@ const Footer = () => {
 													height: 0,
 													borderTop: '4px solid transparent',
 													borderBottom: '4px solid transparent',
-													borderLeft: '6px solid var(--color-text-inverse)',
+													borderLeft: '6px solid var',
 												},
 											}}
 										>
@@ -203,7 +201,7 @@ const Footer = () => {
 													height: 0,
 													borderTop: '4px solid transparent',
 													borderBottom: '4px solid transparent',
-													borderLeft: '6px solid var(--color-text-inverse)',
+													borderLeft: '6px solid var white',
 												},
 											}}
 										>
@@ -237,19 +235,19 @@ const Footer = () => {
 					>
 						<Box sx={{ display: 'flex', gap: 5.7 }}>
 							<Icon>
-								<img src="/Footer/facebook-f.svg" alt="Facebook" className="lg:w-7 lg:h-7" />
+								<img src="./Footer/facebook-f.svg" alt="Facebook" className="lg:w-7 lg:h-7" />
 							</Icon>
 							<Icon>
-								<img src="/Footer/twitter.svg" alt="Twitter" className="lg:w-7 lg:h-7" />
+								<img src="./Footer/twitter.svg" alt="Twitter" className="lg:w-7 lg:h-7" />
 							</Icon>
 							<Icon>
-								<img src="/Footer/linkedin-in.svg" alt="LinkedIn" className="lg:w-7 lg:h-7" />
+								<img src="./Footer/linkedin-in.svg" alt="LinkedIn" className="lg:w-7 lg:h-7" />
 							</Icon>
 							<Icon>
-								<img src="/Footer/youtube.svg" alt="YouTube" className="lg:w-7 lg:h-7" />
+								<img src="./Footer/youtube.svg" alt="YouTube" className="lg:w-7 lg:h-7" />
 							</Icon>
 							<Icon>
-								<img src="/Footer/instagram.svg" alt="Instagram" className="lg:w-7 lg:h-7" />
+								<img src="./Footer/instagram.svg" alt="Instagram" className="lg:w-7 lg:h-7" />
 							</Icon>
 						</Box>
 						<Box
@@ -272,4 +270,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

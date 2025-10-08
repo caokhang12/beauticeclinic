@@ -12,66 +12,30 @@ html {
 	--color-secondary: var(--mui-palette-secondary-main, rgb(255, 100, 174));
 	--color-text: var(--mui-palette-text-primary, #8b8b8b);
 	--color-text-body: var(--color-text);
-	--color-slider: var(--mui-palette-neutral-200, #d9ddfe);
-	--color-slider-selected: var(--mui-palette-neutral-400, #414880);
-	--color-neutral-350: var(--mui-palette-neutral-350, #c5c5c5);
-	--color-neutral-150: var(--mui-palette-neutral-150, #eeeeee);
-	--color-footer-text: var(--mui-palette-text-secondary, #d7dbff);
-	--color-rating-star: var(--mui-palette-warning-main, #ffa800);
-	--color-accent-brand: var(--mui-palette-neutral-400, #414880);
 	--color-primary-strong: rgba(var(--mui-palette-primary-mainChannel, 9 17 86) / 0.8);
 	--color-secondary-strong: var(--mui-palette-neutral-900, #172176);
 	--color-secondary-surface: #f6f7ff;
-	--color-secondary-surface-alt: #eef0ff;
 	--color-secondary-border: #e0e4ff;
-	--color-secondary-shadow: #f2f4ff;
 
-	/* Transparencies & effects */
-	--glass-background: rgba(255, 255, 255, 0.827);
-	--glass-border: rgba(224, 224, 224, 0.9);
-	--overlay-secondary-soft: rgba(15, 23, 42, 0.05);
-	--overlay-secondary-strong: rgba(15, 23, 42, 0.12);
-
-	/* Shadows */
-	--shadow-elevated: 0px 25px 50px 25px rgba(246, 247, 255, 1);
-	--shadow-blog: -2px 4px 31px 9px #f2f4ff;
-
-	/* Semantic tokens */
 	--color-background: var(--color-white);
 	--color-surface-card: rgba(255, 255, 255, 1);
 	--color-border-card: var(--color-neutral-200);
-	--color-border-input: var(--color-neutral-200);
-	--color-text-muted: var(--color-neutral-700);
+	--color-text-input: rgba(var(--mui-palette-text-primaryChannel, 228 228 228) / 0.65);
 	--color-text-subtle: var(--color-neutral-650);
 	--color-text-strong: var(--color-neutral-900);
 	--color-text-inverse: var(--color-white);
-	--color-text-footer: var(--color-footer-text);
-	--color-link: var(--color-primary);
-	--color-link-hover: var(--color-primary-strong);
-	--color-placeholder: var(--color-neutral-350);
 
-	--button-text-color: var(--color-text-inverse);
-	--card-background: var(--color-surface-card);
 	--card-border: 1px solid var(--color-border-card);
 	--card-radius: 0.9375rem;
 	--card-shadow: var(--shadow-elevated);
 	--input-border-color: var(--color-border-input);
 	--input-placeholder-color: var(--color-placeholder);
 	--footer: var(--color-background);
+}
 
-	/* Legacy aliases */
-	--background: var(--color-background);
-	--primary: var(--color-primary);
-	--secondary: var(--color-secondary);
-	--button-text: var(--button-text-color);
-	--description: var(--color-text-body);
-	--footer-text: var(--color-text-footer);
-	--text: var(--color-text-body);
-	--bg-card: var(--card-background);
-	--border-card: var(--card-border);
-	--border-radius: var(--card-radius);
-	--text-input-color: var(--input-placeholder-color);
-	--border-input-color: var(--input-border-color);
+.bubble-bg {
+	filter: none;
+	transition: filter 0.35s ease, opacity 0.35s ease;
 }
 
 .dark {
@@ -80,33 +44,18 @@ html {
 	--color-primary-strong: rgba(var(--mui-palette-primary-mainChannel, 179 156 208) / 0.75);
 	--color-secondary: var(--mui-palette-secondary-main, #ffc1cc);
 	--color-secondary-strong: rgba(var(--mui-palette-secondary-mainChannel, 255 193 204) / 0.85);
-	--color-secondary-stronger: rgba(var(--mui-palette-secondary-mainChannel, 255 193 204) / 0.65);
 	--color-secondary-surface: var(--mui-palette-background-paper, #1e1e1e);
-	--color-secondary-surface-alt: rgba(var(--mui-palette-background-paperChannel, 30 30 30) / 0.85);
 	--color-secondary-border: rgba(var(--mui-palette-secondary-mainChannel, 255 193 204) / 0.35);
-	--color-secondary-shadow: rgba(var(--mui-palette-secondary-mainChannel, 255 193 204) / 0.18);
 
 	--color-text: var(--mui-palette-text-primary, #e4e4e4);
 	--color-text-body: var(--mui-palette-text-primary, #e4e4e4);
-	--color-text-muted: rgba(var(--mui-palette-text-primaryChannel, 228 228 228) / 0.65);
-	--color-text-subtle: rgba(var(--mui-palette-text-primaryChannel, 228 228 228) / 0.5);
-	--color-text-strong: var(--mui-palette-text-secondary, #ffffff);
-	--color-text-inverse: var(--mui-palette-common-black, #0b0b1a);
-	--color-footer-text: var(--mui-palette-text-secondary, #ffffff);
-
-	--color-surface-card: var(--mui-palette-background-paper, #1e1e1e);
-	--color-border-card: rgba(var(--mui-palette-text-primaryChannel, 228 228 228) / 0.16);
-	--color-border-input: rgba(var(--mui-palette-text-primaryChannel, 228 228 228) / 0.24);
-	--color-placeholder: rgba(var(--mui-palette-text-primaryChannel, 228 228 228) / 0.4);
+	--color-text-input: rgba(var(--mui-palette-text-primaryChannel, 228 228 228) / 0.65);
 
 	--button-text-color: var(--mui-palette-secondary-contrastText, #ffffff);
 	--footer: var(--mui-palette-background-default, #2c2c2c);
+}
 
-	--glass-background: rgba(var(--mui-palette-background-paperChannel, 30 30 30) / 0.75);
-	--glass-border: rgba(var(--mui-palette-text-primaryChannel, 228 228 228) / 0.25);
-	--overlay-secondary-soft: rgba(var(--mui-palette-text-primaryChannel, 228 228 228) / 0.05);
-	--overlay-secondary-strong: rgba(var(--mui-palette-text-primaryChannel, 228 228 228) / 0.12);
-
-	--shadow-elevated: 0px 20px 40px 20px rgba(0, 0, 0, 0.4);
-	--shadow-blog: 0px 30px 60px rgba(0, 0, 0, 0.45);
+.dark .bubble-bg,
+[data-mui-color-scheme='dark'] .bubble-bg {
+	filter: brightness(0.3);
 }

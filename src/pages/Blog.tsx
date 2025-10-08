@@ -6,14 +6,15 @@ import {
 	Container,
 	Grid,
 	IconButton,
-	InputBase,
 	Pagination,
 	Stack,
 	Typography,
 } from '@mui/material';
+import tw, { styled } from 'twin.macro';
 import BannerBox from '../components/Banner';
 import { PinkButton } from '../components/PinkButton';
 import BubbleBackground from '../components/BubbleBg';
+import { InputBaseCustom } from '../components/ContactForm';
 
 const BlogData = [
 	{
@@ -42,9 +43,152 @@ const BlogData = [
 	},
 ];
 
+const categories = ['Consultation', 'Beauty', 'Treatments', 'News'];
+const cloudTags = ['beauty', 'cute', 'skin', 'glow', 'style', 'clinic', 'style', 'great', 'cute'];
+const socialIcons = [
+	{ icon: './Blog/facebook.svg', alt: 'Facebook' },
+	{ icon: './Blog/Twitter.svg', alt: 'Twitter' },
+	{ icon: './Blog/Instagram.svg', alt: 'Instagram' },
+	{ icon: './Blog/Linkedin.svg', alt: 'Linkedin' },
+];
+
+// Layout wrappers
+const RootWrapper = styled(Box)(() => [tw`relative mt-32 py-3`]);
+const PaginationWrapper = styled(Box)(() => [
+	tw`flex justify-center pl-5 mt-16 py-3 mb-16 lg:mb-[92px]`,
+]);
+const BannerHeader = styled(Stack)(() => [tw`flex-row items-center justify-between gap-3`]);
+const BlogGridWrapper = styled(Grid)(() => [tw`w-full mt-20 py-7 justify-center`]);
+const BlogMainCol = styled(Grid)(() => [tw`pr-4`]);
+const BlogSidebarCol = styled(Grid)(() => [tw``]);
+
+// Card & content
+const BlogCardWrapper = styled(Card)(() => [
+	tw`overflow-hidden`,
+	{
+		borderRadius: 14,
+		boxShadow: '0px 10px 30px rgba(0,0,0,0.08)',
+	},
+]);
+
+const BlogCardContent = styled(CardContent)(() => [
+	tw`pt-6 px-6 md:(pt-10 px-10) lg:(pt-[52px] px-[76px])`,
+]);
+
+const BlogCategory = styled(Typography)(() => [tw`flex items-center gap-8 mt-[6px] lg:gap-[14px]`]);
+
+const BlogTitle = styled(Typography)(() => [tw`mt-2 md:mt-3 lg:mt-4`]);
+const BlogDescription = styled(Typography)(() => [tw`mt-3 md:mt-4 lg:mt-5`]);
+
+const ReadMoreWrapper = styled('div')(() => [
+	tw`mt-4 lg:mt-[30px] mb-8 lg:mb-16 pt-1 pb-3 relative`,
+	{
+		'& button': {},
+		'& button::before': {
+			content: '""',
+			position: 'absolute',
+			right: '18px',
+			top: '50%',
+			transform: 'translateY(-50%)',
+			width: 0,
+			height: 0,
+			borderLeft: '8px solid var(--color-text-inverse)',
+			borderTop: '8px solid transparent',
+			borderBottom: '8px solid transparent',
+		},
+		'@media (min-width: 768px)': {
+			'& button::before': { right: '50px' },
+		},
+	},
+]);
+const ReadMoreButton = styled(PinkButton)(() => [tw`px-[4rem] py-3 lg:py-4`]);
+
+// Sidebar shared section base
+const SidebarSection = styled(Box)(() => [
+	tw`rounded-lg`,
+	{ boxShadow: '0px 10px 30px rgba(0,0,0,0.08)' },
+]);
+
+const RecentPostsSection = styled(SidebarSection)(() => [
+	tw`pt-[54px] pb-16 pl-8 md:pl-10 lg:pl-12`,
+]);
+
+const CategoriesSection = styled(SidebarSection)(() => [
+	tw`pl-8 pt-11 pb-[52px] md:(pl-10 pt-12 pb-[52px]) lg:pl-12`,
+]);
+
+const CloudTagsSection = styled(SidebarSection)(() => [
+	tw`pl-9 pt-9 pb-[52px] md:pt-[3.1rem] lg:(pl-10 pr-10)`,
+]);
+
+const SocialSection = styled(SidebarSection)(() => [
+	tw`pl-8 pt-12 pb-14 md:pt-[3.8rem] md:pl-10 lg:pl-12`,
+]);
+
+const SearchBarWrapper = styled(Box)(() => [tw`flex items-center  overflow-hidden `]);
+const InputBaseStyle = styled(InputBaseCustom)(() => [tw`border-l rounded-l-full py-[1.1rem]`]);
+const SearchButton = styled(IconButton)(() => [
+	tw`px-[1.6rem] py-[1.32rem] bg-primary rounded-r-full border-r`,
+	{
+		color: 'white',
+		'&:hover': { backgroundColor: 'var(--color-secondary)' },
+	},
+]);
+
+const SidebarStack = styled(Stack)(() => [tw`mt-10 lg:mt-20`]);
+
+const TagItem = styled(Grid)(() => [
+	tw`flex justify-center items-center cursor-pointer rounded-[28px] px-2.5 py-0.5 max-w-[82px] min-w-[82px] font-medium tracking-[0.1em] text-[14px]`,
+	{
+		color: 'var(--color-text-body)',
+		'&:hover': { backgroundColor: 'var(--color-primary)', color: 'white' },
+	},
+]);
+
+const SocialIconsRow = styled(Stack)(() => [tw`relative  lg:right-2 mt-6 flex-row flex-wrap`]);
+
+// Recent posts helper components
+const RecentPostsTitle = styled(Typography)(() => [tw`mb-7`]);
+const RecentPostsList = styled(Stack)(() => [tw`mt-[26px]`]);
+const RecentPostItem = styled(Box)(() => [tw`flex flex-col sm:flex-row gap-[22px]`]);
+const RecentPostImageWrapper = styled(Box)(() => [tw`overflow-hidden shrink rounded-lg`]);
+const RecentPostDate = styled(Typography)(() => [tw`mb-2.5 tracking-wider text-secondary`]);
+const RecentPostExcerpt = styled(Typography)(() => [
+	tw`md:mt-1.5 text-xs leading-[1.1rem] tracking-[0.1em]`,
+]);
+
+// Categories
+const CategoriesTitle = styled(Typography)(() => [tw`mb-5 text-primary`]);
+const CategoryRow = styled(Box)(() => [tw`flex`]);
+const CategoryItem = styled(Typography)(() => [
+	tw`text-[14px] font-medium tracking-[0.1em] leading-[1.6rem] cursor-pointer hover:(text-secondary)`,
+]);
+
+// Cloud Tags
+const CloudTagsTitle = styled(Typography)(() => [tw`mb-6 text-primary`]);
+
+// Banner subtitle
+const BannerBreadcrumb = styled(Typography)(() => [tw`mt-2`]);
+
+// Styled pagination
+const StyledPagination = styled(Pagination)(() => [
+	{
+		'& .MuiPaginationItem-root': {
+			marginLeft: '0.6rem',
+			marginRight: '0.6rem',
+			fontSize: 16,
+		},
+		'& .MuiPaginationItem-root.Mui-selected': {
+			backgroundColor: 'var(--color-secondary)',
+			color: 'white',
+			paddingInline: 0,
+		},
+	},
+]);
+
 const Blog = () => {
 	return (
-		<div className="relative mt-32 py-3">
+		<RootWrapper>
 			<BubbleBackground
 				image="/BubbleMid1.png"
 				top="33%"
@@ -60,433 +204,143 @@ const Blog = () => {
 				imageProps={{ 'aria-hidden': true }}
 			/>
 			{/* Banner Block */}
-			<Container className="relative lg:mt- ">
+			<Container className="relative">
 				<BannerBox
 					pt={{ xs: 5, md: 10, lg: 15 }}
 					pb={{ xs: 5, md: 10, lg: 15 }}
-					url='"/Blog/BackgroundBanner.png"'
+					url='"./Blog/BackgroundBanner.png"'
 				>
-					<Stack direction={'row'} alignItems="center" justifyContent="space-between" gap={3}>
+					<BannerHeader>
 						<Typography variant="h2" color="primary.contrastText">
 							Blog
 						</Typography>
-						<Typography variant="subtitle2" color="primary.contrastText" className="mt-1">
+						<BannerBreadcrumb variant="subtitle2" color="primary.contrastText">
 							Home • Blog
-						</Typography>
-					</Stack>
+						</BannerBreadcrumb>
+					</BannerHeader>
 				</BannerBox>
 			</Container>
 			{/* Blog Block */}
 			<Container>
-				<Grid
-					width="100%"
-					container
-					spacing={{ xs: 2, md: 3, lg: 4.5 }}
-					className="mt-20 py-7"
-					sx={{
-						width: '100%',
-						justifyContent: 'center',
-					}}
-				>
-					<Grid
-						size={{ xs: 12, md: 8 }}
-						sx={{
-							pr: { xs: 0, md: 2 },
-						}}
-					>
-						{/* Blog List  */}
-						<Grid container spacing={{ xs: 5, md: 10, lg: 12, xl: 16.5 }}>
+				<BlogGridWrapper container spacing={{ xs: 2, md: 3, lg: 4.5 }}>
+					<BlogMainCol size={{ xs: 12, md: 8 }}>
+						<Grid container spacing={{ xs: 5, md: 10, lg: 12, xl: 16.8 }}>
 							{BlogData.map((blog) => (
 								<Grid size={{ xs: 12, sm: 4, md: 12 }} key={blog.id}>
-									<Card
-										sx={{
-											borderRadius: 14,
-											boxShadow: '0px 10px 30px rgba(0,0,0,0.08)',
-											overflow: 'hidden',
-										}}
-									>
-										<CardMedia component="img" image={blog.image} alt="consultation" />
-
-										<CardContent
-											sx={{
-												px: { xs: 3, md: 5, lg: 9.5 },
-												pt: { xs: 3, md: 5, lg: 6.5 },
-											}}
-										>
-											<Typography
-												variant="subtitle1"
-												color="secondary"
-												className="flex items-center gap-8 lg:gap-[14px] mt-[6px]"
-											>
+									<BlogCardWrapper>
+										<CardMedia component="img" image={blog.image} alt={blog.title} />
+										<BlogCardContent>
+											<BlogCategory variant="subtitle1" color="secondary">
 												<span>
-													<img
-														src="/Blog/Document.svg"
-														alt="Document Icon"
-														className="relative tracking-tight "
-													/>
+													<img src="./Blog/Document.svg" alt="Document Icon" />
 												</span>
 												{blog.category}
-											</Typography>
-
-											<Typography variant="h2" color="primary" className="lg:mt-4 md:mt-3 sm:mt-2 ">
+											</BlogCategory>
+											<BlogTitle variant="h2" color="primary">
 												{blog.title}
-											</Typography>
-
-											<Typography
-												variant="subtitle2"
-												component="p"
-												className=" lg:mt-5 md:mt-4 sm:mt-3 sm:line-clamp-1 md:line-clamp-4
-												lg:line-clamp-none"
-											>
+											</BlogTitle>
+											<BlogDescription variant="subtitle2" component="p">
 												{blog.description}
-											</Typography>
-
-											<div className="mt-4 lg:mt-[30px] mb-8 lg:mb-16 pt-1 pb-3">
-												<PinkButton
-													sx={{
-														px: { xs: 2.8, md: 8 },
-														py: { xs: 1.6, md: 2.1 },
-														fontSize: { xs: 13, md: 16 },
-														position: 'relative',
-														right: 2,
-														'&::before': {
-															content: '""',
-															position: 'absolute',
-															right: { xs: 18, md: 50 },
-															top: '50%',
-															transform: 'translateY(-50%)',
-															width: 0,
-															height: 0,
-															borderLeft: '8px solid var(--color-text-inverse)',
-															borderTop: '8px solid transparent',
-															borderBottom: '8px solid transparent',
-														},
-													}}
-													variant="contained"
-												>
-													Read More
-												</PinkButton>
-											</div>
-										</CardContent>
-									</Card>
+											</BlogDescription>
+											<ReadMoreWrapper>
+												<ReadMoreButton variant="contained">Read More</ReadMoreButton>
+											</ReadMoreWrapper>
+										</BlogCardContent>
+									</BlogCardWrapper>
 								</Grid>
 							))}
 						</Grid>
-					</Grid>
-					<Grid order={{ xs: -1, md: 0 }} pl={1} size={{ xs: 12, md: 4 }} sx={{}}>
-						{/* Search Box */}
-						<Box
-							sx={{
-								display: 'flex',
-								alignItems: 'center',
-								borderRadius: '9999px',
-								overflow: 'hidden',
-								boxShadow: 'var(--shadow-blog)',
-
-								bgcolor: 'white',
-							}}
-						>
-							{/* Input */}
-							<InputBase
-								placeholder="Search here ..."
-								sx={{
-									flex: 1,
-									fontSize: 16,
-
-									height: 65,
-									paddingLeft: 3,
-									fontFamily: 'Poppins, sans-serif',
-									letterSpacing: '0.1em',
-									'&::placeholder': {
-										fontSize: 14,
-										color: 'var(--color-text-body)',
-									},
-								}}
-							/>
-
-							{/* Button */}
-							<IconButton
-								sx={{
-									bgcolor: 'var(--color-secondary-strong)',
-									borderRadius: 0,
-									borderTopRightRadius: '9999px',
-									borderBottomRightRadius: '9999px',
-									color: 'white',
-									px: 3.2,
-									py: 2.5,
-									'&:hover': { bgcolor: 'var(--color-secondary-stronger)' },
-								}}
-							>
-								<img src="/Blog/search.svg" alt="Search" />
-							</IconButton>
-						</Box>
-						{/* Categories Box */}
-						<Stack
-							spacing={{
-								xs: 3,
-								md: 6,
-								lg: 8,
-								xl: 11,
-							}}
-							className="lg:mt-20 mt-10"
-						>
+					</BlogMainCol>
+					<BlogSidebarCol order={{ xs: -1, md: 0 }} pl={1} size={{ xs: 12, md: 4 }}>
+						{/* Search */}
+						<SearchBarWrapper>
+							<InputBaseStyle placeholder="Search here ..." />
+							<SearchButton>
+								<img src="./Blog/search.svg" alt="Search" />
+							</SearchButton>
+						</SearchBarWrapper>
+						<SidebarStack spacing={{ xs: 3, md: 6, lg: 8, xl: 11 }}>
 							{/* Recent Posts */}
-							<Box
-								sx={{
-									pl: {
-										xs: 4,
-										md: 5,
-										lg: 6,
-									},
-									pr: 1,
-									pt: 7,
-									pb: 8,
-									boxShadow: '0px 10px 30px rgba(0,0,0,0.08)',
-									borderRadius: 4,
-								}}
-							>
-								<Typography
-									variant="subtitle1"
-									color="secondary"
-									className="section__subtitle mb-6 text-secondary"
-								>
+							<RecentPostsSection>
+								<RecentPostsTitle variant="subtitle1" color="primary.main">
 									Recent Posts
-								</Typography>
-								<Stack spacing={2.5} sx={{ mt: 3.2 }}>
+								</RecentPostsTitle>
+								<RecentPostsList spacing={2.5}>
 									{BlogData.map((blog, index) => (
-										<Box
-											key={index}
-											sx={{
-												display: 'flex',
-												gap: 2.5,
-												flexDirection: { xs: 'column', sm: 'row' },
-											}}
-										>
-											<Box
-												sx={{
-													height: {
-														lg: 'full-width',
-														width: 'full-width',
-													},
-													borderRadius: 2,
-													overflow: 'hidden',
-													flexShrink: 1,
-												}}
-											>
+										<RecentPostItem key={index}>
+											<RecentPostImageWrapper>
 												<img
-													src={`/Blog/Recent_${index + 1}.png`}
+													src={`./Blog/Recent_${index + 1}.png`}
 													alt={blog.title}
-													style={{
-														borderRadius: 8,
-													}}
+													className="rounded-lg"
 												/>
-											</Box>
-											<Box sx={{ flex: 1, ml: 0.5 }}>
-												<p className="text-primary font-semibold text-sm tracking-widest">
+											</RecentPostImageWrapper>
+											<Box tw="flex-1 ml-1">
+												<RecentPostDate variant="subtitle1" className="tracking-wide">
 													01 jan 2021
-												</p>
-												<h3 className="md:mt-2 text-xs  leading-5 tracking-widest">
+												</RecentPostDate>
+												<RecentPostExcerpt component="p">
 													Lorem ipsum dolor sit amet, consectetur adipiscing.
-												</h3>
+												</RecentPostExcerpt>
 											</Box>
-										</Box>
+										</RecentPostItem>
 									))}
-								</Stack>
-							</Box>
+								</RecentPostsList>
+							</RecentPostsSection>
 							{/* Categories */}
-							<Box
-								sx={{
-									pl: {
-										xs: 4,
-										md: 5,
-										lg: 6,
-									},
-									py: {
-										xs: 5.5,
-										md: 6,
-										lg: 6.5,
-									},
-									boxShadow: '0px 10px 30px rgba(0,0,0,0.08)',
-									borderRadius: 4,
-								}}
-							>
-								<Typography
-									variant="subtitle1"
-									color="secondary"
-									className="section__subtitle mb-5 text-secondary"
-								>
-									Categories
-								</Typography>
-								<Stack spacing={0}>
-									{['Consultation', 'Beauty', 'Treatments', 'News'].map((category, index) => (
-										<Box
-											key={index}
-											sx={{
-												display: 'flex',
-											}}
-										>
-											<Typography
-												sx={{
-													fontSize: 14,
-													fontWeight: 500,
-													letterSpacing: '0.1em',
-													lineHeight: 1.8,
-													color: 'var(--color-text-body)',
-													cursor: 'pointer',
-													'&:hover': {
-														color: 'var(--color-primary)',
-													},
-												}}
-											>
-												{category}
-											</Typography>
-										</Box>
+							<CategoriesSection>
+								<CategoriesTitle variant="subtitle1">Categories</CategoriesTitle>
+								<Stack>
+									{categories.map((category, index) => (
+										<CategoryRow key={index}>
+											<CategoryItem>{category}</CategoryItem>
+										</CategoryRow>
 									))}
 								</Stack>
-							</Box>
+							</CategoriesSection>
 							{/* Cloud Tags */}
-							<Box
-								sx={{
-									pl: {
-										xs: 4,
-										md: 4.5,
-										lg: 5,
-									},
-									py: {
-										xs: 4.5,
-										md: 5.5,
-										lg: 6.5,
-									},
-									boxShadow: '0px 10px 30px rgba(0,0,0,0.08)',
-									borderRadius: 4,
-								}}
-							>
-								<Typography
-									variant="subtitle1"
-									color="secondary"
-									className="section__subtitle lg:ml-1.5 mb-5 text-secondary"
-								>
+							<CloudTagsSection>
+								<CloudTagsTitle variant="subtitle1" className="pl-1.5">
 									Cloud Tags
-								</Typography>
+								</CloudTagsTitle>
 								<Grid
 									container
 									direction="row"
 									flexWrap="wrap"
-									gap={1.3}
-									rowGap={2}
-									sx={{ px: 0.5 }}
+									justifyContent={'space-between'}
+									rowGap={2.5}
 								>
-									{[
-										'beauty',
-										'cute',
-										'skin',
-										'glow',
-										'style',
-										'clinic',
-										'style',
-										'great',
-										'cute',
-									].map((tag, index) => (
-										<Grid
-											key={index}
-											sx={{
-												color: 'var(--color-text-body)',
-
-												fontSize: 14,
-												fontWeight: 500,
-												letterSpacing: '0.1em',
-												px: 2.5,
-												py: 0.5,
-												maxWidth: '82px',
-												borderRadius: 7,
-												display: 'flex',
-												justifyContent: 'center',
-												alignItems: 'center',
-												cursor: 'pointer',
-												'&:hover': {
-													bgcolor: 'var(--color-primary)',
-													color: 'white',
-												},
-											}}
-										>
-											{tag}
-										</Grid>
+									{cloudTags.map((tag, index) => (
+										<TagItem key={index}>{tag}</TagItem>
 									))}
 								</Grid>
-							</Box>
+							</CloudTagsSection>
 							{/* Social Media */}
-							<Box
-								sx={{
-									pl: {
-										xs: 4,
-										md: 5,
-										lg: 6,
-									},
-									py: {
-										xs: 5.5,
-										md: 6,
-										lg: 7,
-									},
-									boxShadow: '0px 10px 30px rgba(0,0,0,0.08)',
-									borderRadius: 4,
-								}}
-							>
-								<Typography
-									variant="subtitle1"
-									color="secondary"
-									className="section__subtitle  text-secondary"
-								>
+							<SocialSection>
+								<Typography color="primary.main" variant="subtitle1">
 									Social Connect
 								</Typography>
-								<Stack
-									direction="row"
-									spacing={1.5}
-									className="relative lg:top-1 lg:right-2 mt-6 flex-wrap"
-								>
-									{[
-										{ icon: '/Blog/facebook.svg', alt: 'Facebook' },
-										{ icon: '/Blog/Twitter.svg', alt: 'Twitter' },
-										{ icon: '/Blog/Instagram.svg', alt: 'Instagram' },
-
-										{ icon: '/Blog/Linkedin.svg', alt: 'Linkedin' },
-									].map((social, index) => (
+								<SocialIconsRow direction="row" spacing={1.5}>
+									{socialIcons.map((social, index) => (
 										<img
 											key={index}
 											src={social.icon}
 											alt={social.alt}
 											style={{ cursor: 'pointer' }}
-											className="hover:opacity-70 transition-opacity
-											 rounded-full w-fit flex items-center justify-center p-1"
+											className="hover:opacity-70 transition-opacity rounded-full w-fit flex items-center justify-center p-1"
 										/>
 									))}
-								</Stack>
-							</Box>
-						</Stack>
-					</Grid>
-				</Grid>
+								</SocialIconsRow>
+							</SocialSection>
+						</SidebarStack>
+					</BlogSidebarCol>
+				</BlogGridWrapper>
 			</Container>
 			{/* Pagination Block */}
-			<div className="flex justify-center pl-5 mt-16 py-3 mb-16 lg:mb-[92px]">
-				<Pagination
-					hideNextButton
-					hidePrevButton
-					count={3}
-					size="medium"
-					sx={{
-						gap: 20,
-						'& .MuiPaginationItem-root': {
-							marginX: 1.2,
-							fontSize: 16,
-						},
-						'& .MuiPaginationItem-root.Mui-selected': {
-							backgroundColor: 'var(--color-secondary)',
-							color: 'white',
-							paddingX: 0,
-						},
-					}}
-				/>
-			</div>
-		</div>
+			<PaginationWrapper>
+				<StyledPagination hideNextButton hidePrevButton count={3} size="medium" />
+			</PaginationWrapper>
+		</RootWrapper>
 	);
 };
 

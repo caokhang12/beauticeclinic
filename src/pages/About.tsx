@@ -8,28 +8,28 @@ import BubbleBackground from '../components/BubbleBg';
 const PageWrapper = tw.div`relative`;
 
 const HeroMediaWrapper = styled(Box)`
-	${tw`relative w-full overflow-hidden my-8`}
+	${tw`relative w-full my-7`}
 	border-radius: 15px;
 `;
 
 const HeroPlayButton = styled(Box)`
-	${tw`absolute cursor-pointer top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30`}
+	${tw`absolute   cursor-pointer top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30`}
 `;
 
 const TeamSection = styled.section`
-	${tw`my-24 pt-8 pb-6`}
+	${tw`my-24 pt-9 pb-6`}
 `;
 
 const MissionImageFrame = styled(Box)`
-	${tw`flex justify-center items-end lg:mb-1`}
+	${tw`flex justify-center w-full items-end lg:mb-1`}
 `;
 
 const MissionPrimaryImage = styled(Box)`
-	${tw`lg:relative top-6 right-2 flex justify-center items-center`}
+	${tw`lg:relative top-6 right-2 flex w-full h-auto justify-center items-center`}
 `;
 
 const MissionSecondaryImage = styled(Box)`
-	${tw`flex lg:relative bottom-3.5 left-5 justify-center items-center`}
+	${tw`flex lg:relative bottom-3.5 w-full h-auto left-5 justify-center items-center`}
 `;
 
 const ClientLogoContainer = styled(Box)`
@@ -49,7 +49,7 @@ const About = () => {
 			<BubbleBackground
 				image="/BubbleMid1.png"
 				top="60%"
-				right={0}
+				left={0}
 				flipX
 				imageProps={{ 'aria-hidden': true }}
 			/>
@@ -70,9 +70,9 @@ const About = () => {
 					</div>
 					<HeroMediaWrapper>
 						<HeroPlayButton>
-							<img src="/About/Play Button.png" alt="Play" />
+							<img src="./About/Play Button.png" alt="Play" className="w-full h-auto" />
 						</HeroPlayButton>
-						<img src="/About/HeroImage.png" alt="Hero Image" />
+						<img src="./About/HeroImage.png" className="w-full h-auto" alt="Hero Image" />
 					</HeroMediaWrapper>
 				</Container>
 			</section>
@@ -123,7 +123,7 @@ const About = () => {
 						<div>
 							<MissionImageFrame>
 								<MissionPrimaryImage>
-									<img src="/About/About_1.png" alt="About Us" className="" />
+									<img src="./About/About_1.png" alt="About Us" className="" />
 								</MissionPrimaryImage>
 							</MissionImageFrame>
 						</div>
@@ -148,7 +148,7 @@ const About = () => {
 						</div>
 						<div className="order-4 flex">
 							<MissionSecondaryImage>
-								<img src="/About/About_2.png" alt="About Us" />
+								<img src="./About/About_2.png" alt="About Us" />
 							</MissionSecondaryImage>
 						</div>
 						<div className="order-3">

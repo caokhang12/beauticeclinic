@@ -8,15 +8,25 @@ import {
 	ListItemButton,
 	ListItemText,
 	Typography,
+	Switch,
 } from '@mui/material';
 import { PinkButton } from './PinkButton';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import tw, { styled, css } from 'twin.macro';
 import { useColorScheme } from '@mui/material/styles';
 
 const GlassAppBar = styled(AppBar)(() => [
-	tw`flex backdrop-blur-lg bg-[var(--glass-background)] bg-opacity-20 justify-center `,
+	tw`flex justify-center backdrop-blur-lg bg-amber-50	 bg-opacity-90`,
+	{
+		transition: 'background-color 200ms ease, backdrop-filter 200ms ease',
+		'.dark &, [data-mui-color-scheme="dark"] &': {
+			backgroundColor: 'rgba(15,18,32,0.32)',
+			backdropFilter: 'blur(14px) saturate(140%)',
+			WebkitBackdropFilter: 'blur(14px) saturate(140%)',
+			borderBottom: '1px solid rgba(255,255,255,0.08)',
+		},
+	},
 ]);
 
 const NavToolbar = styled(Toolbar)(() => [
@@ -61,11 +71,13 @@ const DrawerMenuItem = styled(ListItemButton)(() => [
 
 const DrawerFooter = styled('div')(() => [tw`mt-auto`]);
 
+const ModeSwitch = styled(Switch)(() => [tw`absolute right-10 top-1/2 -translate-y-1/2`]);
+
 const NavBar = () => {
 	const { mode, setMode, systemMode } = useColorScheme();
 
-	// resolvedMode: nếu mode = 'system' thì dùng systemMode
 	const resolvedMode = mode === 'system' ? systemMode : mode;
+	const isDarkMode = resolvedMode === 'dark';
 	const [open, setOpen] = useState(false);
 	const navigate = useNavigate();
 
@@ -79,11 +91,15 @@ const NavBar = () => {
 
 	return (
 		<section>
-			<GlassAppBar elevation={0} color="default" position="fixed">
+			<GlassAppBar elevation={0} color={isDarkMode ? 'default' : 'transparent'} position="fixed">
 				<NavToolbar disableGutters>
 					<LogoContainer>
-						<NavLink to={'/'}>
-							<img src="/MainLogoBlue.png" alt="Header " className="" />
+						<NavLink to={'/beauticeclinic'}>
+							<img
+								src={isDarkMode ? './Main Logo.png' : './MainLogoBlue.png'}
+								alt="Header "
+								className=""
+							/>
 						</NavLink>
 					</LogoContainer>
 					<DesktopLinks>
@@ -124,7 +140,10 @@ const NavBar = () => {
 					>
 						<DrawerContent>
 							<DrawerHeader>
-								<DrawerLogo src="/MainLogoBlue.png" alt="Beautice" />
+								<DrawerLogo
+									src={isDarkMode ? './Main Logo.png' : './MainLogoBlue.png'}
+									alt="Beautice"
+								/>
 								<DrawerCloseButton onClick={() => setOpen(false)} aria-label="close menu">
 									<svg
 										width="18"
@@ -159,10 +178,7 @@ const NavBar = () => {
 										to={l.to}
 										onClick={() => setOpen(false)}
 									>
-										<ListItemText
-											primary={l.label}
-											primaryTypographyProps={{ className: 'font-semibold' }}
-										/>
+										<ListItemText primary={l.label} />
 									</DrawerMenuItem>
 								))}
 							</DrawerMenu>
@@ -181,14 +197,15 @@ const NavBar = () => {
 							</DrawerFooter>
 						</DrawerContent>
 					</MobileDrawer>
-					<button
-						className="absolute right-4 top-4 border rounded"
-						onClick={() => {
-							setMode(resolvedMode === 'dark' ? 'light' : 'dark');
+					<ModeSwitch
+						color="secondary"
+						checked={Boolean(isDarkMode)}
+						onChange={(_event: ChangeEvent<HTMLInputElement>, checked: boolean) => {
+							setMode(checked ? 'dark' : 'light');
 						}}
-					>
-						Toggle {resolvedMode === 'dark' ? 'Light' : 'Dark'}
-					</button>
+						inputProps={{ 'aria-label': 'toggle color scheme' }}
+						title={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
+					/>
 				</NavToolbar>
 			</GlassAppBar>
 		</section>

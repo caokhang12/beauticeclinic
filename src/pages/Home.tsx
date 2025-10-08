@@ -5,32 +5,69 @@ import { Box, Container, Stack, Typography } from '@mui/material';
 import ContactForm from '../components/ContactForm';
 import { TitleBlock } from '../components/TitleBlock';
 import BubbleBackground from '../components/BubbleBg';
+import tw, { styled } from 'twin.macro';
 
 const serviceCardData = [
 	{
-		image: '/Home/Home_1.png',
+		image: './Home/Home_1.png',
 		title: 'Beauty consultation',
 		description: 'Non parturient amet, feugiat tellus sagittis, scelerisque eget nulla turpis.',
 	},
 	{
-		image: '/Home/Home_2.png',
+		image: './Home/Home_2.png',
 		title: 'Skin treatments',
 		description: 'Non parturient amet, feugiat tellus sagittis, scelerisque eget nulla turpis.',
 	},
 	{
-		image: '/Home/Home_3.png',
+		image: './Home/Home_3.png',
 		title: 'Beauty product',
 		description: 'Non parturient amet, feugiat tellus sagittis, scelerisque eget nulla turpis.',
 	},
 ];
+
+const PageWrapper = styled(Box)(() => [tw`relative`]);
+const HeroSection = styled('section')(() => [tw`pt-36 lg:pt-56 xl:pt-64 xl:mt-1`]);
+const HeroGrid = styled(Box)(() => [
+	tw`grid lg:grid-cols-[1fr_1.2fr] gap-20 xl:gap-4 md:grid-cols-1`,
+]);
+const HeroContent = styled(Box)(() => [tw`pt-14 pl-10`]);
+const HeroCTAWrapper = styled(Box)(() => [tw`mt-[2.15rem]`]);
+const HeroImageWrapper = styled(Box)(() => [tw`lg:ml-2`]);
+const HeroButton = styled(PinkButton)(() => [tw`px-[2.5rem] py-3 lg:py-[1rem]`]);
+const HeroSlider = styled(Box)(() => [tw`flex gap-2 justify-center mt-32 py-2`]);
+
+const ServicesSection = styled('section')(() => [tw`mt-28 py-1 text-center`]);
+const ServicesGrid = styled(Box)(() => [
+	tw`grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-14 mt-24`,
+]);
+const ServiceCard = styled(Box)(() => [tw`px-8 lg:px-8 pb-16 py-12`]);
+const ServiceImageWrapper = styled(Box)(() => [tw`flex items-center justify-center`]);
+
+const ClinicSection = styled('section')(() => [tw`mt-32 py-2`]);
+const ClinicGrid = styled(Box)(() => [tw`grid lg:grid-cols-[1fr_1fr] md:grid-cols-1 gap-10`]);
+const ClinicActions = styled(Box)(() => [tw`flex gap-10 items-center lg:mt-12 pt-10`]);
+const ClinicMedia = styled(Box)(() => [
+	tw`lg:relative top-6   flex items-center justify-center lg:items-end lg:justify-end`,
+]);
+
+const TeamSection = styled(Box)(() => [tw`mt-20 lg:mt-28 py-2 lg:py-[1.5rem] text-center`]);
+const TeamTitleWrapper = styled(Box)(() => [tw` flex text-center justify-center`]);
+const TeamContentWrapper = styled(Box)(() => [tw`mt-12 lg:mt-20 xl:mt-32 py-2 lg:py-3`]);
+
+const ContactSection = styled('section')(() => [tw`mt-24 lg:mb-28 mb-20 py-5`]);
+const ContactGrid = styled(Box)(() => [
+	tw`grid lg:grid-cols-2 md:grid-cols-1 items-center lg:gap-24 gap-10`,
+]);
+const ContactImageWrapper = styled(Box)(() => [tw`lg:pt-16 md:pt-11 lg:relative top-2`]);
+const ContactContent = styled(Box)(() => [tw`ml-[0.20rem] md:mt-8 mt-6`]);
+const ContactFormWrapper = styled(Box)(() => [tw`mt-5 lg:mt-10 pt-1`]);
 const Home: React.FC = () => {
 	return (
-		<div className="relative">
+		<PageWrapper>
 			<BubbleBackground
 				image="/Bubble2.png"
 				top={0}
 				left={0}
-				height="100%"
 				imageProps={{ 'aria-hidden': true }}
 			/>
 
@@ -49,10 +86,10 @@ const Home: React.FC = () => {
 				imageProps={{ 'aria-hidden': true }}
 			/>
 			{/* <!-- Hero Block --> */}
-			<section className="pt-36 lg:pt-56 xl:pt-64 xl:mt-1">
+			<HeroSection>
 				<Container>
-					<div className="grid lg:grid-cols-[1fr_1.2fr] gap-20 xl:gap-4 md:grid-cols-1">
-						<div className="pt-14 pl-10">
+					<HeroGrid>
+						<HeroContent>
 							<Typography color="primary" variant="h1">
 								Clinic & beauty consultant
 							</Typography>
@@ -60,65 +97,55 @@ const Home: React.FC = () => {
 								It is a long established fact that a reader will be by the readable content of a
 								page.
 							</Typography>
-							<div className="mt-[2.15rem]">
-								<PinkButton
-									variant="contained"
-									sx={{
-										py: 2.6,
-										px: 5,
-									}}
-								>
-									More Details
-								</PinkButton>
-							</div>
-						</div>
-						<div className="lg:ml-2">
-							<img src="/HeroImage.png" alt="Hero Image" />
-						</div>
-					</div>
+							<HeroCTAWrapper>
+								<HeroButton>More Details</HeroButton>
+							</HeroCTAWrapper>
+						</HeroContent>
+						<HeroImageWrapper>
+							<img src="./HeroImage.png" alt="Hero Image" />
+						</HeroImageWrapper>
+					</HeroGrid>
 					{/* Hero Slider */}
-					<div className="flex gap-2 justify-center mt-32 py-2">
+					<HeroSlider>
 						<span className="self-center w-4 h-1 rounded-xl bg-slider"></span>
 						<span className="bg-sliderActive h-2 w-6 rounded-xl"></span>
 						<span className="self-center w-4 h-1 rounded-xl bg-slider"></span>
-					</div>
+					</HeroSlider>
 				</Container>
-			</section>
+			</HeroSection>
 
 			{/* <!-- Services Block --> */}
-			<section className="mt-28 py-1 text-center">
+			<ServicesSection>
 				<Container>
-					<div className="">
-						<TitleBlock
-							subTitle={'Main Services'}
-							mainTitle={`Learn services to focus on your beauty`}
-							description={
-								'Porta rhoncus orci condimentum vitae lobortis eu dignissim non massa. Non parturient amet, feugiat tellus sagittis, scelerisque eget nulla turpis.'
-							}
-						/>
-					</div>
-					<div className="grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-14 mt-24">
+					<TitleBlock
+						subTitle={'Main Services'}
+						mainTitle={`Learn services to focus on your beauty`}
+						description={
+							'Porta rhoncus orci condimentum vitae lobortis eu dignissim non massa. Non parturient amet, feugiat tellus sagittis, scelerisque eget nulla turpis.'
+						}
+					/>
+					<ServicesGrid>
 						{serviceCardData.map((item, index) => (
-							<div key={index} className="px-8 lg:px-8 pb-16 py-12 ">
-								<div className="flex items-center justify-center ">
+							<ServiceCard key={index}>
+								<ServiceImageWrapper>
 									<img src={item.image} alt="Service Image" />
-								</div>
+								</ServiceImageWrapper>
 								<Typography color="primary.main" variant="h6" className="md:mt-[3.6rem] mt-5">
 									{item.title}
 								</Typography>
 								<Typography variant="body1" color="text.primary" className=" md:mt-5 px-1 ">
 									{item.description}
 								</Typography>
-							</div>
+							</ServiceCard>
 						))}
-					</div>
+					</ServicesGrid>
 				</Container>
-			</section>
+			</ServicesSection>
 
 			{/* <!-- Clinic Block --> */}
-			<section className="mt-32 py-2">
+			<ClinicSection>
 				<Container>
-					<div className="grid lg:grid-cols-[1fr_1fr] md:grid-cols-1 gap-10 ">
+					<ClinicGrid>
 						<Stack spacing={1.5}>
 							<Typography variant="subtitle1" color="secondary">
 								About Us
@@ -140,11 +167,11 @@ const Home: React.FC = () => {
 								enim.
 							</Typography>
 
-							<div className="flex gap-10 items-center mt-8 lg:mt-12 pt-1">
+							<ClinicActions>
 								<PinkButton
 									variant="contained"
 									sx={{
-										py: { xs: 1, lg: 2.6 },
+										py: { xs: 1, lg: 2 },
 										px: {
 											xs: 3,
 											md: 4,
@@ -155,46 +182,44 @@ const Home: React.FC = () => {
 									Learn More
 								</PinkButton>
 								<a href="#" className="flex no-underline items-center gap-3 ml-1">
-									<div className="">
-										<img src="/Home/Play_button.png" alt="" className=" w-fit" />
-									</div>
+									<img src="./Home/Play_button.png" alt="" className=" w-fit" />
 									<Typography variant="subtitle2" component="span">
 										Watch Video
 									</Typography>
 								</a>
-							</div>
+							</ClinicActions>
 						</Stack>
-						<div className="lg:relative bottom-3 w-full h-full flex items-center justify-center lg:items-end lg:justify-end">
-							<img src="/unsplash_about.png" alt="Clinic Image" className="" />
-						</div>
-					</div>
+						<ClinicMedia>
+							<img src="./unsplash_about.png" alt="Clinic Image" className="" />
+						</ClinicMedia>
+					</ClinicGrid>
 				</Container>
-			</section>
+			</ClinicSection>
 
 			{/* <!-- Team Block --> */}
-			<div className="mt-20 lg:mt-28 py-2 lg:py-4 text-center">
+			<TeamSection>
 				<Container>
-					<Box tw="md:w-3/4 lg:w-[39%]">
+					<TeamTitleWrapper>
 						<TitleBlock
 							subTitle="Professional Teams"
 							mainTitle="The Professional expert"
 							description="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam."
 						/>
-					</Box>
-					<div className="mt-12 lg:mt-20 xl:mt-32 py-2 lg:py-3">
+					</TeamTitleWrapper>
+					<TeamContentWrapper>
 						<TeamBlock />
-					</div>
+					</TeamContentWrapper>
 				</Container>
-			</div>
+			</TeamSection>
 
 			{/* <!-- Contact Block --> */}
-			<section className=" mt-24 lg:mb-32 mb-20 py-[26px]">
+			<ContactSection>
 				<Container>
-					<div className="grid lg:grid-cols-2 md:grid-cols-1  items-center lg:gap-24 gap-10">
-						<div className="lg:pt-16 md:pt-11 relative top-1">
-							<img src="ContactAnimations.png" alt="Contact Image" />
-						</div>
-						<div className="ml-[0.20rem]  md:mt-8 mt-6">
+					<ContactGrid>
+						<ContactImageWrapper>
+							<img src="./ContactAnimations.png" alt="Contact Image" />
+						</ContactImageWrapper>
+						<ContactContent>
 							<Typography variant="subtitle1" color="secondary">
 								Contact Us
 							</Typography>
@@ -206,14 +231,14 @@ const Home: React.FC = () => {
 							<Typography variant="subtitle2" className=" mt-5">
 								Lorem ipsum dolor sit amet nulla turapis tellus.
 							</Typography>
-							<div className=" mt-5 lg:mt-10 pt-1 ">
+							<ContactFormWrapper>
 								<ContactForm />
-							</div>
-						</div>
-					</div>
+							</ContactFormWrapper>
+						</ContactContent>
+					</ContactGrid>
 				</Container>
-			</section>
-		</div>
+			</ContactSection>
+		</PageWrapper>
 	);
 };
 

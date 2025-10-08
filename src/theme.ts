@@ -6,6 +6,15 @@ export const theme = createTheme({
 		// chọn selector để gắn class / data attribute lên html
 		colorSchemeSelector: 'class',
 	},
+	breakpoints: {
+		values: {
+			xs: 0,
+			sm: 640,
+			md: 768,
+			lg: 1024,
+			xl: 1280,
+		},
+	},
 	colorSchemes: {
 		light: {
 			palette: {
@@ -25,6 +34,7 @@ export const theme = createTheme({
 					primary: '#8b8b8b',
 					secondary: '#d7dbff',
 				},
+
 				Button: {
 					inheritContainedBg: '#ff64ae',
 					inheritContainedHoverBg: '#B39CD0',
@@ -116,6 +126,7 @@ export const theme = createTheme({
 					fontWeight: 600,
 					fontFamily: 'Poppins, sans-serif',
 				},
+				colorPrimary: '#ff64ae',
 			},
 		},
 		MuiTypography: {
@@ -134,7 +145,7 @@ export const theme = createTheme({
 					padding: '0.95rem 1.45rem',
 				},
 				input: {
-					'&::placeholder': tw` text-[var(--color-text-muted)] text-base`,
+					'&::placeholder': tw`text-base`,
 				},
 			},
 		},

@@ -1,5 +1,14 @@
 import React from 'react';
-import { Box, Button, Card, CardContent, Container, Stack, Typography } from '@mui/material';
+import {
+	Box,
+	Button,
+	Card,
+	CardContent,
+	Container,
+	InputBase,
+	Stack,
+	Typography,
+} from '@mui/material';
 import tw, { styled } from 'twin.macro';
 import { PinkButton } from '../components/PinkButton';
 import BannerBox from '../components/Banner';
@@ -25,19 +34,19 @@ const ServiceCardData = [
 
 const BlogCardData = [
 	{
-		image: '/About/New_1.png',
+		image: './About/New_1.png',
 		title: 'How much does a consultation cost at our clinic?',
 		description:
 			'A wonderful serenity has taken possession of my entire soul, like these sweet mornings...',
 	},
 	{
-		image: '/About/New_2.png',
+		image: './About/New_2.png',
 		title: "Watch out! don't choose the wrong beauty product",
 		description:
 			'A wonderful serenity has taken possession of my entire soul, like these sweet mornings...',
 	},
 	{
-		image: '/About/New_3.png',
+		image: './About/New_3.png',
 		title: 'About skin care you need to know',
 		description:
 			'A wonderful serenity has taken possession of my entire soul, like these sweet mornings...',
@@ -47,7 +56,7 @@ const BlogCardData = [
 // Styled Components
 
 const ServiceCard = styled(Card)`
-	${tw` text-start px-5 py-7 border-0 bg-white max-w-[261px] mx-auto w-full`}
+	${tw` text-start px-5 pb-6 pt-3 border rounded-3xl border-neutral-200 max-w-[261px] mx-auto w-full`}
 `;
 
 const AboutSection = styled(Box)`
@@ -59,16 +68,76 @@ const NewsSection = styled(Box)`
 `;
 
 const ContactSection = styled(Box)`
-	${tw`my-20 pt-2 pb-1 bg-white`}
+	${tw`mt-28 mb-44 pt-6 pb-1`}
 `;
+
+// Hero
+const HeroGrid = styled(Box)(() => [tw`grid grid-cols-1 lg:grid-cols-2 gap-4 w-full`]);
+const HeroLeft = styled(Box)(() => [tw``]);
+const HeroRight = styled(Box)(() => [tw`flex justify-center items-center`]);
+const PlayWrapper = styled(Box)(() => [tw`relative flex justify-center items-center`]);
+const PlayInner = styled(Box)(() => [tw`relative gap-3 flex justify-center lg:gap-5 lg:mr-8`]);
+
+// About
+const AboutGrid = styled(Box)(() => [tw`grid grid-cols-1 lg:grid-cols-2 gap-20 items-start`]);
+
+// Services
+const ServicesGrid = styled(Box)(() => [
+	tw`grid grid-cols-1 md:grid-cols-3 gap-8 px-10 md:px-2 xl:px-24 mt-[4.7rem] mb-12`,
+]);
+
+// Statistics
+const StatsGrid = styled(Box)(() => [
+	tw`mt-16 pl-1 grid grid-cols-1 lg:grid-cols-2 lg:gap-1 gap-16 items-center`,
+]);
+const StatItemsGrid = styled(Box)(() => [
+	tw`relative grid gap-y-10 grid-cols-2 gap-2 items-center justify-center`,
+]);
+const StatItem = styled(Box)(() => [tw`flex justify-center items-center`]);
+
+// News
+const NewsGrid = styled(Box)(() => [tw`grid grid-cols-1 md:grid-cols-3 mt-16 pt-5 gap-12`]);
+const NewsCardWrapper = styled(Box)(() => [tw``]);
+
+const NewsCardContent = styled(Card)(() => [tw`bg-card rounded-b-2xl`]);
+
+// Contact
+const ContactGrid = styled(Box)(() => [
+	tw`grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] items-start gap-10`,
+]);
+
+// Contact form submit button (replaces inline sx usage)
+const ContactSubmitButton = styled(PinkButton)(() => [
+	tw`rounded-none px-[44px] h-[73px] min-w-0 flex items-center justify-center rounded-tr-[25px] rounded-br-[25px]`,
+]);
+
+// Phone input (left rounded only, no right corners)
+const ContactPhoneInput = styled(InputBase)(() => [
+	tw`w-full h-[73px] px-[38px] text-base`,
+	{
+		borderTopLeftRadius: '25px',
+		borderBottomLeftRadius: '25px',
+		borderTopRightRadius: 0,
+		borderBottomRightRadius: 0,
+
+		'& .MuiInputBase-input': {
+			padding: 0,
+			height: '100%',
+			letterSpacing: '0.15em',
+		},
+		'::placeholder, & .MuiInputBase-input::placeholder': {
+			letterSpacing: '0.1em',
+		},
+	},
+]);
 
 const Home2: React.FC = () => {
 	return (
-		<div className="">
+		<Box>
 			{/* Hero Section */}
 			<Container className="relative">
 				<BannerBox
-					url="/Home2/BackgroundSlider.png"
+					url="./Home2/BackgroundSlider.png"
 					pt={38.5}
 					pb={39.5}
 					sx={{
@@ -77,83 +146,79 @@ const Home2: React.FC = () => {
 						},
 					}}
 				>
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full">
-						<div>
+					<HeroGrid>
+						<HeroLeft>
 							<Box>
 								<Typography variant="h1" color="primary.contrastText">
 									Your beauty center place
 								</Typography>
-								<Typography variant="subtitle2" color="text" className="mt-3 font-medium w-[90%]">
+								<Typography variant="subtitle2" color="text" className="mt-3 w-[90%]">
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Commodo, massa
 									pellentesque arcu fusce et magna consequat neque vitae lobortis.
 								</Typography>
 								<Button
 									variant="outlined"
 									sx={{
-										textTransform: 'none',
 										py: 1.3,
 										color: 'white',
-										borderColor: 'rgba(255,255,255,0.7)',
+										borderColor: 'white',
 										px: 3.5,
 										borderRadius: 3,
 										letterSpacing: 1.5,
 
 										mt: 5,
-										'&:hover': {
-											borderColor: 'white',
-											backgroundColor: 'rgba(255,255,255,0.08)',
-										},
 									}}
 								>
 									More Details
 								</Button>
 							</Box>
-						</div>
-						<div className="flex justify-center items-center ">
-							<Box sx={tw`relative flex justify-center items-center `}>
-								<Box
-									sx={tw`relative gap-3 flex  justify-center 
-									lg:gap-4 lg:mr-7 `}
-								>
+						</HeroLeft>
+						<HeroRight>
+							<PlayWrapper>
+								<PlayInner>
 									<Box>
 										<Button aria-label="Play video">
-											<img src="/Home2/PlayButton.png" alt="" />
+											<img src="./Home2/PlayButton.png" alt="" />
 										</Button>
 									</Box>
-									<span className="body__description flex justify-center items-center text-white">
+									<Typography
+										variant="subtitle2"
+										color="primary.contrastText"
+										className="flex justify-center items-center lg:relative top-0.5"
+									>
 										Tour Video
-									</span>
-								</Box>
-							</Box>
-						</div>
-					</div>
+									</Typography>
+								</PlayInner>
+							</PlayWrapper>
+						</HeroRight>
+					</HeroGrid>
 				</BannerBox>
 			</Container>
 
 			{/* About Section */}
 			<AboutSection>
 				<Container>
-					<div className=" grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-						<div>
+					<AboutGrid>
+						<Box>
 							<Box sx={tw`flex justify-start lg:mb-0`}>
-								<Box sx={tw`relative bottom-1`}>
+								<Box sx={tw`relative`}>
 									<img
-										src="/Home2/AboutImage.png"
+										src="./Home2/AboutImage.png"
 										alt="About Us"
 										className=" object-cover rounded-2xl"
 									/>
 								</Box>
 							</Box>
-						</div>
-						<div>
+						</Box>
+						<Box>
 							<Box sx={tw`lg:pl-12`}>
 								<Typography variant="subtitle1" color="secondary">
 									About Us
 								</Typography>
-								<Typography variant="h2" color="primary.main" className="mt-2">
+								<Typography variant="h2" color="primary.main" className="mt-3">
 									We are the best beauty clinic
 								</Typography>
-								<Typography variant="subtitle2" className=" leading-6 mt-4">
+								<Typography variant="subtitle2" className=" leading-6 mt-3">
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit, quam suscipit purus
 									donec amet. Egestas volutpat facilisi eu libero. Nunc, ipsum ornare mauris sit
 									quam quis enim. Varius tellus in suspendisse placerat.
@@ -161,81 +226,72 @@ const Home2: React.FC = () => {
 								<PinkButton
 									variant="contained"
 									sx={{
-										py: 2.5,
+										py: 2.1,
 										px: 6,
-										mt: 6,
-										'&:hover': { backgroundColor: 'var(--color-primary-strong)' },
+										mt: 5.9,
 									}}
 								>
 									Learn More
 								</PinkButton>
 							</Box>
-						</div>
-					</div>
+						</Box>
+					</AboutGrid>
 				</Container>
 			</AboutSection>
 
 			{/* Services Section */}
 			<Box sx={tw`py-6 mt-14 justify-between`}>
-				<Container maxWidth="xl">
-					<Box sx={tw`text-center mb-14`}>
-						<Typography variant="subtitle1" color="secondary">
-							Main Services
-						</Typography>
-						<Typography variant="h2" color="primary.main" className="mt-3">
-							Our focus services
-						</Typography>
-						<Typography variant="subtitle2" className=" lg:mt-[26px] mt-4">
-							Lorem ipsum dolor sit amet
-						</Typography>
-					</Box>
+				<Container>
+					<TitleBlock
+						subTitle="Main Services"
+						mainTitle="Our focus services"
+						description="Lorem ipsum dolor sit amet"
+					/>
 
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-10 md:px-2 xl:px-24 mt-20 mb-12">
+					<ServicesGrid>
 						{ServiceCardData.map((service) => (
-							<ServiceCard
-								sx={{
-									borderRadius: 4,
-									boxShadow: '0 20px 60px rgba(9, 17, 86, 0.06)',
-									border: '1px solid var(--color-secondary-surface-alt)',
-								}}
-							>
+							<ServiceCard>
 								<CardContent>
-									<Box sx={tw`mt-1 mb-6`}>
+									<Box sx={tw`pt-[0.15rem] mb-5`}>
 										<Box>
 											<img src={service.icon} alt="" />
 										</Box>
 									</Box>
-									<Typography variant="h6" color="secondary" className=" mb-3 ">
+									<Typography variant="h6" color="primary" className="mb-4 ">
 										{service.title}
 									</Typography>
-									<Typography variant="body1" className="leading-none">
-										{service.description}
+									<Typography variant="body1">{service.description}</Typography>
+									<Typography
+										variant="subtitle1"
+										color="secondary"
+										className="text-sm tracking-4 mt-4"
+									>
+										Learn more &gt;&gt;
 									</Typography>
-									<div className="text-primary text-sm tracking-4 mt-2">Learn more &gt;&gt;</div>
 								</CardContent>
 							</ServiceCard>
 						))}
-					</div>
+					</ServicesGrid>
 				</Container>
 			</Box>
 
 			{/* Statistics Section */}
-			<div>
-				<Container className="relative mt-[66px]">
+			<Box>
+				<Container className="relative mt-12">
 					<BannerBox
-						url="/Home2/BackgroundCenter.png"
+						url="./Home2/BackgroundCenter.png"
 						pt={26}
 						pb={32}
 						sx={{
 							'&::after': {
-								clipPath: 'polygon(0 15%, 100% 0, 100% 100%, 0 83%)',
+								clipPath: 'polygon(0 14%, 100% 0, 100% 100%, 0 84%)',
 							},
 						}}
 					>
-						<div className="mt-16 pl-1 grid grid-cols-1 lg:grid-cols-2 lg:gap-1 gap-16 items-center">
-							<div>
+						<StatsGrid>
+							<Box>
 								<Box sx={tw`space-y-5`}>
-									<Typography variant="h2" color="primary.main">
+									<Typography variant="h2" color="primary.contrastText">
 										Why choosing us?
 									</Typography>
 									<Typography
@@ -247,89 +303,111 @@ const Home2: React.FC = () => {
 										amet luctus venenatis.
 									</Typography>
 								</Box>
-							</div>
-							<div>
-								<div className="relative grid gap-y-10 grid-cols-2 gap-2 items-center col justify-center">
-									<div className=" flex justify-center items-center">
+							</Box>
+							<Box>
+								<StatItemsGrid>
+									<StatItem>
 										<Stack direction="row" spacing={1.5} alignItems="center">
 											<Box>
 												<img
-													src="/Home2/handshake 1.svg"
+													src="./Home2/handshake 1.svg"
 													alt=""
-													className="lg:relative top-1 left-2"
+													className="lg:relative top-2 left-2"
 												/>
 											</Box>
 											<Box>
 												<Typography
 													variant="h2"
-													color="primary.main"
-													className="section__title lg:relative top-2 left-1"
+													color="primary.contrastText"
+													className=" lg:relative top-1.5 left-2"
 												>
 													100%
 												</Typography>
-												<div className="text-green-500 font-semibold lg:relative left-2">
+												<Typography
+													variant="subtitle1"
+													color="secondary"
+													className=" font-semibold lg:relative left-1 top-1"
+												>
 													trusted clinic
-												</div>
+												</Typography>
 											</Box>
 										</Stack>
-									</div>
-									<div className=" flex justify-center items-center">
+									</StatItem>
+									<StatItem>
 										<Stack direction="row" spacing={1.5} alignItems="center">
 											<Box>
 												<img
-													src="/Home2/brotherhood 1.svg"
+													src="./Home2/brotherhood 1.svg"
 													alt=""
-													className="lg:relative  right-2"
+													className="lg:relative  right-1.5 top-1"
 												/>
 											</Box>
 											<Box className="lg:relative top-2 right-2 ">
-												<Typography variant="h2" color="primary.main" className="section__title">
+												<Typography variant="h2" color="primary.contrastText">
 													99%
 												</Typography>
-												<div className="text-white lg:relative bottom-2">customer love</div>
+												<Typography
+													variant="subtitle1"
+													color="primary.contrastText"
+													className=" lg:relative bottom-1"
+												>
+													customer love
+												</Typography>
 											</Box>
 										</Stack>
-									</div>
-									<div className=" flex justify-center items-center">
+									</StatItem>
+									<StatItem>
 										<Stack direction="row" spacing={1} alignItems="center">
 											<Box>
-												<img src="/Home2/earth 1.svg" alt="" className="lg:relative top-1 left-1" />
+												<img
+													src="./Home2/earth 1.svg"
+													alt=""
+													className="lg:relative top-1.5 left-2"
+												/>
 											</Box>
 											<Box className="lg:relative top-1 left-2 ">
 												<Typography
 													variant="h2"
-													color="primary.main"
-													className="section__title lg:relative top-1"
+													color="primary.contrastText"
+													className="lg:relative top-1"
 												>
 													75+
 												</Typography>
-												<div className="text-white">asian branch</div>
+												<Typography
+													variant="subtitle1"
+													color="primary.contrastText"
+													className=" lg:relative "
+												>
+													asian branch
+												</Typography>
 											</Box>
 										</Stack>
-									</div>
-									<div className=" flex justify-center items-center">
+									</StatItem>
+									<StatItem>
 										<Stack direction="row" spacing={2} alignItems="center">
 											<Box>
-												<img src="/Home2/doctor 1.svg" alt="" />
+												<img src="./Home2/doctor 1.svg" alt="" />
 											</Box>
 											<Box className="lg:relative top-1 right-1">
 												<Typography
 													variant="h2"
-													color="primary.main"
-													className="section__title lg:relative top-1"
+													color="primary.contrastText"
+													className=" lg:relative top-1"
 												>
 													1.200+
 												</Typography>
-												<div className="text-white">licensed worker</div>
+												<Typography variant="subtitle1" color="primary.contrastText">
+													licensed worker
+												</Typography>
 											</Box>
 										</Stack>
-									</div>
-								</div>
-							</div>
-						</div>
+									</StatItem>
+								</StatItemsGrid>
+							</Box>
+						</StatsGrid>
 					</BannerBox>
 				</Container>
-			</div>
+			</Box>
 
 			{/* News Section */}
 			<NewsSection>
@@ -350,59 +428,48 @@ const Home2: React.FC = () => {
 						/>
 					</Box>
 
-					<div className="grid grid-cols-1 md:grid-cols-3 mt-20 pt-2 gap-12">
+					<NewsGrid>
 						{BlogCardData.map((blog) => (
-							<div>
-								<Card
-									sx={{
-										borderRadius: 4,
-										boxShadow: '0 14px 40px rgba(9, 17, 86, 0.08)',
-										border: '1px solid var(--color-secondary-surface-alt)',
-										transition: 'box-shadow .2s, transform .2s',
-										'&:hover': {
-											boxShadow: '0 20px 60px rgba(9, 17, 86, 0.12)',
-											transform: 'translateY(-4px)',
-										},
-									}}
-								>
-									<Box sx={tw`h-64 bg-gray-200`}>
-										<img src={blog.image} alt="News 1" className="w-full h-full object-cover" />
+							<NewsCardWrapper>
+								<NewsCardContent>
+									<Box>
+										<img src={blog.image} alt="News 1" />
 									</Box>
 									<CardContent
 										sx={{
 											py: 6.5,
-											pl: 4.7,
+											pl: 4.8,
 										}}
 									>
-										<Typography variant="h6" color="primary" className=" mb-3 ">
+										<Typography variant="h6" color="primary" className=" mb-3 tracking-normal">
 											{blog.title}
 										</Typography>
-										<Typography variant="body1" className="card__description">
+										<Typography variant="body1" className="w-11/12">
 											{blog.description}
 										</Typography>
-										<Box sx={tw`text-pink-500 font-semibold text-sm mt-6 mb-12 flex items-start`}>
+										<Typography variant="subtitle1" color="secondary" className="text-sm mt-6">
 											Learn more &gt;&gt;
-										</Box>
+										</Typography>
 									</CardContent>
-								</Card>
-							</div>
+								</NewsCardContent>
+							</NewsCardWrapper>
 						))}
-					</div>
+					</NewsGrid>
 				</Container>
 			</NewsSection>
 
 			{/* Contact Section */}
 			<ContactSection>
-				<Container className=" mb-24 pb-3">
-					<div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] items-start gap-10">
+				<Container>
+					<ContactGrid>
 						{/* Left content */}
 						<Box>
-							<Typography variant="h2" color="primary.main" className="section__title">
+							<Typography variant="h2" color="primary.main">
 								Request call services
 							</Typography>
-							<Typography variant="subtitle2" component="p" className="section__description mt-6">
+							<Typography variant="subtitle2" component="p" className="leading-[.9rem] mt-6">
 								Lorem ipsum dolor sit amet, consect adipiscing elit{' '}
-								<span className="font-semibold leading-8 text-secondary">Contact Us.</span>
+								<span className="font-semibold leading-8 text-primary">Contact Us.</span>
 							</Typography>
 						</Box>
 
@@ -412,65 +479,28 @@ const Home2: React.FC = () => {
 								<Box
 									sx={{
 										display: 'flex',
-										mt: 1.8,
+										mt: 1.5,
 										alignItems: 'stretch',
 										border: '1px solid var(--color-secondary-border)',
 										borderRadius: '25px',
-										overflow: 'hidden',
-										boxShadow: '0 8px 24px rgba(9,17,86,0.06)',
 									}}
 								>
-									<input
-										size={500}
-										type="tel"
-										placeholder="Insert your phone number here ..."
-										style={{
-											width: '100%',
-											height: '73px',
-											padding: '18px 38px',
-											border: 'none',
-											borderRadius: '16px',
-											fontSize: '16px',
-										}}
-										className="placeholder:text-neutral-400 placeholder:tracking-widest"
-									/>
-									<Button
-										variant="contained"
-										type="submit"
-										sx={{
-											backgroundColor: 'var(--color-primary)',
-											color: 'white',
-											px: 5.5,
-											display: 'flex',
-											alignItems: 'center',
-											gap: 1,
-											fontWeight: 600,
-											fontSize: 14,
-											borderRadius: 0,
-											boxShadow: '0 10px 30px rgba(255, 100, 174, 0.3)',
-											'&:hover': { backgroundColor: 'var(--color-primary-strong)' },
-										}}
-									>
-										<img src="/Home2/phone.svg" alt="call" />
-									</Button>
+									<ContactPhoneInput type="tel" placeholder="Insert your phone number here ..." />
+									<ContactSubmitButton type="submit">
+										<img src="./Home2/phone.svg" alt="Call" />
+									</ContactSubmitButton>
 								</Box>
-								<Box sx={{ mt: 0.7, display: 'flex', justifyContent: 'flex-end' }}>
-									<Typography
-										sx={{
-											fontSize: 14,
-											letterSpacing: '0.02em',
-											color: 'var(--color-neutral-600)',
-										}}
-									>
+								<Box sx={{ mt: 1, display: 'flex', justifyContent: 'flex-end' }}>
+									<Typography className="text-xs tracking-widest ">
 										Toll free for our coverage areas.
 									</Typography>
 								</Box>
 							</form>
 						</Box>
-					</div>
+					</ContactGrid>
 				</Container>
 			</ContactSection>
-		</div>
+		</Box>
 	);
 };
 

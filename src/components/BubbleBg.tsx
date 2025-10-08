@@ -1,82 +1,59 @@
 import React from 'react';
-import tw, { styled } from 'twin.macro';
 
-type PositionValue = string | number;
-
-type WrapperProps = {
-	top?: PositionValue;
-	bottom?: PositionValue;
-	left?: PositionValue;
-	right?: PositionValue;
-	width?: string | number;
-	height?: string | number;
-	justify?: 'flex-start' | 'center' | 'flex-end';
-	position?: React.CSSProperties['position'];
-	zIndex?: number;
-};
-
-type BubbleBackgroundProps = WrapperProps & {
+export type BubbleBackgroundProps = {
 	image: string;
 	alt?: string;
+	top?: string | number;
+	bottom?: string | number;
+	left?: string | number;
+	right?: string | number;
+	width?: string | number;
+	height?: string | number;
 	flipX?: boolean;
-	className?: string;
-	imageClassName?: string;
+	zIndex?: number;
+
+	justify?: 'flex-start' | 'center' | 'flex-end';
+	position?: React.CSSProperties['position'];
 	imageProps?: Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt' | 'className'>;
+	// Deprecated props safely ignored
+	darkImage?: string;
 };
 
-const BubbleWrapper = styled.div<WrapperProps>(
-	({
+const BubbleBackground: React.FC<BubbleBackgroundProps> = ({
+	image,
+	alt = '',
+	top,
+	bottom,
+	left,
+	right,
+	width,
+	height,
+	flipX,
+	zIndex = -1,
+}) => {
+	const style: React.CSSProperties = {
+		position: 'absolute',
 		top,
 		bottom,
 		left,
 		right,
 		width,
 		height,
-		justify = 'flex-start',
-		position = 'absolute',
-		zIndex = -1,
-	}: WrapperProps) => [
-		tw`w-full pointer-events-none flex`,
-		position === 'absolute' && tw`absolute`,
-		position === 'fixed' && tw`fixed`,
-		position === 'relative' && tw`relative`,
-		position === 'sticky' && tw`sticky`,
-		justify === 'flex-start' && tw`justify-start`,
-		justify === 'center' && tw`justify-center`,
-		justify === 'flex-end' && tw`justify-end`,
-		{
-			top,
-			bottom,
-			left,
-			right,
-			width: width ?? '100%',
-			height: height ?? 'fit-content',
-			backgroundSize: 'contain',
-			backgroundRepeat: 'no-repeat',
-			backgroundPosition: 'center',
-			zIndex,
-		},
-	]
-);
+		pointerEvents: 'none',
+		userSelect: 'none',
+		zIndex,
+		transform: flipX ? 'scaleX(-1)' : undefined,
+	};
 
-const BubbleImage = styled.img<{ flipX?: boolean }>(({ flipX }: { flipX?: boolean }) => [
-	tw`h-auto`,
-	flipX && { transform: 'scaleX(-1)' },
-]);
-
-export const BubbleBackground: React.FC<BubbleBackgroundProps> = ({
-	image,
-	alt = '',
-	flipX,
-	className,
-	imageClassName,
-	imageProps,
-	...wrapperProps
-}) => {
 	return (
-		<BubbleWrapper {...wrapperProps} className={className}>
-			<BubbleImage src={image} alt={alt} flipX={flipX} className={imageClassName} {...imageProps} />
-		</BubbleWrapper>
+		<img
+			src={image}
+			alt={alt}
+			aria-hidden={alt === '' ? true : undefined}
+			draggable={false}
+			style={style}
+			className="bubble-bg"
+		/>
 	);
 };
 

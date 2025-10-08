@@ -17,6 +17,7 @@ module.exports = {
 				text: 'var(--color-text)',
 				slider: 'var(--color-slider)',
 				sliderActive: 'var(--color-slider-active)',
+				card: 'var(--card-background)',
 			},
 		},
 	},
