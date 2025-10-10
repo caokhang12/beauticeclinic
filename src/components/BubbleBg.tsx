@@ -1,4 +1,4 @@
-import React from 'react';
+import { Box } from '@mui/material';
 
 export type BubbleBackgroundProps = {
 	image: string;
@@ -7,18 +7,11 @@ export type BubbleBackgroundProps = {
 	bottom?: string | number;
 	left?: string | number;
 	right?: string | number;
-	width?: string | number;
-	height?: string | number;
 	flipX?: boolean;
 	zIndex?: number;
-
-	justify?: 'flex-start' | 'center' | 'flex-end';
-	position?: React.CSSProperties['position'];
-	imageProps?: Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt' | 'className'>;
-	// Deprecated props safely ignored
-	darkImage?: string;
+	width?: number | string;
+	justifyContent?: 'flex-start' | 'center' | 'flex-end';
 };
-
 const BubbleBackground: React.FC<BubbleBackgroundProps> = ({
 	image,
 	alt = '',
@@ -26,34 +19,36 @@ const BubbleBackground: React.FC<BubbleBackgroundProps> = ({
 	bottom,
 	left,
 	right,
-	width,
-	height,
-	flipX,
+	flipX = false,
 	zIndex = -1,
+	width,
+	justifyContent = 'flex-start',
 }) => {
-	const style: React.CSSProperties = {
-		position: 'absolute',
-		top,
-		bottom,
-		left,
-		right,
-		width,
-		height,
-		pointerEvents: 'none',
-		userSelect: 'none',
-		zIndex,
-		transform: flipX ? 'scaleX(-1)' : undefined,
-	};
-
 	return (
-		<img
-			src={image}
-			alt={alt}
-			aria-hidden={alt === '' ? true : undefined}
-			draggable={false}
-			style={style}
+		<Box
+			position="absolute"
+			top={top}
+			bottom={bottom}
+			left={left}
+			right={right}
+			sx={{ zIndex, pointerEvents: 'none', display: 'flex', justifyContent: justifyContent }}
 			className="bubble-bg"
-		/>
+			width={'100%'}
+		>
+			<Box
+				component="img"
+				src={image}
+				alt={alt}
+				sx={{
+					transform: flipX ? 'scaleX(-1)' : undefined,
+					userSelect: 'none',
+					display: 'flex',
+					height: 'auto',
+					maxWidth: '100%',
+					width: width || 'auto',
+				}}
+			/>
+		</Box>
 	);
 };
 

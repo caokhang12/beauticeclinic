@@ -16,6 +16,7 @@ html {
 	--color-secondary-strong: var(--mui-palette-neutral-900, #172176);
 	--color-secondary-surface: #f6f7ff;
 	--color-secondary-border: #e0e4ff;
+	--card-background: #ffffff;
 
 	--color-background: var(--color-white);
 	--color-surface-card: rgba(255, 255, 255, 1);
@@ -30,7 +31,8 @@ html {
 	--card-shadow: var(--shadow-elevated);
 	--input-border-color: var(--color-border-input);
 	--input-placeholder-color: var(--color-placeholder);
-	--footer: var(--color-background);
+	--footer: rgba(23, 33, 118, 1);
+	--color-switch: rgba(84, 84, 84, 0.8);
 }
 
 .bubble-bg {
@@ -52,7 +54,9 @@ html {
 	--color-text-input: rgba(var(--mui-palette-text-primaryChannel, 228 228 228) / 0.65);
 
 	--button-text-color: var(--mui-palette-secondary-contrastText, #ffffff);
-	--footer: var(--mui-palette-background-default, #2c2c2c);
+	--footer: #404040;
+	--color-switch: rgb(151, 151, 151);
+	--card-background: #424242;
 }
 
 .dark .bubble-bg,

@@ -25,14 +25,14 @@ const serviceCardData = [
 	},
 ];
 
-const PageWrapper = styled(Box)(() => [tw`relative`]);
+const PageWrapper = styled(Box)(() => [tw`relative overflow-hidden w-full`]);
 const HeroSection = styled('section')(() => [tw`pt-36 lg:pt-56 xl:pt-64 xl:mt-1`]);
 const HeroGrid = styled(Box)(() => [
 	tw`grid lg:grid-cols-[1fr_1.2fr] gap-20 xl:gap-4 md:grid-cols-1`,
 ]);
 const HeroContent = styled(Box)(() => [tw`pt-14 pl-10`]);
 const HeroCTAWrapper = styled(Box)(() => [tw`mt-[2.15rem]`]);
-const HeroImageWrapper = styled(Box)(() => [tw`lg:ml-2`]);
+const HeroImageWrapper = styled(Box)(() => [tw`lg:ml-1 w-full h-auto flex justify-center`]);
 const HeroButton = styled(PinkButton)(() => [tw`px-[2.5rem] py-3 lg:py-[1rem]`]);
 const HeroSlider = styled(Box)(() => [tw`flex gap-2 justify-center mt-32 py-2`]);
 
@@ -43,18 +43,18 @@ const ServicesGrid = styled(Box)(() => [
 const ServiceCard = styled(Box)(() => [tw`px-8 lg:px-8 pb-16 py-12`]);
 const ServiceImageWrapper = styled(Box)(() => [tw`flex items-center justify-center`]);
 
-const ClinicSection = styled('section')(() => [tw`mt-32 py-2`]);
+const ClinicSection = styled('section')(() => [tw`mt-32 w-full py-2`]);
 const ClinicGrid = styled(Box)(() => [tw`grid lg:grid-cols-[1fr_1fr] md:grid-cols-1 gap-10`]);
 const ClinicActions = styled(Box)(() => [tw`flex gap-10 items-center lg:mt-12 pt-10`]);
 const ClinicMedia = styled(Box)(() => [
-	tw`lg:relative top-6   flex items-center justify-center lg:items-end lg:justify-end`,
+	tw`lg:relative top-5 flex items-center justify-center  md:justify-end w-full`,
 ]);
 
 const TeamSection = styled(Box)(() => [tw`mt-20 lg:mt-28 py-2 lg:py-[1.5rem] text-center`]);
 const TeamTitleWrapper = styled(Box)(() => [tw` flex text-center justify-center`]);
 const TeamContentWrapper = styled(Box)(() => [tw`mt-12 lg:mt-20 xl:mt-32 py-2 lg:py-3`]);
 
-const ContactSection = styled('section')(() => [tw`mt-24 lg:mb-28 mb-20 py-5`]);
+const ContactSection = styled('section')(() => [tw`mt-24 lg:mb-32 mb-20 py-2 lg:pt-[1.3rem]`]);
 const ContactGrid = styled(Box)(() => [
 	tw`grid lg:grid-cols-2 md:grid-cols-1 items-center lg:gap-24 gap-10`,
 ]);
@@ -64,27 +64,10 @@ const ContactFormWrapper = styled(Box)(() => [tw`mt-5 lg:mt-10 pt-1`]);
 const Home: React.FC = () => {
 	return (
 		<PageWrapper>
-			<BubbleBackground
-				image="/Bubble2.png"
-				top={0}
-				left={0}
-				imageProps={{ 'aria-hidden': true }}
-			/>
+			<BubbleBackground image="./Bubble2.png" top={0} left={0} />
 
-			<BubbleBackground
-				image="/BubbleMid1.png"
-				top="33%"
-				right={0}
-				justify="flex-end"
-				imageProps={{ 'aria-hidden': true }}
-			/>
-			<BubbleBackground
-				image="/BubbleMid1.png"
-				top="75%"
-				left={0}
-				flipX
-				imageProps={{ 'aria-hidden': true }}
-			/>
+			<BubbleBackground image="./BubbleMid1.png" top="33%" right={0} justifyContent="flex-end" />
+			<BubbleBackground image="./BubbleMid1.png" top="75%" left={0} flipX />
 			{/* <!-- Hero Block --> */}
 			<HeroSection>
 				<Container>
@@ -102,7 +85,7 @@ const Home: React.FC = () => {
 							</HeroCTAWrapper>
 						</HeroContent>
 						<HeroImageWrapper>
-							<img src="./HeroImage.png" alt="Hero Image" />
+							<img src="./HeroImage.png" alt="Hero Image" className="w-full h-auto" />
 						</HeroImageWrapper>
 					</HeroGrid>
 					{/* Hero Slider */}
@@ -183,14 +166,23 @@ const Home: React.FC = () => {
 								</PinkButton>
 								<a href="#" className="flex no-underline items-center gap-3 ml-1">
 									<img src="./Home/Play_button.png" alt="" className=" w-fit" />
-									<Typography variant="subtitle2" component="span">
+									<Typography
+										variant="subtitle1"
+										color="text.primary"
+										component="span"
+										className="tracking-widest"
+									>
 										Watch Video
 									</Typography>
 								</a>
 							</ClinicActions>
 						</Stack>
 						<ClinicMedia>
-							<img src="./unsplash_about.png" alt="Clinic Image" className="" />
+							<img
+								src="./unsplash_about.png"
+								alt="Clinic Image"
+								className="w-full h-auto  max-w-[476px] max-h-[350px]"
+							/>
 						</ClinicMedia>
 					</ClinicGrid>
 				</Container>
@@ -217,7 +209,7 @@ const Home: React.FC = () => {
 				<Container>
 					<ContactGrid>
 						<ContactImageWrapper>
-							<img src="./ContactAnimations.png" alt="Contact Image" />
+							<img src="./ContactAnimations.png" alt="Contact Image" className="w-full h-auto" />
 						</ContactImageWrapper>
 						<ContactContent>
 							<Typography variant="subtitle1" color="secondary">

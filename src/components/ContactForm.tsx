@@ -5,7 +5,7 @@ import tw from 'twin.macro';
 
 const TextAreaCustom = styled(TextareaAutosize)(() => [
 	{
-		color: 'var(--color-text-input)',
+		color: 'var(--card-background)',
 		fontFamily: 'Poppins, sans-serif',
 		borderRadius: '0.9375rem',
 		backgroundColor: 'none',
@@ -17,13 +17,21 @@ const TextAreaCustom = styled(TextareaAutosize)(() => [
 		fontWeight: 400,
 		letterSpacing: '0.09rem',
 		lineHeight: '1.375rem',
+		'&::placeholder': {
+			color: 'var(--color-text-input)',
+		},
+		'&::focus': {
+			outline: 'none',
+			border: 'none',
+			boxShadow: '0 0 0 2px rgba(9, 17, 86, 0.5)',
+		},
 	},
 ]);
 export const InputBaseCustom = styled(InputBase)(() => [tw`bg-card`]);
 
 const ContactForm = () => {
 	return (
-		<form className="form w-full  flex flex-col gap-32 lg:gap-[38px] ">
+		<form className="form w-full  flex flex-col gap-9 lg:gap-[38px] ">
 			<div className="flex justify-between md:flex-row flex-col gap-9">
 				<div className="w-full">
 					<InputBaseCustom type="text" placeholder="First name" />

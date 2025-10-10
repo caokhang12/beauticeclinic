@@ -40,7 +40,7 @@ export const TitleBlock = ({
 			<Typography
 				variant="subtitle2"
 				color="text.primary"
-				{...(mg ? tw`max-w-[52rem] pt-3.5 lg:pt-0` : tw`max-w-[52rem] pt-2 lg:pt-0`)}
+				{...(mg ? tw`max-w-[52rem] pt-3.5` : tw`max-w-[52rem] pt-2`)}
 			>
 				{description}
 			</Typography>

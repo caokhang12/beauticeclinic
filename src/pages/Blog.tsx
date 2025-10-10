@@ -19,7 +19,7 @@ import { InputBaseCustom } from '../components/ContactForm';
 const BlogData = [
 	{
 		id: 1,
-		image: '/Blog/Blog_1.png',
+		image: './Blog/Blog_1.png',
 		category: 'Consultation',
 		title: 'How much does a consultation cost at our clinic?',
 		description:
@@ -27,7 +27,7 @@ const BlogData = [
 	},
 	{
 		id: 2,
-		image: '/Blog/Blog_2.png',
+		image: './Blog/Blog_2.png',
 		category: 'Beauty',
 		title: "Watch out! don't choose the wrong beauty product",
 		description:
@@ -35,7 +35,7 @@ const BlogData = [
 	},
 	{
 		id: 3,
-		image: '/Blog/Blog_3.png',
+		image: './Blog/Blog_3.png',
 		category: 'Treatments',
 		title: 'About skin care you need to know',
 		description:
@@ -55,7 +55,7 @@ const socialIcons = [
 // Layout wrappers
 const RootWrapper = styled(Box)(() => [tw`relative mt-32 py-3`]);
 const PaginationWrapper = styled(Box)(() => [
-	tw`flex justify-center pl-5 mt-16 py-3 mb-16 lg:mb-[92px]`,
+	tw`flex justify-center pl-5 mt-16 py-2 pb-4 mb-16 lg:mb-[92px]`,
 ]);
 const BannerHeader = styled(Stack)(() => [tw`flex-row items-center justify-between gap-3`]);
 const BlogGridWrapper = styled(Grid)(() => [tw`w-full mt-20 py-7 justify-center`]);
@@ -80,28 +80,25 @@ const BlogCategory = styled(Typography)(() => [tw`flex items-center gap-8 mt-[6p
 const BlogTitle = styled(Typography)(() => [tw`mt-2 md:mt-3 lg:mt-4`]);
 const BlogDescription = styled(Typography)(() => [tw`mt-3 md:mt-4 lg:mt-5`]);
 
-const ReadMoreWrapper = styled('div')(() => [
-	tw`mt-4 lg:mt-[30px] mb-8 lg:mb-16 pt-1 pb-3 relative`,
+const ReadMoreWrapper = styled('div')(() => [tw`mt-4 lg:mt-[30px] mb-8 lg:mb-16 pt-1 pb-3`]);
+const ReadMoreButton = styled(PinkButton)(() => [
+	tw`relative px-[3.85rem] py-3 lg:py-4`,
 	{
-		'& button': {},
-		'& button::before': {
+		'&::after': {
 			content: '""',
 			position: 'absolute',
-			right: '18px',
 			top: '50%',
 			transform: 'translateY(-50%)',
 			width: 0,
 			height: 0,
-			borderLeft: '8px solid var(--color-text-inverse)',
+			right: '2.8rem',
 			borderTop: '8px solid transparent',
 			borderBottom: '8px solid transparent',
-		},
-		'@media (min-width: 768px)': {
-			'& button::before': { right: '50px' },
+			borderLeft: '8px solid currentColor',
+			pointerEvents: 'none',
 		},
 	},
 ]);
-const ReadMoreButton = styled(PinkButton)(() => [tw`px-[4rem] py-3 lg:py-4`]);
 
 // Sidebar shared section base
 const SidebarSection = styled(Box)(() => [
@@ -110,19 +107,19 @@ const SidebarSection = styled(Box)(() => [
 ]);
 
 const RecentPostsSection = styled(SidebarSection)(() => [
-	tw`pt-[54px] pb-16 pl-8 md:pl-10 lg:pl-12`,
+	tw`pt-[53px] pb-16 pl-8 md:pl-10 lg:pl-[2.9rem]`,
 ]);
 
 const CategoriesSection = styled(SidebarSection)(() => [
-	tw`pl-8 pt-11 pb-[52px] md:(pl-10 pt-12 pb-[52px]) lg:pl-12`,
+	tw`pl-8 pt-11 pb-[52px] md:(pl-10 pt-12 pb-[52px]) lg:pl-[2.9rem]`,
 ]);
 
 const CloudTagsSection = styled(SidebarSection)(() => [
-	tw`pl-9 pt-9 pb-[52px] md:pt-[3.1rem] lg:(pl-10 pr-10)`,
+	tw`pl-9 pt-9 pb-[52px] md:pt-[3.1rem] lg:(pl-[2.6rem] pr-11)`,
 ]);
 
 const SocialSection = styled(SidebarSection)(() => [
-	tw`pl-8 pt-12 pb-14 md:pt-[3.8rem] md:pl-10 lg:pl-12`,
+	tw`pl-8 pt-12 pb-14 md:pt-[3.8rem] md:pl-10 lg:pl-[2.9rem]`,
 ]);
 
 const SearchBarWrapper = styled(Box)(() => [tw`flex items-center  overflow-hidden `]);
@@ -150,7 +147,7 @@ const SocialIconsRow = styled(Stack)(() => [tw`relative  lg:right-2 mt-6 flex-ro
 // Recent posts helper components
 const RecentPostsTitle = styled(Typography)(() => [tw`mb-7`]);
 const RecentPostsList = styled(Stack)(() => [tw`mt-[26px]`]);
-const RecentPostItem = styled(Box)(() => [tw`flex flex-col sm:flex-row gap-[22px]`]);
+const RecentPostItem = styled(Box)(() => [tw`flex  sm:flex-row gap-[22px]`]);
 const RecentPostImageWrapper = styled(Box)(() => [tw`overflow-hidden shrink rounded-lg`]);
 const RecentPostDate = styled(Typography)(() => [tw`mb-2.5 tracking-wider text-secondary`]);
 const RecentPostExcerpt = styled(Typography)(() => [
@@ -189,20 +186,8 @@ const StyledPagination = styled(Pagination)(() => [
 const Blog = () => {
 	return (
 		<RootWrapper>
-			<BubbleBackground
-				image="/BubbleMid1.png"
-				top="33%"
-				right={0}
-				justify="flex-end"
-				imageProps={{ 'aria-hidden': true }}
-			/>
-			<BubbleBackground
-				image="/BubbleMid1.png"
-				top="60%"
-				right={0}
-				flipX
-				imageProps={{ 'aria-hidden': true }}
-			/>
+			<BubbleBackground image="./BubbleMid1.png" top="33%" right={0} justifyContent="flex-end" />
+			<BubbleBackground image="./BubbleMid1.png" top="60%" left={0} flipX />
 			{/* Banner Block */}
 			<Container className="relative">
 				<BannerBox

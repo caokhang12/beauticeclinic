@@ -10,7 +10,7 @@ const HeroIntro = tw.div`pt-3`;
 const HeroHeadingGrid = styled(Grid)(() => [tw`lg:mt-3`]);
 const HeroDescription = styled(Typography)(() => [tw`leading-6 mt-3 lg:mt-[0.7rem]`]);
 const GalleryGrid = styled(Grid)(() => [tw`lg:mt-16 my-10 lg:pt-6 py-5`]);
-const GallerySummaryWrapper = tw.div`mt-8 w-3/5`;
+const GallerySummaryWrapper = tw.div`mt-8 lg:w-3/5`;
 const GallerySummaryText = styled(Typography)(() => [tw`leading-6`]);
 const GalleryImage = styled.img(() => [tw`w-full h-auto`]);
 
@@ -31,20 +31,8 @@ const AppointmentButton = styled(PinkButton)(() => [tw`px-[3.2rem] py-3 lg:py-4`
 const Gallery = () => {
 	return (
 		<PageWrapper>
-			<BubbleBackground
-				image="/BubbleMid1.png"
-				top="13%"
-				right={0}
-				justify="flex-end"
-				imageProps={{ 'aria-hidden': true }}
-			/>
-			<BubbleBackground
-				image="/BubbleMid1.png"
-				top="50%"
-				left={0}
-				flipX
-				imageProps={{ 'aria-hidden': true }}
-			/>
+			<BubbleBackground image="./BubbleMid1.png" top="13%" right={0} />
+			<BubbleBackground image="./BubbleMid1.png" top="50%" left={0} flipX />
 			{/* Hero Block */}
 			<HeroSection>
 				<Container>
@@ -112,7 +100,7 @@ const Gallery = () => {
 								luctus venenatis
 							</VideoDescription>
 							{/* Overlay Play Button */}
-							<VideoPlayButton src="/Gallery/Play Button.png" alt="Video Thumbnail" />
+							<VideoPlayButton src="./Gallery/Play Button.png" alt="Video Thumbnail" />
 						</VideoContent>
 					</BannerBox>
 				</VideoContainer>

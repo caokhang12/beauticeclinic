@@ -5,19 +5,19 @@ const TeamData = [
 		name: 'Briyan Nevalli',
 		role: 'Surgeon',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit.',
-		avatar: '/Home/Team_1.png',
+		avatar: './Home/Team_1.png',
 	},
 	{
 		name: 'Bella sebastian',
 		role: 'Dermatologist',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit.',
-		avatar: '/Home/Team_2.png',
+		avatar: './Home/Team_2.png',
 	},
 	{
 		name: 'Lilly Adams',
 		role: 'Stylist expert',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit.',
-		avatar: '/Home/Team_3.png',
+		avatar: './Home/Team_3.png',
 	},
 ];
 
@@ -74,14 +74,14 @@ const TeamBlock = () => {
 								{item.description}
 							</Typography>
 							<div className="flex justify-around xl:mt-14 pt-1 mt-9">
-								<a href="#" className="expert-card__social-link">
-									<img src="./Home/twitter.svg" alt="Facebook" />
+								<a href="#">
+									<img src="./Home/twitter.svg" alt="Twitter" />
 								</a>
-								<a href="#" className="expert-card__social-link">
+								<a href="#">
 									<img src="./facebook-f.png" alt="Facebook" />
 								</a>
-								<a href="#" className="expert-card__social-link">
-									<img src="./Home/instagram.svg" alt="Facebook" />
+								<a href="#">
+									<img src="./Home/instagram.svg" alt="Instagram" className=" color-white" />
 								</a>
 							</div>
 						</Card>

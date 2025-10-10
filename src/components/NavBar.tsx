@@ -8,16 +8,17 @@ import {
 	ListItemButton,
 	ListItemText,
 	Typography,
-	Switch,
 } from '@mui/material';
 import { PinkButton } from './PinkButton';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useState, type ChangeEvent } from 'react';
+import { useState } from 'react';
 import tw, { styled, css } from 'twin.macro';
 import { useColorScheme } from '@mui/material/styles';
+import ThemeFloatSwitch from './ThemeFloatSwitch';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const GlassAppBar = styled(AppBar)(() => [
-	tw`flex justify-center backdrop-blur-lg bg-amber-50	 bg-opacity-90`,
+	tw`flex justify-center backdrop-blur-lg bg-white bg-opacity-70`,
 	{
 		transition: 'background-color 200ms ease, backdrop-filter 200ms ease',
 		'.dark &, [data-mui-color-scheme="dark"] &': {
@@ -30,7 +31,7 @@ const GlassAppBar = styled(AppBar)(() => [
 ]);
 
 const NavToolbar = styled(Toolbar)(() => [
-	tw`flex mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-10 lg:px-[150px] py-0 sm:py-4 lg:py-6 xl:py-9 justify-between items-center shadow-none`,
+	tw`flex mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-[9.3rem] lg:px-20 py-2 sm:py-4 lg:py-6 xl:py-9 justify-between items-center shadow-none`,
 ]);
 
 const LogoContainer = styled(Box)(() => [
@@ -38,15 +39,35 @@ const LogoContainer = styled(Box)(() => [
 ]);
 
 const DesktopLinks = styled(Box)(() => [
-	tw`hidden sm:flex items-center gap-4 md:gap-6 lg:gap-[45px]`,
+	tw`hidden sm:flex items-center gap-4 md:gap-6 lg:gap-8 2xl:gap-11`,
 ]);
 
-const DrawerToggleButton = styled(IconButton)(() => [tw`flex sm:hidden`]);
+const DrawerToggleButton = styled(IconButton)(() => [
+	tw`flex sm:hidden w-10 h-10 rounded-xl justify-center items-center text-[18px] font-semibold`,
+	tw`bg-[var(--overlay-secondary-soft)] hover:bg-[var(--overlay-secondary-strong)] text-[var(--color-neutral-900)]`,
+	{
+		transition: 'background-color .2s ease, color .2s ease',
+		'.dark &, [data-mui-color-scheme="dark"] &': {
+			color: 'var(--color-neutral-50)',
+			background: 'rgba(255,255,255,0.08)',
+			'&:hover': { background: 'rgba(255,255,255,0.14)' },
+		},
+	},
+]);
 
 const MobileDrawer = styled(Drawer)(() => [
 	css`
 		& .MuiDrawer-paper {
-			${tw`w-[min(90vw,320px)] rounded-[24px_0_0_24px] p-6 shadow-[var(--shadow-drawer)] bg-[var(--color-surface-card)] flex flex-col gap-6`}
+			${tw`w-[min(90vw,320px)] rounded-[24px_0_0_24px] p-6 shadow-[var(--shadow-drawer)] flex flex-col gap-6`};
+			background: var(--color-surface-card, rgba(255, 255, 255, 0.75));
+			backdrop-filter: blur(18px) saturate(150%);
+			-webkit-backdrop-filter: blur(18px) saturate(150%);
+			transition: background-color 0.25s ease, backdrop-filter 0.25s ease;
+		}
+		.dark & .MuiDrawer-paper,
+		[data-mui-color-scheme='dark'] & .MuiDrawer-paper {
+			background: rgba(25, 28, 40, 0.72);
+			border: 1px solid rgba(255, 255, 255, 0.08);
 		}
 	`,
 ]);
@@ -58,7 +79,16 @@ const DrawerHeader = styled('div')(() => [tw`flex items-center justify-between`]
 const DrawerLogo = styled('img')(() => [tw`w-[112px] h-auto`]);
 
 const DrawerCloseButton = styled(IconButton)(() => [
-	tw`bg-[var(--overlay-secondary-soft)] text-[var(--color-neutral-950)] hover:bg-[var(--overlay-secondary-strong)]`,
+	tw`w-10 h-10 rounded-xl flex items-center justify-center text-lg font-semibold`,
+	tw`bg-[var(--overlay-secondary-soft)] text-[var(--color-neutral-900)] hover:bg-[var(--overlay-secondary-strong)]`,
+	{
+		transition: 'background-color .2s ease, color .2s ease',
+		'.dark &, [data-mui-color-scheme="dark"] &': {
+			color: 'var(--color-neutral-50)',
+			background: 'rgba(255,255,255,0.08)',
+			'&:hover': { background: 'rgba(255,255,255,0.14)' },
+		},
+	},
 ]);
 
 const DrawerMenuLabel = styled(Typography)(() => [tw`text-[var(--color-text-muted)] font-medium`]);
@@ -71,10 +101,8 @@ const DrawerMenuItem = styled(ListItemButton)(() => [
 
 const DrawerFooter = styled('div')(() => [tw`mt-auto`]);
 
-const ModeSwitch = styled(Switch)(() => [tw`absolute right-10 top-1/2 -translate-y-1/2`]);
-
 const NavBar = () => {
-	const { mode, setMode, systemMode } = useColorScheme();
+	const { mode, systemMode } = useColorScheme();
 
 	const resolvedMode = mode === 'system' ? systemMode : mode;
 	const isDarkMode = resolvedMode === 'dark';
@@ -94,42 +122,42 @@ const NavBar = () => {
 			<GlassAppBar elevation={0} color={isDarkMode ? 'default' : 'transparent'} position="fixed">
 				<NavToolbar disableGutters>
 					<LogoContainer>
-						<NavLink to={'/beauticeclinic'}>
+						<NavLink to={'/'} className="h-16 flex items-center">
 							<img
 								src={isDarkMode ? './Main Logo.png' : './MainLogoBlue.png'}
 								alt="Header "
-								className=""
+								className="w-full h-auto"
 							/>
 						</NavLink>
 					</LogoContainer>
 					<DesktopLinks>
 						{links.map((link) => {
 							return (
-								<NavLink className={'no-underline'} to={link.to} key={link.label}>
-									<Typography variant="subtitle2" color="textPrimary" className="">
+								<NavLink
+									className={
+										'no-underline h-full flex py-5 hover:border-secondary  transition-all hover:-translate-y-1 hover:scale-110'
+									}
+									to={link.to}
+									key={link.label}
+								>
+									<Typography variant="subtitle2" color="textPrimary">
 										{link.label}
 									</Typography>
 								</NavLink>
 							);
 						})}
 
-						<PinkButton variant="outlined" css={[tw`py-2 px-4 md:py-[14px] md:px-10 ml-2`]}>
+						<PinkButton
+							variant="outlined"
+							css={[tw`py-3 px-4 lg:py-3.5  md:px-10 ml-2`]}
+							onClick={() => navigate('/contact')}
+						>
 							Contact
 						</PinkButton>
+						<ThemeFloatSwitch />
 					</DesktopLinks>
-
 					<DrawerToggleButton aria-label="open menu" onClick={() => setOpen(true)}>
-						<svg
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path d="M3 6H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-							<path d="M3 12H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-							<path d="M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-						</svg>
+						<MenuIcon />
 					</DrawerToggleButton>
 
 					<MobileDrawer
@@ -145,26 +173,7 @@ const NavBar = () => {
 									alt="Beautice"
 								/>
 								<DrawerCloseButton onClick={() => setOpen(false)} aria-label="close menu">
-									<svg
-										width="18"
-										height="18"
-										viewBox="0 0 18 18"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-									>
-										<path
-											d="M13.5 4.5L4.5 13.5"
-											stroke="currentColor"
-											strokeWidth="1.5"
-											strokeLinecap="round"
-										/>
-										<path
-											d="M4.5 4.5L13.5 13.5"
-											stroke="currentColor"
-											strokeWidth="1.5"
-											strokeLinecap="round"
-										/>
-									</svg>
+									<span aria-hidden="true">×</span>
 								</DrawerCloseButton>
 							</DrawerHeader>
 
@@ -197,15 +206,6 @@ const NavBar = () => {
 							</DrawerFooter>
 						</DrawerContent>
 					</MobileDrawer>
-					<ModeSwitch
-						color="secondary"
-						checked={Boolean(isDarkMode)}
-						onChange={(_event: ChangeEvent<HTMLInputElement>, checked: boolean) => {
-							setMode(checked ? 'dark' : 'light');
-						}}
-						inputProps={{ 'aria-label': 'toggle color scheme' }}
-						title={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
-					/>
 				</NavToolbar>
 			</GlassAppBar>
 		</section>

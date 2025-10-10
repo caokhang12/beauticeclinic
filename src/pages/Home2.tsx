@@ -16,17 +16,17 @@ import { TitleBlock } from '../components/TitleBlock';
 
 const ServiceCardData = [
 	{
-		icon: '/Home2/icon-service.svg',
+		icon: './Home2/icon-service.svg',
 		title: 'Beauty consultation',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
 	},
 	{
-		icon: '/Home2/icon-service-2.svg',
+		icon: './Home2/icon-service-2.svg',
 		title: 'Skin treatments',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
 	},
 	{
-		icon: '/Home2/icon-service-3.svg',
+		icon: './Home2/icon-service-3.svg',
 		title: 'Beauty product',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
 	},
@@ -68,15 +68,18 @@ const NewsSection = styled(Box)`
 `;
 
 const ContactSection = styled(Box)`
-	${tw`mt-28 mb-44 pt-6 pb-1`}
+	${tw`mt-24 mb-44 py-4`}
 `;
 
 // Hero
-const HeroGrid = styled(Box)(() => [tw`grid grid-cols-1 lg:grid-cols-2 gap-4 w-full`]);
+const HeroGrid = styled(Box)`
+	${tw`grid grid-cols-1 lg:grid-cols-2 gap-4 w-full`}
+`;
 const HeroLeft = styled(Box)(() => [tw``]);
 const HeroRight = styled(Box)(() => [tw`flex justify-center items-center`]);
 const PlayWrapper = styled(Box)(() => [tw`relative flex justify-center items-center`]);
 const PlayInner = styled(Box)(() => [tw`relative gap-3 flex justify-center lg:gap-5 lg:mr-8`]);
+const HeroPlayButton = styled(Button)(() => [tw` flex justify-center items-center`]);
 
 // About
 const AboutGrid = styled(Box)(() => [tw`grid grid-cols-1 lg:grid-cols-2 gap-20 items-start`]);
@@ -96,14 +99,20 @@ const StatItemsGrid = styled(Box)(() => [
 const StatItem = styled(Box)(() => [tw`flex justify-center items-center`]);
 
 // News
-const NewsGrid = styled(Box)(() => [tw`grid grid-cols-1 md:grid-cols-3 mt-16 pt-5 gap-12`]);
-const NewsCardWrapper = styled(Box)(() => [tw``]);
+const NewsGrid = styled(Box)(() => [tw`grid grid-cols-1 lg:grid-cols-3 mt-16 pt-5 gap-12`]);
+const NewsCardWrapper = styled(Box)`
+	${tw`w-fit  h-auto border-t-0 mx-auto`}
+`;
 
-const NewsCardContent = styled(Card)(() => [tw`bg-card rounded-b-2xl`]);
+const NewsCard = styled(Card)(() => [tw`bg-card  pb-5 lg:pb-7 rounded-3xl`]);
+
+const NewsCardContent = styled(CardContent)`
+	${tw`lg:(pl-[2.4rem] pt-12) pt-6 pl-5`}
+`;
 
 // Contact
 const ContactGrid = styled(Box)(() => [
-	tw`grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] items-start gap-10`,
+	tw`grid grid-cols-1  lg:grid-cols-[1fr_1.5fr] items-start gap-10`,
 ]);
 
 // Contact form submit button (replaces inline sx usage)
@@ -177,9 +186,9 @@ const Home2: React.FC = () => {
 							<PlayWrapper>
 								<PlayInner>
 									<Box>
-										<Button aria-label="Play video">
+										<HeroPlayButton>
 											<img src="./Home2/PlayButton.png" alt="" />
-										</Button>
+										</HeroPlayButton>
 									</Box>
 									<Typography
 										variant="subtitle2"
@@ -202,11 +211,7 @@ const Home2: React.FC = () => {
 						<Box>
 							<Box sx={tw`flex justify-start lg:mb-0`}>
 								<Box sx={tw`relative`}>
-									<img
-										src="./Home2/AboutImage.png"
-										alt="About Us"
-										className=" object-cover rounded-2xl"
-									/>
+									<img src="./Home2/AboutImage.png" alt="About Us" className="w-full h-auto " />
 								</Box>
 							</Box>
 						</Box>
@@ -431,16 +436,11 @@ const Home2: React.FC = () => {
 					<NewsGrid>
 						{BlogCardData.map((blog) => (
 							<NewsCardWrapper>
-								<NewsCardContent>
+								<NewsCard>
 									<Box>
-										<img src={blog.image} alt="News 1" />
+										<img src={blog.image} alt="News 1" className="w-full h-auto" />
 									</Box>
-									<CardContent
-										sx={{
-											py: 6.5,
-											pl: 4.8,
-										}}
-									>
+									<NewsCardContent>
 										<Typography variant="h6" color="primary" className=" mb-3 tracking-normal">
 											{blog.title}
 										</Typography>
@@ -450,8 +450,8 @@ const Home2: React.FC = () => {
 										<Typography variant="subtitle1" color="secondary" className="text-sm mt-6">
 											Learn more &gt;&gt;
 										</Typography>
-									</CardContent>
-								</NewsCardContent>
+									</NewsCardContent>
+								</NewsCard>
 							</NewsCardWrapper>
 						))}
 					</NewsGrid>

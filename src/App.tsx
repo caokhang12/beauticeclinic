@@ -11,13 +11,13 @@ import Gallery from './pages/Gallery';
 import Team from './pages/Team';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
-import { theme } from './theme';
+
+import { ThemeProviderWrapper } from './providers/ThemeProvider';
 
 function App() {
 	return (
-		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<BrowserRouter>
+		<ThemeProviderWrapper>
+			<BrowserRouter basename="/beauticeclinic/">
 				<NavBar />
 				<Routes>
 					<Route path="/" element={<Home />} />
@@ -29,9 +29,10 @@ function App() {
 					<Route path="/blog" element={<Blog />} />
 					<Route path="/contact" element={<Contact />} />
 				</Routes>
+
 				<Footer />
 			</BrowserRouter>
-		</ThemeProvider>
+		</ThemeProviderWrapper>
 	);
 }
 

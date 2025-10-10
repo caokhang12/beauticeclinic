@@ -29,7 +29,7 @@ const MissionPrimaryImage = styled(Box)`
 `;
 
 const MissionSecondaryImage = styled(Box)`
-	${tw`flex lg:relative bottom-3.5 w-full h-auto left-5 justify-center items-center`}
+	${tw`flex lg:relative bottom-3 w-full h-auto left-3 justify-center items-center`}
 `;
 
 const ClientLogoContainer = styled(Box)`
@@ -39,20 +39,8 @@ const ClientLogoContainer = styled(Box)`
 const About = () => {
 	return (
 		<PageWrapper>
-			<BubbleBackground
-				image="/BubbleMid1.png"
-				top="33%"
-				right={0}
-				justify="flex-end"
-				imageProps={{ 'aria-hidden': true }}
-			/>
-			<BubbleBackground
-				image="/BubbleMid1.png"
-				top="60%"
-				left={0}
-				flipX
-				imageProps={{ 'aria-hidden': true }}
-			/>
+			<BubbleBackground image="./BubbleMid1.png" top="33%" right={0} justifyContent="flex-end" />
+			<BubbleBackground image="./BubbleMid1.png" top="60%" left={0} flipX />
 			{/* Hero Block */}
 			<section className="mt-40 pt-9">
 				<Container>
@@ -85,7 +73,7 @@ const About = () => {
 						mainTitle="The Professional expert"
 						description="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam."
 					/>
-					<div className="mt-12 lg:mt-20 xl:mt-32 pt-[0.8rem] pb-1">
+					<div className="mt-12 lg:mt-20 xl:mt-32 pt-[0.7rem] pb-1">
 						<TeamBlock />
 					</div>
 				</Container>
@@ -94,7 +82,7 @@ const About = () => {
 			{/* Slogan Block */}
 			<section>
 				<Container className="relative mt-40">
-					<BannerBox pt={21} pb={22} url="/About/BackgroundBanner.png">
+					<BannerBox pt={21} pb={22} url="./About/BackgroundBanner.png">
 						<div className="flex flex-col items-center text-center gap-2 ">
 							<Typography
 								variant="subtitle1"
@@ -119,7 +107,7 @@ const About = () => {
 			{/* Mission Block */}
 			<section className="lg:mt-[6.9rem] mt-20 py-3">
 				<Container>
-					<div className=" grid grid-cols-1 lg:grid-cols-2 lg:gap-[142px]  gap-20 items-start">
+					<div className=" grid grid-cols-1 lg:grid-cols-2 lg:gap-[140px]  gap-20 items-start">
 						<div>
 							<MissionImageFrame>
 								<MissionPrimaryImage>
@@ -152,10 +140,10 @@ const About = () => {
 							</MissionSecondaryImage>
 						</div>
 						<div className="order-3">
-							<Typography variant="subtitle1" color="secondary" className="mb-2">
+							<Typography variant="subtitle1" color="secondary" className="mb-3">
 								Our Mission
 							</Typography>
-							<Typography variant="h2" color="primary.main" className="mb-4">
+							<Typography variant="h2" color="primary.main" className="mb-3">
 								Special & premium service to any clients
 							</Typography>
 							<Typography variant="subtitle2" className=" leading-6 md:w-[95%]">
@@ -183,7 +171,7 @@ const About = () => {
 						{Array.from({ length: 5 }).map((_, index) => (
 							<ClientLogoContainer key={index}>
 								<img
-									src={`/About/LOGO${index + 1}.svg`}
+									src={`./About/LOGO${index + 1}.svg`}
 									alt={`Client Logo ${index + 1}`}
 									className="h-36 w-36 object-contain"
 								/>

@@ -41,7 +41,7 @@ const FormTitle = styled(Typography)(() => tw`mt-3 flex`);
 const FormDescription = styled(Typography)(() => tw`tracking-normal lg:w-2/5 lg:mt-8 lg:pl-2`);
 
 const ContactImageWrapper = styled(Box)(
-	() => tw`-z-10 relative flex items-center justify-center lg:top-[4.5rem]`
+	() => tw`-z-10 relative flex items-center justify-center lg:bottom-[2.5rem]`
 );
 
 const FormContent = styled(Box)(() => tw`w-full`);
@@ -50,10 +50,10 @@ const MapSection = styled('section')(() => tw`mt-28`);
 
 const MapContainer = styled(Box)(() => tw`w-full max-w-[1440px] h-[418px] mx-auto`);
 
-const CardsSection = styled('section')(() => tw`mt-28 mb-20 pb-2 lg:mb-[170px]`);
+const CardsSection = styled('section')(() => tw`mt-28 pt-1 mb-20 pb-2 lg:mb-[170px]`);
 
 const ContactCardsGrid = styled(Box)(
-	() => tw`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-6xl mx-auto mt-[8.4rem]`
+	() => tw`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 max-w-6xl mx-auto mt-[8rem]`
 );
 
 const ContactCard = styled(Box)(
@@ -93,7 +93,11 @@ const Contact = () => {
 					</FormLayout>
 					<Stack flexDirection={{ xs: 'column-reverse', md: 'row' }} gap={9.5} my={7.5}>
 						<ContactImageWrapper>
-							<img src="./Contact/ContactAnimations.png" alt="Contact Image" />
+							<img
+								src="./Contact/ContactAnimations.png"
+								alt="Contact Image"
+								className="w-full h-auto"
+							/>
 						</ContactImageWrapper>
 						<FormContent>
 							<ContactForm />
@@ -124,6 +128,7 @@ const Contact = () => {
 						subTitle="Get in Touch"
 						mainTitle="Get direct handling by us"
 						description="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam."
+						mg
 					/>
 					<ContactCardsGrid>
 						{ContactInfo.map((item) => (

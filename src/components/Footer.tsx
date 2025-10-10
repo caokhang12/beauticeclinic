@@ -1,9 +1,70 @@
-import { Box, Container, Grid, Icon, Link, Typography } from '@mui/material';
+import { Box, Container, Grid, Icon, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import tw, { styled } from 'twin.macro';
 import BannerBox from './Banner';
+
+// Styled components using twin.macro
+const FooterRoot = styled('footer')(() => [tw`relative overflow-hidden`]);
+
+const IntroWrapper = styled(Box)(() => [tw`mb-0 px-1 sm:px-5 lg:p-0 md:mb-16`]);
+const LogoLink = styled(Link)(() => [tw`flex items-center mt-0 lg:mt-2`]);
+const IntroPrimaryText = styled(Typography)`
+	${tw`text-white text-base mt-2 lg:mt-[2.3rem] lg:pl-8 tracking-widest font-poppins`}
+`;
+const IntroSecondaryText = styled(Typography)(() => [
+	tw`text-white mt-1 lg:mt-[1.3rem] lg:pl-8 italic tracking-[0.07em]`,
+	{ fontSize: '15px' },
+]);
+const IntroContactLine = styled(Typography)(() => [
+	tw`text-white lg:pl-8 italic tracking-[0.1em] mt-[0.2rem] lg:mt-[0.2rem]`,
+	{ fontSize: '14px' },
+]);
+const EmailLink = styled('a')(() => [tw`ml-12 text-white tracking-[0.1em] no-underline`]);
+
+const SectionHeading = styled(Typography)(() => [
+	tw`text-white text-base font-semibold mb-3 leading-none tracking-[0.19rem]`,
+]);
+const List = styled('ul')(() => [tw`list-none pl-1 mt-[2.1rem] text-white`]);
+const ListItem = styled('li')(() => [
+	tw`flex items-center gap-[0.55rem] tracking-widest mb-[0.7rem] relative text-base`,
+	{
+		'&::before': {
+			content: '""',
+			display: 'inline-block',
+			width: 0,
+			height: 0,
+			borderTop: '4px solid transparent',
+			borderBottom: '4px solid transparent',
+			borderLeft: '5px solid #ffffff',
+			position: 'relative',
+			top: 0,
+			marginRight: '0.3rem',
+		},
+		'& a': {
+			textDecoration: 'none',
+			color: 'white',
+			transition: 'color .25s ease',
+		},
+		'& a:hover': {
+			color: 'var(--color-secondary, #ff64ae)',
+		},
+	},
+]);
+
+const BottomBar = styled(Box)(() => [
+	tw`flex flex-col md:flex-row justify-between gap-2 pt-8 pb-8 lg:pt-[92px] lg:pb-[96px]`,
+]);
+const SocialIcons = styled(Box)(() => [tw`flex gap-[46px]`]);
+const Copyright = styled(Box)(() => [tw`text-white text-base tracking-[0.1em] `]);
+
+const BackToTopBtn = styled('button')(() => [
+	tw`absolute bottom-16 right-10 w-8 h-8 flex items-center justify-center rounded-md text-white text-lg font-semibold border-0 cursor-pointer select-none`,
+	tw`bg-secondary hover:brightness-110`,
+]);
 
 const Footer = () => {
 	return (
-		<footer className="relative overflow-hidden">
+		<FooterRoot>
 			<Box
 				sx={{
 					position: 'absolute',
@@ -12,7 +73,7 @@ const Footer = () => {
 					width: '100%',
 					height: '100%',
 					zIndex: -2,
-					background: 'rgba(13, 22, 92, 1)',
+					background: 'var(--footer)',
 				}}
 			></Box>
 			{/* Footer Content */}
@@ -25,7 +86,7 @@ const Footer = () => {
 							overflow: 'hidden',
 							transform: 'rotate(4.992deg)',
 							borderRadius: 50,
-							backgroundColor: 'rgba(23, 33, 118, 1)',
+							backgroundColor: 'var(--footer)',
 							backgroundPosition: 'center',
 							width: '1470.4462165056077px',
 							height: '647.14px',
@@ -40,232 +101,75 @@ const Footer = () => {
 						},
 					}}
 				></BannerBox>
-				<div className=" mt-28 w-full pt-8 lg:pt-16 xl:pt-10 ">
-					<Box sx={{ mx: 'auto', width: '100%' }}>
-						<Grid container spacing={{ xs: 2, sm: 8, md: 10 }} sx={{ pt: 1 }}>
+				<div className=" mt-28 w-full pt-8 lg:pt-16 xl:pt-14">
+					<Box sx={{ width: '100%' }}>
+						<Grid container rowGap={10} spacing={{ xs: 2, md: 11.5 }}>
 							{/* Logo + giới thiệu */}
-							<Grid size={{ xs: 12, md: 4, lg: 6 }}>
-								<Box sx={{ mb: { xs: 0, md: 4 } }}>
-									<Link href="/" sx={{ display: 'flex', alignItems: 'center', mt: { lg: 2 } }}>
-										<Box component="img" src="./Main Logo.png" alt="Logo" />
-									</Link>
-									<Typography
-										sx={{
-											color: 'white',
-											mt: { xs: 2, lg: 4.5 },
-											pl: { lg: 4 },
-											letterSpacing: '0.187em',
-											fontFamily: 'Poppins, sans-serif',
-											fontSize: { xs: '11px', lg: '14px' },
-										}}
-									>
+							<Grid size={{ xs: 12, md: 6, lg: 6 }}>
+								<IntroWrapper>
+									<LogoLink to="/">
+										<img src="./Main Logo.png" alt="Logo" />
+									</LogoLink>
+									<IntroPrimaryText>
 										<strong>Beautice</strong> is a Beauty Clinic WordPress Theme
-									</Typography>
-									<Typography
-										sx={{
-											color: 'white',
-											mt: { xs: 1, lg: 2.8 },
-											pl: { lg: 4 },
-											letterSpacing: '0.07em',
-											fontStyle: 'italic',
-											fontSize: 15,
-										}}
-									>
-										Baker Steet 101, NY, United States
-									</Typography>
-									<Typography
-										sx={{
-											color: 'white',
-											pl: { lg: 4 },
-											letterSpacing: '0.1em',
-											fontSize: 14,
-											mt: { xs: 0.2, lg: 0.7 },
-											fontStyle: 'italic',
-										}}
-									>
+									</IntroPrimaryText>
+									<IntroSecondaryText>Baker Steet 101, NY, United States</IntroSecondaryText>
+									<IntroContactLine>
 										<span>+521 569 8966</span>
-										<Link
-											href="mailto:mail@company.com"
-											underline="always"
-											sx={{
-												ml: 6,
-												color: 'white',
-												letterSpacing: '0.1em',
-											}}
-										>
-											mail@company.com
-										</Link>
-									</Typography>
-								</Box>
+										<EmailLink href="mailto:mail@company.com">mail@company.com</EmailLink>
+									</IntroContactLine>
+								</IntroWrapper>
 							</Grid>
 							{/* Pages */}
-							<Grid
-								size={{
-									xs: 6,
-									md: 4,
-									lg: 3,
-								}}
-								sx={{
-									pl: { lg: 1.5 },
-								}}
-							>
-								<Typography
-									variant="h6"
-									sx={{
-										mb: 3,
-										fontWeight: '600',
-										letterSpacing: '0.07em',
-										color: 'white',
-										fontSize: { xs: '16px', lg: '18px' },
-										fontFamily: 'Poppins, sans-serif',
-									}}
-								>
-									Pages
-								</Typography>
-								<Box component="ul" sx={{ listStyle: 'none', pl: 0.3, mt: 3.5, color: 'white' }}>
+							<Grid size={{ xs: 6, md: 3, lg: 3 }} className="md:pl-[0.3rem]">
+								<SectionHeading variant="h6">Pages</SectionHeading>
+								<List>
 									{['Home', 'About', 'Services', 'Gallery', 'Team'].map((item) => (
-										<Box
-											component="li"
-											key={item}
-											sx={{
-												fontSize: { xs: '11px', lg: '15px' },
-												mb: { xs: 1, lg: 1.65 },
-												ml: { xs: 0.1 },
-												letterSpacing: '0.15em',
-												display: 'flex',
-												alignItems: 'center',
-												gap: 1.5,
-												'&::before': {
-													content: '""',
-													display: 'inline-block',
-													width: 0,
-													height: 0,
-													borderTop: '4px solid transparent',
-													borderBottom: '4px solid transparent',
-													borderLeft: '6px solid var',
-												},
-											}}
-										>
-											<Link
-												href={`/${item.toLowerCase()}`}
-												underline="hover"
-												sx={{ color: 'white' }}
-											>
-												{item}
-											</Link>
-										</Box>
+										<ListItem key={item}>
+											<Link to={`/${item.toLowerCase()}`}>{item}</Link>
+										</ListItem>
 									))}
-								</Box>
+								</List>
 							</Grid>
 
 							{/* Informations */}
-							<Grid
-								size={{
-									xs: 6,
-									md: 4,
-									lg: 3,
-								}}
-								sx={{ pl: { lg: 1.5 } }}
-							>
-								<Typography
-									variant="h6"
-									sx={{
-										mb: 3,
-										fontWeight: 'bold',
-										letterSpacing: '0.07em',
-										color: 'white',
-										fontSize: { xs: '16px', lg: '18px' },
-										fontFamily: 'Poppins, sans-serif',
-									}}
-								>
-									Informations
-								</Typography>
-								<Box component="ul" sx={{ listStyle: 'none', pl: 1, mt: 3.5, color: 'white' }}>
+							<Grid size={{ xs: 6, md: 3, lg: 3 }}>
+								<SectionHeading variant="h6">Informations</SectionHeading>
+								<List>
 									{['Terms & conditions', 'Privacy policy', 'Blog', 'Contact'].map((item) => (
-										<Box
-											component="li"
-											key={item}
-											sx={{
-												fontFamily: 'Poppins, sans-serif',
-												fontSize: { xs: '11px', lg: '15px' },
-												mb: { xs: 1, lg: 1.6 },
-												ml: { xs: -0.9 },
-												letterSpacing: '0.15em',
-												display: 'flex',
-												alignItems: 'center',
-												gap: 1.5,
-												'&::before': {
-													content: '""',
-													display: 'inline-block',
-													width: 0,
-													height: 0,
-													borderTop: '4px solid transparent',
-													borderBottom: '4px solid transparent',
-													borderLeft: '6px solid var white',
-												},
-											}}
-										>
-											<Link
-												href={`/${item.toLowerCase()}`}
-												underline="hover"
-												sx={{ color: 'white' }}
-											>
-												{item}
-											</Link>
-										</Box>
+										<ListItem key={item}>
+											<Link to={`/${item.toLowerCase()}`}>{item}</Link>
+										</ListItem>
 									))}
-								</Box>
+								</List>
 							</Grid>
 						</Grid>
-
-						{/* Menu Pages + Informations */}
 					</Box>
-
-					{/* Social + Copyright */}
-					<Box
-						sx={{
-							pt: { xs: 4, lg: 15.3 },
-							pb: { xs: 4, lg: 13 },
-
-							display: 'flex',
-							flexDirection: { xs: 'column', md: 'row' },
-							justifyContent: 'space-between',
-							gap: 2,
-						}}
-					>
-						<Box sx={{ display: 'flex', gap: 5.7 }}>
+					{/* Bottom section */}
+					<BottomBar>
+						<SocialIcons>
 							<Icon>
-								<img src="./Footer/facebook-f.svg" alt="Facebook" className="lg:w-7 lg:h-7" />
+								<img src="./Footer/facebook-f.svg" alt="Facebook" className="w-full h-auto" />
 							</Icon>
 							<Icon>
-								<img src="./Footer/twitter.svg" alt="Twitter" className="lg:w-7 lg:h-7" />
+								<img src="./Footer/twitter.svg" alt="Twitter" className="w-full h-auto" />
 							</Icon>
 							<Icon>
-								<img src="./Footer/linkedin-in.svg" alt="LinkedIn" className="lg:w-7 lg:h-7" />
+								<img src="./Footer/linkedin-in.svg" alt="LinkedIn" className="w-full h-auto" />
 							</Icon>
 							<Icon>
-								<img src="./Footer/youtube.svg" alt="YouTube" className="lg:w-7 lg:h-7" />
+								<img src="./Footer/youtube.svg" alt="YouTube" className="w-full h-auto" />
 							</Icon>
 							<Icon>
-								<img src="./Footer/instagram.svg" alt="Instagram" className="lg:w-7 lg:h-7" />
+								<img src="./Footer/instagram.svg" alt="Instagram" className="w-full h-auto" />
 							</Icon>
-						</Box>
-						<Box
-							sx={{
-								fontFamily: 'Poppins, sans-serif',
-								fontSize: { xs: '11px', lg: '15px' },
-								mb: { xs: 1, lg: 1.65 },
-								ml: { xs: 0 },
-								letterSpacing: '0.135em',
-								color: 'white',
-							}}
-						>
-							© AltDesain Studio 2021 - All right reserved.
-						</Box>
-					</Box>
+						</SocialIcons>
+						<Copyright>© AltDesain Studio 2021 - All right reserved.</Copyright>
+					</BottomBar>
 				</div>
 			</Container>
-		</footer>
+			<BackToTopBtn onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>↑</BackToTopBtn>
+		</FooterRoot>
 	);
 };
 

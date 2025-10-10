@@ -3,7 +3,6 @@ import tw from 'twin.macro';
 
 export const theme = createTheme({
 	cssVariables: {
-		// chọn selector để gắn class / data attribute lên html
 		colorSchemeSelector: 'class',
 	},
 	breakpoints: {
@@ -33,11 +32,6 @@ export const theme = createTheme({
 				text: {
 					primary: '#8b8b8b',
 					secondary: '#d7dbff',
-				},
-
-				Button: {
-					inheritContainedBg: '#ff64ae',
-					inheritContainedHoverBg: '#B39CD0',
 				},
 			},
 		},
@@ -126,7 +120,6 @@ export const theme = createTheme({
 					fontWeight: 600,
 					fontFamily: 'Poppins, sans-serif',
 				},
-				colorPrimary: '#ff64ae',
 			},
 		},
 		MuiTypography: {
