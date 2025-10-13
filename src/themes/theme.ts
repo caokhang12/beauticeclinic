@@ -1,7 +1,7 @@
 import { extendTheme } from '@mui/material/styles';
 import tw from 'twin.macro';
 
-const COLORS = [
+export const COLORS = [
 	{
 		name: 'Brand',
 		light: { primary: '#091156', secondary: '#ff64ae' },
@@ -20,12 +20,12 @@ const COLORS = [
 	{
 		name: 'LavenderMint',
 		light: { primary: '#7C3AED', secondary: '#3EE0C9' },
-		dark: { primary: '#C4B5FD', secondary: '#9AE6B4' },
+		dark: { primary: '#C4B5FD', secondary: '#38cd6b' },
 	},
 	{
 		name: 'NavyRose',
 		light: { primary: '#0F274C', secondary: '#EBA0AC' },
-		dark: { primary: '#8C9EFF', secondary: '#FFCAD4' },
+		dark: { primary: '#8C9EFF', secondary: '#cd6a7c' },
 	},
 ];
 

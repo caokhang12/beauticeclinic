@@ -1,4 +1,7 @@
 import { Avatar, Card, Grid, Typography } from '@mui/material';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 const TeamData = [
 	{
@@ -47,7 +50,9 @@ const TeamBlock = () => {
 								transition: 'transform 0.3s ease, box-shadow 0.3s ease',
 								'&:hover': {
 									boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-									transform: 'scale(1.3)',
+									transform: {
+										md: 'scale(1.05)',
+									},
 								},
 							}}
 						>
@@ -75,13 +80,13 @@ const TeamBlock = () => {
 							</Typography>
 							<div className="flex justify-around xl:mt-14 pt-1 mt-9">
 								<a href="#">
-									<img src="./Home/twitter.svg" alt="Twitter" />
+									<TwitterIcon color="primary" />
 								</a>
 								<a href="#">
-									<img src="./facebook-f.png" alt="Facebook" />
+									<FacebookIcon color="primary" />
 								</a>
 								<a href="#">
-									<img src="./Home/instagram.svg" alt="Instagram" className=" color-white" />
+									<InstagramIcon color="primary" />
 								</a>
 							</div>
 						</Card>

@@ -9,47 +9,22 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { ThemeContext } from '../contexts/themeContext';
+import { COLORS } from '../themes/theme';
 
 const FixedWrap = styled(Box)(() => [tw`relative flex flex-col gap-3`]);
 
 const TriggerFab = styled(Fab)(() => [
-	tw`shadow-lg w-11 h-11 transition duration-200 rounded-full transform hover:scale-110`,
+	tw`shadow-lg  transition duration-200 rounded-full transform hover:scale-110`,
 ]);
 
-const Panel = styled(Paper)(() => [tw`p-4 rounded-2xl shadow-xl border absolute top-14 right-0`]);
+const Panel = styled(Paper)(() => [
+	tw`p-4 rounded-2xl shadow-xl border absolute top-14 right-0 overflow-hidden`,
+]);
 
 const ColorButton = styled(Box)(() => [
-	tw`w-8 h-8 rounded-full cursor-pointer border-2 border-transparent 
-		hover:scale-110 transition-transform duration-200`,
+	tw`w-8 h-8 rounded-full cursor-pointer border-2 border-transparent
+		hover:scale-110 transition-transform duration-200 `,
 ]);
-
-const COLORS = [
-	{
-		name: 'Brand',
-		light: { primary: '#091156', secondary: '#ff64ae' },
-		dark: { primary: '#B39CD0', secondary: '#ff64ae' },
-	},
-	{
-		name: 'Serenity',
-		light: { primary: '#507DBC', secondary: '#FF8C94' },
-		dark: { primary: '#A3C4F3', secondary: '#FFB3B8' },
-	},
-	{
-		name: 'Earthy',
-		light: { primary: '#2F855A', secondary: '#DD6B20' },
-		dark: { primary: '#68D391', secondary: '#F6AD55' },
-	},
-	{
-		name: 'LavenderMint',
-		light: { primary: '#7C3AED', secondary: '#3EE0C9' },
-		dark: { primary: '#C4B5FD', secondary: '#9AE6B4' },
-	},
-	{
-		name: 'NavyRose',
-		light: { primary: '#0F274C', secondary: '#EBA0AC' },
-		dark: { primary: '#8C9EFF', secondary: '#FFCAD4' },
-	},
-];
 
 export const ThemeFloatSwitch = () => {
 	const { mode, setMode, systemMode } = useColorScheme();
@@ -59,6 +34,7 @@ export const ThemeFloatSwitch = () => {
 
 	const handleColorChange = (index: number) => {
 		setColorScheme(index);
+		localStorage.setItem('theme-color-index', index.toString());
 	};
 
 	const handleReset = () => {
@@ -68,7 +44,7 @@ export const ThemeFloatSwitch = () => {
 
 	return (
 		<FixedWrap>
-			<TriggerFab color="primary" onClick={() => setOpen(!open)}>
+			<TriggerFab size="small" color="primary" onClick={() => setOpen(!open)}>
 				{open ? <CloseIcon /> : <ColorLensColor />}
 			</TriggerFab>
 			{open && (

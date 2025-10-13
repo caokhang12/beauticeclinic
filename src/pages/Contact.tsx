@@ -3,22 +3,25 @@ import ContactForm from '../components/ContactForm';
 import { AdvancedMarker, APIProvider, Map } from '@vis.gl/react-google-maps';
 import { TitleBlock } from '../components/TitleBlock';
 import tw, { styled } from 'twin.macro';
+import PlaceIcon from '@mui/icons-material/Place';
+import CallIcon from '@mui/icons-material/Call';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 
 const ContactInfo = [
 	{
-		icon: './Contact/map-marker-alt.svg',
+		icon: <PlaceIcon color="primary" sx={{ fontSize: '6.0625rem' }} />,
 		title: 'Address',
 		info: '101 Baker Street, NY',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit',
 	},
 	{
-		icon: './Contact/phone-alt.svg',
+		icon: <CallIcon color="primary" sx={{ fontSize: '6.0625rem' }} />,
 		title: 'Phone',
 		info: '+896 120 5889',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit',
 	},
 	{
-		icon: './Contact/mail-bulk.svg',
+		icon: <EmailRoundedIcon color="primary" sx={{ fontSize: '6.0625rem' }} />,
 		title: 'Mail',
 		info: 'mail@company.com',
 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit',
@@ -28,7 +31,7 @@ const ContactInfo = [
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '';
 const BHSoftLocation = { lat: 21.0301531, lng: 105.7826427 };
 
-const PageWrapper = styled(Box)(() => tw`mt-48 py-9`);
+const PageWrapper = styled(Box)(() => tw`mt-28 sm:mt-36 md:mt-40 lg:mt-48 py-9`);
 
 const FormLayout = styled(Box)(
 	() => tw`flex w-full justify-between h-full gap-5 flex-col lg:flex-row lg:gap-40 lg:relative`
@@ -133,9 +136,7 @@ const Contact = () => {
 					<ContactCardsGrid>
 						{ContactInfo.map((item) => (
 							<ContactCard key={item.title}>
-								<CardIconWrapper>
-									<img src={item.icon} alt="" />
-								</CardIconWrapper>
+								<CardIconWrapper>{item.icon}</CardIconWrapper>
 								<CardTitle variant="subtitle1" color="secondary">
 									{item.title}
 								</CardTitle>

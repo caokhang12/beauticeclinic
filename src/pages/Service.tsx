@@ -13,6 +13,7 @@ import BannerBox from '../components/Banner';
 import { TitleBlock } from '../components/TitleBlock';
 import tw, { styled } from 'twin.macro';
 import BubbleBackground from '../components/BubbleBg';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 // Styled components
 const PageRoot = styled('div')(() => [tw``]);
@@ -54,7 +55,7 @@ const FaqSummaryText = styled(Typography)(() => [
 	tw`px-[1.1em]  font-semibold lg:relative top-0.5`,
 ]);
 const FaqDetails = styled(AccordionDetails)(() => [
-	tw`bg-[var(--color-secondary-surface)] pt-12 pb-14  px-[74px] rounded-b-2xl italic`,
+	tw`bg-[var(--color-secondary-surface)] pt-12 pb-14 px-5 sm:px-10 md:px-16 lg:px-[74px] rounded-b-2xl italic`,
 ]);
 
 // FAQ data
@@ -251,8 +252,12 @@ const Service = () => {
 						<PlayWrapper>
 							<PlayInner>
 								<Box>
-									<Button aria-label="Play video">
-										<img src="./Home2/PlayButton.png" alt="" />
+									<Button aria-label="Play video" className="p-0">
+										<img
+											src="./Home2/PlayButton.png"
+											alt=""
+											className="w-full h-auto hover:scale-105 transition-transform duration-200 "
+										/>
 									</Button>
 								</Box>
 								<Typography
@@ -278,11 +283,7 @@ const Service = () => {
 						const answerParts = item.answer.split(/\n\n/);
 						return (
 							<FaqAccordion key={i} defaultExpanded={i === 0}>
-								<AccordionSummary
-									expandIcon={<img src="./Service/accordion-arrow.svg" alt="Arrow" />}
-									aria-controls={`faq-panel-${i}-content`}
-									id={`faq-panel-${i}-header`}
-								>
+								<AccordionSummary expandIcon={<ExpandMoreIcon color="primary" />}>
 									<FaqSummaryText variant="subtitle2" color="primary">
 										{item.question}
 									</FaqSummaryText>

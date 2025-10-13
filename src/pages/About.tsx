@@ -60,7 +60,7 @@ const About = () => {
 						<HeroPlayButton>
 							<img src="./About/Play Button.png" alt="Play" className="w-full h-auto" />
 						</HeroPlayButton>
-						<img src="./About/HeroImage.png" className="w-full h-auto" alt="Hero Image" />
+						<img src="./About/HeroImage.png" className="w-full h-auto " alt="Hero Image" />
 					</HeroMediaWrapper>
 				</Container>
 			</section>

@@ -16,6 +16,7 @@ import tw, { styled, css } from 'twin.macro';
 import { useColorScheme } from '@mui/material/styles';
 import ThemeFloatSwitch from './ThemeFloatSwitch';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 const GlassAppBar = styled(AppBar)(() => [
 	tw`flex justify-center backdrop-blur-lg bg-white bg-opacity-70`,
@@ -31,7 +32,7 @@ const GlassAppBar = styled(AppBar)(() => [
 ]);
 
 const NavToolbar = styled(Toolbar)(() => [
-	tw`flex mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-[9.3rem] lg:px-20 py-2 sm:py-4 lg:py-6 xl:py-9 justify-between items-center shadow-none`,
+	tw`flex mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-[9.3rem] lg:px-20 py-4 lg:py-6 xl:py-9 justify-between items-center shadow-none`,
 ]);
 
 const LogoContainer = styled(Box)(() => [
@@ -39,20 +40,13 @@ const LogoContainer = styled(Box)(() => [
 ]);
 
 const DesktopLinks = styled(Box)(() => [
-	tw`hidden sm:flex items-center gap-4 md:gap-6 lg:gap-8 2xl:gap-11`,
+	tw`hidden sm:flex items-center gap-4 md:gap-5 lg:gap-7 2xl:gap-9 `,
 ]);
 
+const MobileThemeSwitchWrapper = styled(Box)(() => [tw` sm:hidden`]);
+
 const DrawerToggleButton = styled(IconButton)(() => [
-	tw`flex sm:hidden w-10 h-10 rounded-xl justify-center items-center text-[18px] font-semibold`,
-	tw`bg-[var(--overlay-secondary-soft)] hover:bg-[var(--overlay-secondary-strong)] text-[var(--color-neutral-900)]`,
-	{
-		transition: 'background-color .2s ease, color .2s ease',
-		'.dark &, [data-mui-color-scheme="dark"] &': {
-			color: 'var(--color-neutral-50)',
-			background: 'rgba(255,255,255,0.08)',
-			'&:hover': { background: 'rgba(255,255,255,0.14)' },
-		},
-	},
+	tw`flex sm:hidden rounded-xl justify-center items-center text-[18px] font-semibold`,
 ]);
 
 const MobileDrawer = styled(Drawer)(() => [
@@ -79,16 +73,7 @@ const DrawerHeader = styled('div')(() => [tw`flex items-center justify-between`]
 const DrawerLogo = styled('img')(() => [tw`w-[112px] h-auto`]);
 
 const DrawerCloseButton = styled(IconButton)(() => [
-	tw`w-10 h-10 rounded-xl flex items-center justify-center text-lg font-semibold`,
-	tw`bg-[var(--overlay-secondary-soft)] text-[var(--color-neutral-900)] hover:bg-[var(--overlay-secondary-strong)]`,
-	{
-		transition: 'background-color .2s ease, color .2s ease',
-		'.dark &, [data-mui-color-scheme="dark"] &': {
-			color: 'var(--color-neutral-50)',
-			background: 'rgba(255,255,255,0.08)',
-			'&:hover': { background: 'rgba(255,255,255,0.14)' },
-		},
-	},
+	tw` rounded-xl flex items-center justify-center `,
 ]);
 
 const DrawerMenuLabel = styled(Typography)(() => [tw`text-[var(--color-text-muted)] font-medium`]);
@@ -134,78 +119,89 @@ const NavBar = () => {
 						{links.map((link) => {
 							return (
 								<NavLink
-									className={
-										'no-underline h-full flex py-5 hover:border-secondary  transition-all hover:-translate-y-1 hover:scale-110'
+									className={({ isActive }) =>
+										` ${
+											isActive
+												? 'text-secondary no-underline '
+												: ' text-text py-5 transition ease-in-out hover:-translate-y-1 hover:scale-110 no-underline  '
+										}`
 									}
 									to={link.to}
 									key={link.label}
 								>
-									<Typography variant="subtitle2" color="textPrimary">
-										{link.label}
-									</Typography>
+									<Box key={link.label} className="flex items-center ">
+										<Typography variant="subtitle2">{link.label}</Typography>
+									</Box>
 								</NavLink>
 							);
 						})}
 
 						<PinkButton
 							variant="outlined"
-							css={[tw`py-3 px-4 lg:py-3.5  md:px-10 ml-2`]}
+							css={[tw`py-3 px-4 lg:py-3.5  md:px-10`]}
 							onClick={() => navigate('/contact')}
 						>
 							Contact
 						</PinkButton>
 						<ThemeFloatSwitch />
 					</DesktopLinks>
-					<DrawerToggleButton aria-label="open menu" onClick={() => setOpen(true)}>
-						<MenuIcon />
-					</DrawerToggleButton>
+					<Box css={[tw`flex items-center gap-2`]}>
+						<MobileThemeSwitchWrapper>
+							<ThemeFloatSwitch />
+						</MobileThemeSwitchWrapper>
+						<DrawerToggleButton aria-label="open menu" onClick={() => setOpen(true)}>
+							<MenuIcon fontSize="medium" />
+						</DrawerToggleButton>
 
-					<MobileDrawer
-						anchor="right"
-						open={open}
-						onClose={() => setOpen(false)}
-						ModalProps={{ keepMounted: true }}
-					>
-						<DrawerContent>
-							<DrawerHeader>
-								<DrawerLogo
-									src={isDarkMode ? './Main Logo.png' : './MainLogoBlue.png'}
-									alt="Beautice"
-								/>
-								<DrawerCloseButton onClick={() => setOpen(false)} aria-label="close menu">
-									<span aria-hidden="true">×</span>
-								</DrawerCloseButton>
-							</DrawerHeader>
+						<MobileDrawer
+							anchor="right"
+							open={open}
+							onClose={() => setOpen(false)}
+							ModalProps={{ keepMounted: true }}
+						>
+							<DrawerContent>
+								<DrawerHeader>
+									<DrawerLogo
+										src={isDarkMode ? './Main Logo.png' : './MainLogoBlue.png'}
+										alt="Beautice"
+									/>
+									<DrawerCloseButton onClick={() => setOpen(false)}>
+										<span>
+											<CloseIcon fontSize="medium" />
+										</span>
+									</DrawerCloseButton>
+								</DrawerHeader>
 
-							<DrawerMenuLabel variant="subtitle2">Menu</DrawerMenuLabel>
+								<DrawerMenuLabel variant="subtitle2">Menu</DrawerMenuLabel>
 
-							<DrawerMenu disablePadding>
-								{links.map((l) => (
-									<DrawerMenuItem
-										key={l.to}
-										component={NavLink}
-										to={l.to}
-										onClick={() => setOpen(false)}
+								<DrawerMenu disablePadding>
+									{links.map((l) => (
+										<DrawerMenuItem
+											key={l.to}
+											component={NavLink}
+											to={l.to}
+											onClick={() => setOpen(false)}
+										>
+											<ListItemText primary={l.label} />
+										</DrawerMenuItem>
+									))}
+								</DrawerMenu>
+
+								<DrawerFooter>
+									<PinkButton
+										fullWidth
+										onClick={() => {
+											navigate('/contact');
+											setOpen(false);
+										}}
+										css={[tw`py-3`]}
 									>
-										<ListItemText primary={l.label} />
-									</DrawerMenuItem>
-								))}
-							</DrawerMenu>
-
-							<DrawerFooter>
-								<PinkButton
-									fullWidth
-									onClick={() => {
-										navigate('/contact');
-										setOpen(false);
-									}}
-									css={[tw`py-3`]}
-								>
-									Contact
-								</PinkButton>
-							</DrawerFooter>
-						</DrawerContent>
-					</MobileDrawer>
+										Contact
+									</PinkButton>
+								</DrawerFooter>
+							</DrawerContent>
+						</MobileDrawer>
+					</Box>
 				</NavToolbar>
 			</GlassAppBar>
 		</section>

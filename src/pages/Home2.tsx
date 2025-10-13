@@ -147,11 +147,17 @@ const Home2: React.FC = () => {
 			<Container className="relative">
 				<BannerBox
 					url="./Home2/BackgroundSlider.png"
-					pt={38.5}
-					pb={39.5}
+					pt={{ xs: 20, sm: 28, lg: 38.5 }}
+					pb={{ xs: 20, sm: 28, lg: 39.5 }}
 					sx={{
 						'&::after': {
-							clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 88%)',
+							clipPath: {
+								xs: 'polygon(0 0, 100% 0, 100% 100%, 0 95%)',
+								sm: 'polygon(0 0, 100% 0, 100% 100%, 0 92%)',
+								md: 'polygon(0 0, 100% 0, 100% 97.5%, 0 90%)',
+								lg: 'polygon(0 0, 100% 0, 100% 98%, 0 89%)',
+								xl: 'polygon(0 0, 100% 0, 100% 100%, 0 88%)',
+							},
 						},
 					}}
 				>
@@ -187,7 +193,11 @@ const Home2: React.FC = () => {
 								<PlayInner>
 									<Box>
 										<HeroPlayButton>
-											<img src="./Home2/PlayButton.png" alt="" />
+											<img
+												src="./Home2/PlayButton.png"
+												alt=""
+												className="hover:scale-105 transition-transform duration-200"
+											/>
 										</HeroPlayButton>
 									</Box>
 									<Typography
@@ -285,11 +295,15 @@ const Home2: React.FC = () => {
 				<Container className="relative mt-12">
 					<BannerBox
 						url="./Home2/BackgroundCenter.png"
-						pt={26}
-						pb={32}
+						pt={{ xs: 16, sm: 20, lg: 26 }}
+						pb={{ xs: 16, sm: 24, lg: 32 }}
 						sx={{
 							'&::after': {
-								clipPath: 'polygon(0 14%, 100% 0, 100% 100%, 0 84%)',
+								clipPath: {
+									xs: 'polygon(0 8%, 100% 0, 100% 100%, 0 92%)',
+									sm: 'polygon(0 10%, 100% 0, 100% 100%, 0 90%)',
+									lg: 'polygon(0 14%, 100% 0, 100% 100%, 0 84%)',
+								},
 							},
 						}}
 					>

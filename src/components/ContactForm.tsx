@@ -5,7 +5,7 @@ import tw from 'twin.macro';
 
 const TextAreaCustom = styled(TextareaAutosize)(() => [
 	{
-		color: 'var(--card-background)',
+		color: 'var(--color-text)',
 		fontFamily: 'Poppins, sans-serif',
 		borderRadius: '0.9375rem',
 		backgroundColor: 'none',
@@ -20,10 +20,9 @@ const TextAreaCustom = styled(TextareaAutosize)(() => [
 		'&::placeholder': {
 			color: 'var(--color-text-input)',
 		},
-		'&::focus': {
+		'&:focus': {
 			outline: 'none',
-			border: 'none',
-			boxShadow: '0 0 0 2px rgba(9, 17, 86, 0.5)',
+			border: '1px solid #D9DDFE',
 		},
 	},
 ]);

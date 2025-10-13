@@ -58,15 +58,15 @@ const PaginationWrapper = styled(Box)(() => [
 	tw`flex justify-center pl-5 mt-16 py-2 pb-4 mb-16 lg:mb-[92px]`,
 ]);
 const BannerHeader = styled(Stack)(() => [tw`flex-row items-center justify-between gap-3`]);
-const BlogGridWrapper = styled(Grid)(() => [tw`w-full mt-20 py-7 justify-center`]);
-const BlogMainCol = styled(Grid)(() => [tw`pr-4`]);
+const BlogGridWrapper = styled(Grid)(() => [tw`w-full mt-20 py-7 flex `]);
+const BlogMainCol = styled(Grid)(() => [tw`lg:pr-4`]);
 const BlogSidebarCol = styled(Grid)(() => [tw``]);
 
 // Card & content
 const BlogCardWrapper = styled(Card)(() => [
 	tw`overflow-hidden`,
 	{
-		borderRadius: 14,
+		borderRadius: 38,
 		boxShadow: '0px 10px 30px rgba(0,0,0,0.08)',
 	},
 ]);
@@ -80,7 +80,7 @@ const BlogCategory = styled(Typography)(() => [tw`flex items-center gap-8 mt-[6p
 const BlogTitle = styled(Typography)(() => [tw`mt-2 md:mt-3 lg:mt-4`]);
 const BlogDescription = styled(Typography)(() => [tw`mt-3 md:mt-4 lg:mt-5`]);
 
-const ReadMoreWrapper = styled('div')(() => [tw`mt-4 lg:mt-[30px] mb-8 lg:mb-16 pt-1 pb-3`]);
+const ReadMoreWrapper = styled('div')(() => [tw`mt-4 lg:mt-[30px] md:mb-8 lg:mb-16 pt-1 md:pb-3`]);
 const ReadMoreButton = styled(PinkButton)(() => [
 	tw`relative px-[3.85rem] py-3 lg:py-4`,
 	{
@@ -111,35 +111,25 @@ const RecentPostsSection = styled(SidebarSection)(() => [
 ]);
 
 const CategoriesSection = styled(SidebarSection)(() => [
-	tw`pl-8 pt-11 pb-[52px] md:(pl-10 pt-12 pb-[52px]) lg:pl-[2.9rem]`,
+	tw`pl-8 pt-11 pb-9 md:(pl-10 pt-12 pb-[52px]) lg:pl-[2.9rem]`,
 ]);
 
 const CloudTagsSection = styled(SidebarSection)(() => [
-	tw`pl-9 pt-9 pb-[52px] md:pt-[3.1rem] lg:(pl-[2.6rem] pr-11)`,
+	tw`pl-9 pt-9 pb-[52px] md:pt-[3.1rem]  lg:(pl-[2.6rem] pr-11)`,
 ]);
 
 const SocialSection = styled(SidebarSection)(() => [
 	tw`pl-8 pt-12 pb-14 md:pt-[3.8rem] md:pl-10 lg:pl-[2.9rem]`,
 ]);
 
-const SearchBarWrapper = styled(Box)(() => [tw`flex items-center  overflow-hidden `]);
-const InputBaseStyle = styled(InputBaseCustom)(() => [tw`border-l rounded-l-full py-[1.1rem]`]);
-const SearchButton = styled(IconButton)(() => [
-	tw`px-[1.6rem] py-[1.32rem] bg-primary rounded-r-full border-r`,
-	{
-		color: 'white',
-		'&:hover': { backgroundColor: 'var(--color-secondary)' },
-	},
-]);
+const SearchBarWrapper = styled(Box)(() => [tw`flex items-stretch w-full border rounded-full`]);
+const InputBaseStyle = styled(InputBaseCustom)(() => [tw`border-l rounded-l-full flex-1`]);
+const SearchButton = styled(IconButton)(() => [tw`px-[1.6rem] bg-primary rounded-r-full border-r`]);
 
 const SidebarStack = styled(Stack)(() => [tw`mt-10 lg:mt-20`]);
 
 const TagItem = styled(Grid)(() => [
-	tw`flex justify-center items-center cursor-pointer rounded-[28px] px-2.5 py-0.5 max-w-[82px] min-w-[82px] font-medium tracking-[0.1em] text-[14px]`,
-	{
-		color: 'var(--color-text-body)',
-		'&:hover': { backgroundColor: 'var(--color-primary)', color: 'white' },
-	},
+	tw`flex justify-center items-center cursor-pointer rounded-[28px] px-2.5 py-0.5 max-w-[82px] min-w-[82px] font-medium tracking-[0.1em] text-[14px] hover:bg-secondary hover:text-white`,
 ]);
 
 const SocialIconsRow = styled(Stack)(() => [tw`relative  lg:right-2 mt-6 flex-row flex-wrap`]);
@@ -158,7 +148,7 @@ const RecentPostExcerpt = styled(Typography)(() => [
 const CategoriesTitle = styled(Typography)(() => [tw`mb-5 text-primary`]);
 const CategoryRow = styled(Box)(() => [tw`flex`]);
 const CategoryItem = styled(Typography)(() => [
-	tw`text-[14px] font-medium tracking-[0.1em] leading-[1.6rem] cursor-pointer hover:(text-secondary)`,
+	tw`text-[14px] mb-3 font-medium tracking-[0.1em] leading-[1.6rem] cursor-pointer hover:(text-secondary)`,
 ]);
 
 // Cloud Tags
@@ -207,11 +197,11 @@ const Blog = () => {
 			</Container>
 			{/* Blog Block */}
 			<Container>
-				<BlogGridWrapper container spacing={{ xs: 2, md: 3, lg: 4.5 }}>
+				<BlogGridWrapper container spacing={{ xs: 6, md: 3, lg: 4.5 }}>
 					<BlogMainCol size={{ xs: 12, md: 8 }}>
-						<Grid container spacing={{ xs: 5, md: 10, lg: 12, xl: 16.8 }}>
+						<Grid container spacing={{ xs: 5, md: 10, lg: 12, xl: 16.8 }} alignItems={'center'}>
 							{BlogData.map((blog) => (
-								<Grid size={{ xs: 12, sm: 4, md: 12 }} key={blog.id}>
+								<Grid size={{ xs: 12, sm: 6, md: 12 }} key={blog.id}>
 									<BlogCardWrapper>
 										<CardMedia component="img" image={blog.image} alt={blog.title} />
 										<BlogCardContent>
@@ -292,7 +282,7 @@ const Blog = () => {
 									container
 									direction="row"
 									flexWrap="wrap"
-									justifyContent={'space-between'}
+									justifyContent={{ xs: 'flex-start', md: 'space-between' }}
 									rowGap={2.5}
 								>
 									{cloudTags.map((tag, index) => (

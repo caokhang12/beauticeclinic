@@ -1,11 +1,12 @@
 import React from 'react';
 import { PinkButton } from '../components/PinkButton';
 import TeamBlock from '../components/TeamBlock';
-import { Box, Container, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import ContactForm from '../components/ContactForm';
 import { TitleBlock } from '../components/TitleBlock';
 import BubbleBackground from '../components/BubbleBg';
 import tw, { styled } from 'twin.macro';
+import PlayCircleRoundedIcon from '@mui/icons-material/PlayCircleRounded';
 
 const serviceCardData = [
 	{
@@ -38,16 +39,18 @@ const HeroSlider = styled(Box)(() => [tw`flex gap-2 justify-center mt-32 py-2`])
 
 const ServicesSection = styled('section')(() => [tw`mt-28 py-1 text-center`]);
 const ServicesGrid = styled(Box)(() => [
-	tw`grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-14 mt-24`,
+	tw`grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] items-center justify-center gap-14 mt-24`,
 ]);
-const ServiceCard = styled(Box)(() => [tw`px-8 lg:px-8 pb-16 py-12`]);
+const ServiceCard = styled(Box)(() => [
+	tw`px-8 lg:px-8 pb-16 py-12 bg-card rounded-3xl hover:(scale-105 shadow-lg) transition-all duration-300`,
+]);
 const ServiceImageWrapper = styled(Box)(() => [tw`flex items-center justify-center`]);
 
 const ClinicSection = styled('section')(() => [tw`mt-32 w-full py-2`]);
 const ClinicGrid = styled(Box)(() => [tw`grid lg:grid-cols-[1fr_1fr] md:grid-cols-1 gap-10`]);
-const ClinicActions = styled(Box)(() => [tw`flex gap-10 items-center lg:mt-12 pt-10`]);
+const ClinicActions = styled(Box)(() => [tw`flex gap-10 items-center lg:(mt-12 pt-10)`]);
 const ClinicMedia = styled(Box)(() => [
-	tw`lg:relative top-5 flex items-center justify-center  md:justify-end w-full`,
+	tw`lg:relative top-5 flex items-center justify-center  lg:justify-end w-full`,
 ]);
 
 const TeamSection = styled(Box)(() => [tw`mt-20 lg:mt-28 py-2 lg:py-[1.5rem] text-center`]);
@@ -164,8 +167,13 @@ const Home: React.FC = () => {
 								>
 									Learn More
 								</PinkButton>
-								<a href="#" className="flex no-underline items-center gap-3 ml-1">
-									<img src="./Home/Play_button.png" alt="" className=" w-fit" />
+								<Button type="submit" className="flex no-underline items-center gap-3 ml-1">
+									<PlayCircleRoundedIcon
+										color="primary"
+										sx={{
+											fontSize: { xs: 40, lg: 56 },
+										}}
+									/>
 									<Typography
 										variant="subtitle1"
 										color="text.primary"
@@ -174,7 +182,7 @@ const Home: React.FC = () => {
 									>
 										Watch Video
 									</Typography>
-								</a>
+								</Button>
 							</ClinicActions>
 						</Stack>
 						<ClinicMedia>

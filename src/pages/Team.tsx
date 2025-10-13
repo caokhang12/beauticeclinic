@@ -56,7 +56,9 @@ const ReviewsAvatarWrapper = tw.div`mt-[3.8rem]  flex justify-center`;
 const ReviewArrowsRow = styled('div')(() => [
 	tw`flex flex-row items-center justify-center gap-2 sm:gap-6 md:gap-[5.5rem] text-center mt-11`,
 ]);
-const ArrowWrapper = styled('div')(() => [tw`relative`]);
+const ArrowWrapper = styled('div')(() => [
+	tw`relative cursor-pointer hover:(opacity-70 scale-105)`,
+]);
 const StyledRating = styled(Rating)(() => [
 	{
 		'& .MuiRating-iconFilled': { color: '#FFA800' },

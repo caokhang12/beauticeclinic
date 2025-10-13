@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 
 export const ThemeContext = createContext({
-	setColorScheme: (index: number) => {},
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	setColorScheme: (_index: number) => {},
 });
