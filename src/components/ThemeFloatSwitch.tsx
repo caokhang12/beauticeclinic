@@ -1,4 +1,13 @@
-import { Box, Fab, Paper, Stack, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
+import {
+	Box,
+	Fab,
+	Paper,
+	Stack,
+	ToggleButton,
+	ToggleButtonGroup,
+	Typography,
+	IconButton,
+} from '@mui/material';
 import { useColorScheme } from '@mui/material/styles';
 import { useContext, useState } from 'react';
 import tw, { styled } from 'twin.macro';
@@ -8,8 +17,12 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
+import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import { ThemeContext } from '../contexts/themeContext';
 import { COLORS } from '../themes/theme';
+import { AuthContext } from '../contexts/authContext';
+import ProfileDrawer from './ProfileDrawer';
 
 const FixedWrap = styled(Box)(() => [tw`relative flex flex-col gap-3`]);
 
@@ -27,10 +40,12 @@ const ColorButton = styled(Box)(() => [
 ]);
 
 export const ThemeFloatSwitch = () => {
-	const { mode, setMode, systemMode } = useColorScheme();
-	const resolvedMode = mode === 'system' ? systemMode : mode;
 	const [open, setOpen] = useState(false);
+	const [profileOpen, setProfileOpen] = useState(false);
+	const { mode, setMode, systemMode } = useColorScheme();
 	const { setColorScheme } = useContext(ThemeContext);
+	const resolvedMode = mode === 'system' ? systemMode : mode;
+	const { user, logout } = useContext(AuthContext);
 
 	const handleColorChange = (index: number) => {
 		setColorScheme(index);
@@ -42,6 +57,10 @@ export const ThemeFloatSwitch = () => {
 		setMode('system');
 	};
 
+	const handleProfileOpen = () => {
+		setProfileOpen(true);
+	};
+
 	return (
 		<FixedWrap>
 			<TriggerFab size="small" color="primary" onClick={() => setOpen(!open)}>
@@ -49,7 +68,21 @@ export const ThemeFloatSwitch = () => {
 			</TriggerFab>
 			{open && (
 				<Panel elevation={8}>
+					<ProfileDrawer open={profileOpen} onClose={() => setProfileOpen(false)} />
 					<Stack gap={2.5}>
+						{user && (
+							<Stack direction="row" alignItems="center" justifyContent="space-between">
+								<Typography variant="subtitle1" fontWeight={600}>
+									Xin chào, {user?.userName}
+								</Typography>
+								<IconButton size="large" color="info" onClick={() => handleProfileOpen()}>
+									<PermIdentityOutlinedIcon />
+								</IconButton>
+								<IconButton size="small" color="error" onClick={logout}>
+									<LogoutIcon fontSize="small" />
+								</IconButton>
+							</Stack>
+						)}
 						<Box>
 							<Typography variant="subtitle1" fontWeight={600} mb={1}>
 								Theme

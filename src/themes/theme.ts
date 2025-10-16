@@ -158,14 +158,17 @@ export const appColorTheme = ({ colorScheme }: { colorScheme: number }) => {
 			},
 			MuiInputBase: {
 				styleOverrides: {
-					root: {
+					root: ({ theme }) => ({
 						fontFamily: 'Poppins, sans-serif',
 						borderRadius: '0.9375rem',
-						backgroundColor: 'white',
-						border: '1px solid #D9DDFE',
 						width: '100%',
 						padding: '0.95rem 1.45rem',
-					},
+						border: '1px solid ',
+						'&.Mui-focused': {
+							border: 'none',
+							boxShadow: `0 0 0 3px ${theme.palette.primary.main}20`,
+						},
+					}),
 					input: {
 						'&::placeholder': tw`text-base`,
 					},

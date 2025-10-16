@@ -11,7 +11,6 @@ export const ThemeProviderWrapper = ({ children }: { children: React.ReactNode }
 	});
 
 	const theme = useMemo(() => appColorTheme({ colorScheme }), [colorScheme]);
-	console.log('ThemeProviderWrapper render with colorScheme:', colorScheme);
 	return (
 		<ThemeContext.Provider value={{ setColorScheme }}>
 			<ThemeProvider theme={theme}>

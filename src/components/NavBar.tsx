@@ -11,15 +11,16 @@ import {
 } from '@mui/material';
 import { PinkButton } from './PinkButton';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import tw, { styled, css } from 'twin.macro';
 import { useColorScheme } from '@mui/material/styles';
 import ThemeFloatSwitch from './ThemeFloatSwitch';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import { AuthContext } from '../contexts/authContext';
 
 const GlassAppBar = styled(AppBar)(() => [
-	tw`flex justify-center backdrop-blur-lg bg-white bg-opacity-70`,
+	tw`flex flex-row backdrop-blur-lg bg-white bg-opacity-70`,
 	{
 		transition: 'background-color 200ms ease, backdrop-filter 200ms ease',
 		'.dark &, [data-mui-color-scheme="dark"] &': {
@@ -32,7 +33,7 @@ const GlassAppBar = styled(AppBar)(() => [
 ]);
 
 const NavToolbar = styled(Toolbar)(() => [
-	tw`flex mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-[9.3rem] lg:px-20 py-4 lg:py-6 xl:py-9 justify-between items-center shadow-none`,
+	tw`flex mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-10 xl:px-[9.3rem] lg:px-20 py-4  xl:py-6 2xl:py-9 justify-between items-center shadow-none`,
 ]);
 
 const LogoContainer = styled(Box)(() => [
@@ -84,10 +85,11 @@ const DrawerMenuItem = styled(ListItemButton)(() => [
 	tw`rounded-2xl px-4 py-3 text-[var(--color-text-strong)] hover:bg-[var(--overlay-secondary-soft)] [&.active]:bg-[var(--color-primary)] [&.active]:text-[var(--color-text-inverse)]`,
 ]);
 
-const DrawerFooter = styled('div')(() => [tw`mt-auto`]);
+const DrawerFooter = styled('div')(() => [tw`mt-auto flex flex-col gap-3`]);
 
 const NavBar = () => {
 	const { mode, systemMode } = useColorScheme();
+	const { user } = useContext(AuthContext);
 
 	const resolvedMode = mode === 'system' ? systemMode : mode;
 	const isDarkMode = resolvedMode === 'dark';
@@ -143,66 +145,85 @@ const NavBar = () => {
 						>
 							Contact
 						</PinkButton>
-						<ThemeFloatSwitch />
-					</DesktopLinks>
-					<Box css={[tw`flex items-center gap-2`]}>
-						<MobileThemeSwitchWrapper>
+
+						{user ? (
 							<ThemeFloatSwitch />
-						</MobileThemeSwitchWrapper>
-						<DrawerToggleButton aria-label="open menu" onClick={() => setOpen(true)}>
-							<MenuIcon fontSize="medium" />
-						</DrawerToggleButton>
+						) : (
+							<PinkButton
+								variant="outlined"
+								css={[tw`py-2.5 px-4 lg:py-3.5  md:px-10 hidden sm:flex`]}
+								onClick={() => navigate('/login')}
+							>
+								Login
+							</PinkButton>
+						)}
+					</DesktopLinks>
+				</NavToolbar>
+				<Box css={[tw`flex items-center gap-2`]}>
+					<MobileThemeSwitchWrapper>{user && <ThemeFloatSwitch />}</MobileThemeSwitchWrapper>
+					<DrawerToggleButton aria-label="open menu" onClick={() => setOpen(true)}>
+						<MenuIcon fontSize="medium" />
+					</DrawerToggleButton>
 
-						<MobileDrawer
-							anchor="right"
-							open={open}
-							onClose={() => setOpen(false)}
-							ModalProps={{ keepMounted: true }}
-						>
-							<DrawerContent>
-								<DrawerHeader>
-									<DrawerLogo
-										src={isDarkMode ? './Main Logo.png' : './MainLogoBlue.png'}
-										alt="Beautice"
-									/>
-									<DrawerCloseButton onClick={() => setOpen(false)}>
-										<span>
-											<CloseIcon fontSize="medium" />
-										</span>
-									</DrawerCloseButton>
-								</DrawerHeader>
+					<MobileDrawer
+						anchor="right"
+						open={open}
+						onClose={() => setOpen(false)}
+						ModalProps={{ keepMounted: true }}
+					>
+						<DrawerContent>
+							<DrawerHeader>
+								<DrawerLogo
+									src={isDarkMode ? './Main Logo.png' : './MainLogoBlue.png'}
+									alt="Beautice"
+								/>
+								<DrawerCloseButton onClick={() => setOpen(false)}>
+									<span>
+										<CloseIcon fontSize="medium" />
+									</span>
+								</DrawerCloseButton>
+							</DrawerHeader>
 
-								<DrawerMenuLabel variant="subtitle2">Menu</DrawerMenuLabel>
+							<DrawerMenuLabel variant="subtitle2">Menu</DrawerMenuLabel>
 
-								<DrawerMenu disablePadding>
-									{links.map((l) => (
-										<DrawerMenuItem
-											key={l.to}
-											component={NavLink}
-											to={l.to}
-											onClick={() => setOpen(false)}
-										>
-											<ListItemText primary={l.label} />
-										</DrawerMenuItem>
-									))}
-								</DrawerMenu>
+							<DrawerMenu disablePadding>
+								{links.map((l) => (
+									<DrawerMenuItem
+										key={l.to}
+										component={NavLink}
+										to={l.to}
+										onClick={() => setOpen(false)}
+									>
+										<ListItemText primary={l.label} />
+									</DrawerMenuItem>
+								))}
+							</DrawerMenu>
 
-								<DrawerFooter>
+							<DrawerFooter>
+								<PinkButton
+									fullWidth
+									onClick={() => {
+										navigate('/contact');
+										setOpen(false);
+									}}
+								>
+									Contact
+								</PinkButton>
+								{!user && (
 									<PinkButton
 										fullWidth
 										onClick={() => {
-											navigate('/contact');
+											navigate('/login');
 											setOpen(false);
 										}}
-										css={[tw`py-3`]}
 									>
-										Contact
+										Login
 									</PinkButton>
-								</DrawerFooter>
-							</DrawerContent>
-						</MobileDrawer>
-					</Box>
-				</NavToolbar>
+								)}
+							</DrawerFooter>
+						</DrawerContent>
+					</MobileDrawer>
+				</Box>
 			</GlassAppBar>
 		</section>
 	);

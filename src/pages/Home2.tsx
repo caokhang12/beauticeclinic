@@ -104,7 +104,9 @@ const NewsCardWrapper = styled(Box)`
 	${tw`w-fit  h-auto border-t-0 mx-auto`}
 `;
 
-const NewsCard = styled(Card)(() => [tw`bg-card  pb-5 lg:pb-7 rounded-3xl`]);
+const NewsCard = styled(Card)(() => [
+	tw`bg-card  pb-5 lg:pb-7 rounded-3xl hover:(shadow-2xl transition-shadow md:scale-105 duration-300)`,
+]);
 
 const NewsCardContent = styled(CardContent)`
 	${tw`lg:(pl-[2.4rem] pt-12) pt-6 pl-5`}
@@ -176,7 +178,7 @@ const Home2: React.FC = () => {
 									sx={{
 										py: 1.3,
 										color: 'white',
-										borderColor: 'white',
+										border: 'solid 1px white',
 										px: 3.5,
 										borderRadius: 3,
 										letterSpacing: 1.5,
@@ -455,7 +457,11 @@ const Home2: React.FC = () => {
 										<img src={blog.image} alt="News 1" className="w-full h-auto" />
 									</Box>
 									<NewsCardContent>
-										<Typography variant="h6" color="primary" className=" mb-3 tracking-normal">
+										<Typography
+											variant="h6"
+											color="primary"
+											className=" mb-3 tracking-normal line-clamp-2"
+										>
 											{blog.title}
 										</Typography>
 										<Typography variant="body1" className="w-11/12">

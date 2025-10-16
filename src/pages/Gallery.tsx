@@ -21,17 +21,17 @@ const VideoTitle = styled(Typography)(() => [tw`pt-3`]);
 const VideoDescription = styled(Typography)(() => [tw`mt-5 md:w-1/2 leading-6 text-center`]);
 const VideoPlayButton = styled.img(() => [tw`w-fit h-auto mt-6 lg:mt-12`]);
 
-const CtaSection = tw.section`mt-28 mb-40 pb-[6px] pt-1`;
-const CtaLayout = styled(Grid)(() => [tw``]);
-const CtaTextWrapper = tw.div`flex flex-col justify-center h-full`;
-const CtaDescription = styled(Typography)(() => [tw`leading-6 mt-3 lg:mt-[22px] w-11/12`]);
-const CtaButtonWrapper = tw.div`flex items-center justify-center h-full lg:pl-[19px]`;
+const CallSection = tw.section`mt-28 mb-40 pb-[6px] pt-1`;
+const CallLayout = styled(Grid)(() => [tw``]);
+const CallTextWrapper = tw.div`flex flex-col justify-center h-full`;
+const CallDescription = styled(Typography)(() => [tw`leading-6 mt-3 lg:mt-[22px] w-11/12`]);
+const CallButtonWrapper = tw.div`flex items-center justify-center h-full lg:pl-[19px]`;
 const AppointmentButton = styled(PinkButton)(() => [tw`px-[3.2rem] py-3 lg:py-4`]);
 
 const Gallery = () => {
 	return (
 		<PageWrapper>
-			<BubbleBackground image="./BubbleMid1.png" top="13%" right={0} />
+			<BubbleBackground image="./BubbleMid1.png" top="13%" right={0} justifyContent="flex-end" />
 			<BubbleBackground image="./BubbleMid1.png" top="50%" left={0} flipX />
 			{/* Hero Block */}
 			<HeroSection>
@@ -107,31 +107,31 @@ const Gallery = () => {
 			</VideoSection>
 			{/* Quota Block */}
 
-			<CtaSection>
+			<CallSection>
 				<Container>
-					<CtaLayout container spacing={6}>
+					<CallLayout container spacing={6}>
 						<Grid size={{ xs: 12, md: 7 }}>
-							<CtaTextWrapper>
+							<CallTextWrapper>
 								<Typography variant="subtitle1" color="secondary">
 									Get The Quota
 								</Typography>
 								<Typography variant="h2" color="primary.main" className="lg:mt-3">
 									Want to be handled by our professional team immediately?
 								</Typography>
-								<CtaDescription variant="subtitle2" component="p">
+								<CallDescription variant="subtitle2" component="p">
 									Id dui erat sed quam tellus in purus. Pellentesque congue fringilla cras tellus
 									enim.
-								</CtaDescription>
-							</CtaTextWrapper>
+								</CallDescription>
+							</CallTextWrapper>
 						</Grid>
 						<Grid size={{ xs: 12, md: 5 }}>
-							<CtaButtonWrapper>
+							<CallButtonWrapper>
 								<AppointmentButton>Make an Appointment</AppointmentButton>
-							</CtaButtonWrapper>
+							</CallButtonWrapper>
 						</Grid>
-					</CtaLayout>
+					</CallLayout>
 				</Container>
-			</CtaSection>
+			</CallSection>
 		</PageWrapper>
 	);
 };

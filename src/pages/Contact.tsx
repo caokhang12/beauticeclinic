@@ -47,7 +47,7 @@ const ContactImageWrapper = styled(Box)(
 	() => tw`-z-10 relative flex items-center justify-center lg:bottom-[2.5rem]`
 );
 
-const FormContent = styled(Box)(() => tw`w-full`);
+const FormContent = styled(Box)(() => tw``);
 
 const MapSection = styled('section')(() => tw`mt-28`);
 
